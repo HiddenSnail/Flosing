@@ -17,108 +17,113 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.LogInCallback;
+import com.avos.avoscloud.SaveCallback;
+
 
 /**
- * Created by RunNishino on 2016/12/25.
+ * Created by RunNishino on 2016/12/26.
  */
 
-public class LoginActivity extends AppCompatActivity{
+public class RegisterActivity extends AppCompatActivity {
+
     private AutoCompleteTextView usernameView;
+    private AutoCompleteTextView emailView;
     private EditText passwordView;
 
     @Override
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
-        setContentView(R.layout.activity_login);
-
-        //判断是否已经登录，如果已经登录则进入主活动
-        if (AVUser.getCurrentUser() != null){
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            LoginActivity.this.finish();
-        }
+        setContentView(R.layout.activity_register);
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("登录");
+
+        //注册逻辑代码
         usernameView = (AutoCompleteTextView) findViewById(R.id.username);
+        emailView = (AutoCompleteTextView) findViewById(R.id.email);
         passwordView = (EditText) findViewById(R.id.password);
 
-        //
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL){
-                    attemptLogin();
+                if (id == R.id.register || id == EditorInfo.IME_NULL){
+                    attemptRegister();
                     return true;
                 }
                 return false;
             }
         });
 
-        Button usernameLoginButton = (Button) findViewById(R.id.username_login_button);
-        Button usernameRegisterButton = (Button) findViewById(R.id.username_register_button);
-
-        usernameLoginButton.setOnClickListener(new View.OnClickListener() {
+        Button usernameSignButton = (Button) findViewById(R.id.username_register_button);
+        usernameSignButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptRegister();
             }
         });
-        usernameRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
-                LoginActivity.this.finish();
-            }
-        });
-
     }
 
-    private void attemptLogin(){
+    //向LeanCloud注册用户
+    private void attemptRegister(){
         usernameView.setError(null);
+        emailView.setError(null);
         passwordView.setError(null);
 
-        final String username = usernameView.getText().toString();
-        final String password = passwordView.getText().toString();
+        String username = usernameView.getText().toString();
+        String email = emailView.getText().toString();
+        String password = passwordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        //判断密码是否合法（大于4位）
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)){
-            passwordView.setError("密码需大于4位");
+        //判断填写信息是否合法
+        if(!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            passwordView.setError("密码必须大于4位");
             focusView = passwordView;
             cancel = true;
         }
-        //判断用户名是否合法
-        if (TextUtils.isEmpty(username)){
+        if(!TextUtils.isEmpty(email) && !isEmailValid(email)){
+            emailView.setError("请输入正确的邮箱");
+            focusView = emailView;
+            cancel = true;
+        }
+        if(TextUtils.isEmpty(username)){
             usernameView.setError("用户名必须填写");
             focusView = usernameView;
             cancel = true;
         }
 
-        //判断是否能够登录 不能登录则在第一处错误的地方重置光标
         if (cancel){
             focusView.requestFocus();
         }else{
-            //LeanCloud登录逻辑
-            AVUser.logInInBackground(username, password, new LogInCallback<AVUser>() {
+            AVUser user = new AVUser();
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setPassword(password);
+
+            user.saveInBackground(new SaveCallback() {
                 @Override
-                public void done(AVUser avUser, AVException e) {
+                public void done(AVException e) {
                     if (e==null){
-                        LoginActivity.this.finish();
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                        //注册成功，并且currentUser设为注册的用户
+                        startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+                        RegisterActivity.this.finish();
                     }else{
-                        Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
+
+    }
+
+    private boolean isEmailValid(String email){
+        return email.contains("@");
     }
 
     private boolean isPasswordValid(String password){
         return password.length() > 4;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
