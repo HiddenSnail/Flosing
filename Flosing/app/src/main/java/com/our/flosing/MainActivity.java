@@ -1,6 +1,7 @@
 package com.our.flosing;
 
 import android.content.Intent;
+import android.support.v4.util.LongSparseArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.SaveCallback;
+
+import java.security.PublicKey;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,5 +44,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button lostPublish = (Button) findViewById(R.id.lost_publish);
+        lostPublish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, LostPublishActivity.class));
+            }
+        });
     }
 }

@@ -9,7 +9,7 @@ import com.avos.avoscloud.AVOSCloud;
  * Created by RunNishino on 2016/12/25.
  */
 
-public class FlostingApp extends Application {
+public class FlosingApp extends Application {
 
     @Override
     public void onCreate(){
