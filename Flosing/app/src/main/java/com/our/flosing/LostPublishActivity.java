@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVAnalytics;
@@ -21,6 +22,9 @@ import java.security.PublicKey;
  */
 
 public class LostPublishActivity extends AppCompatActivity {
+    private EditText titleView;
+    private EditText descriptionView;
+    private Spinner typesView;
 
     @Override
     protected void onCreate(Bundle saveInstanceState){
@@ -30,43 +34,66 @@ public class LostPublishActivity extends AppCompatActivity {
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("发布");
 
-        final EditText titleView = (EditText) findViewById(R.id.edittext_title_publish);
-        final EditText descriptionView = (EditText) findViewById(R.id.edittext_description_publish);
+        titleView = (EditText) findViewById(R.id.edittext_title_publish);
+        descriptionView = (EditText) findViewById(R.id.edittext_description_publish);
+        typesView = (Spinner) findViewById(R.id.spinner_types_publish);
+        //TODO:未完成开始时间和结束时间的选择，需要datepicker。
 
-        //TODO:未完成开始时间和结束时间的选择，需要datepicker，未完成type的选择，需要下拉菜单。
 
         final Button submitPublish = (Button) findViewById(R.id.submit_publish_button);
         submitPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ("".equals(titleView.getText().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if ("".equals(descriptionView.getText().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                AVObject lost = new AVObject("Lost");
-                lost.put("title",titleView.getText().toString());
-                lost.put("description",descriptionView.getText().toString());
-                lost.put("owner", AVUser.getCurrentUser());
-                lost.put("isFinish",false);
-                lost.put("picker",null);
+                attemptLostPublish();
 
-                lost.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(AVException e) {
-                        if (e==null){
-                            LostPublishActivity.this.finish();
-                        }else {
-                            Toast.makeText(LostPublishActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
             }
         });
+    }
+
+    private void attemptLostPublish(){
+
+        boolean cancel = false;
+        View focusView = null;
+
+        if ("请选择类型".equals(typesView.getSelectedItem().toString())){
+            Toast.makeText(LostPublishActivity.this,"请选择类型",Toast.LENGTH_SHORT).show();
+            cancel = true;
+        }
+        if ("".equals(titleView.getText().toString())){
+            Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
+            cancel = true;
+            focusView = titleView;
+        }
+        if ("".equals(descriptionView.getText().toString())){
+            Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
+            cancel = true;
+            focusView = descriptionView;
+        }
+
+        if(cancel){
+            focusView.requestFocus();
+        }else {
+            AVObject lost = new AVObject("Lost");
+
+            lost.put("title",titleView.getText().toString());
+            lost.put("type",typesView.getSelectedItem().toString());
+            lost.put("description",descriptionView.getText().toString());
+            lost.put("owner", AVUser.getCurrentUser());
+            lost.put("isFinish",false);
+            lost.put("picker",null);
+
+            lost.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(AVException e) {
+                    if (e==null){
+                        LostPublishActivity.this.finish();
+                    }else {
+                        Toast.makeText(LostPublishActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     @Override
