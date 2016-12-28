@@ -5,13 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVAnalytics;
+import com.our.flosing.MainActivity;
 import com.our.flosing.R;
 import com.our.flosing.presenter.LoginPresenter;
 
@@ -38,6 +42,17 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         loginDialog = new ProgressDialog(LoginActivity.this);
         loginDialog.setMessage("正在登录...");
 
+        passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if(id == R.id.login || id == EditorInfo.IME_NULL){
+                    loginPresenter.login(usernameView.getText().toString(),passwordView.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
+
         findViewById(R.id.username_login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void updateView() {
-        Intent intent = new Intent(LoginActivity.this, LostPublishActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,7 +63,10 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
     @Override
     public void updateView() {
-        Toast.makeText(context, "注册成功", Toast.LENGTH_LONG).show();
+        Log.d("currentUser",AVUser.getCurrentUser().toString());
+        Toast.makeText(context, "注册并登陆成功", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+        RegisterActivity.this.finish();
     }
 
     @Override
