@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    tools:context="com.our.flosing.RegisterActivity">
+    tools:context="com.our.flosing.view.RegisterActivity">
 
     <ScrollView
         android:id="@+id/register_form"

@@ -1,4 +1,4 @@
-package com.our.flosing;
+package com.our.flosing.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +13,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
-
-import java.security.PublicKey;
+import com.our.flosing.R;
 
 /**
  * Created by RunNishino on 2016/12/26.

@@ -37,7 +37,7 @@
         </activity>
         <!-- 反馈组件 END -->
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,11 +49,11 @@
 
         </activity>
 
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".view.RegisterActivity">
 
         </activity>
 
-        <activity android:name=".LostPublishActivity">
+        <activity android:name=".view.LostPublishActivity">
 
         </activity>
     </application>

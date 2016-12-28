@@ -58,4 +58,9 @@ dependencies {
 
     // LeanCloud 应用内搜索包
     compile ('cn.leancloud.android:avoscloud-search:v3.+@aar')
+
+    // RxAndroid 第三方库
+    compile ('io.reactivex:rxandroid:1.2.1')
+    // RxJava 第三方库
+    compile ('io.reactivex:rxjava:1.1.6')
 }
