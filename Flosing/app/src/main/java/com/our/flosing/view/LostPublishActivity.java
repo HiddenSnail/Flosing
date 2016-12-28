@@ -20,19 +20,23 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
-<<<<<<< HEAD:Flosing/app/src/main/java/com/our/flosing/view/LostPublishActivity.java
+//<<<<<<< HEAD:Flosing/app/src/main/java/com/our/flosing/view/LostPublishActivity.java
 import com.our.flosing.R;
-=======
+import com.our.flosing.presenter.LoginPresenter;
+import com.our.flosing.presenter.LostPublishPresenter;
+//=======
 
 import java.util.Date;
 import java.util.Locale;
->>>>>>> e8663f96069315a7a5e380275dfa39d4ef865600:Flosing/app/src/main/java/com/our/flosing/LostPublishActivity.java
+//>>>>>>> e8663f96069315a7a5e380275dfa39d4ef865600:Flosing/app/src/main/java/com/our/flosing/LostPublishActivity.java
 
 /**
  * Created by RunNishino on 2016/12/26.
  */
 
 public class LostPublishActivity extends AppCompatActivity {
+    static private LostPublishPresenter lostPublishPresenter;
+
     private EditText titleView;
     private EditText descriptionView;
     private Spinner typesView;
@@ -165,7 +169,6 @@ public class LostPublishActivity extends AppCompatActivity {
             Date endDate;
             try {
 
-//                String t = sdf.format(startDate);
                 startDate = sdf.parse(startDateView.getText().toString());
                 endDate = sdf.parse(endDateView.getText().toString());
 
