@@ -4,21 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVAnalytics;
-import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.SaveCallback;
 import com.our.flosing.MainActivity;
 import com.our.flosing.R;
 import com.our.flosing.presenter.RegisterPresenter;
@@ -42,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
         context = this;
         if (registerPresenter == null) registerPresenter = new RegisterPresenter(this);
+        registerPresenter.takeView(this);
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         usernameView = (AutoCompleteTextView) findViewById(R.id.username);
@@ -62,7 +58,10 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
     @Override
     public void updateView() {
-        Toast.makeText(context, "注册成功", Toast.LENGTH_LONG).show();
+        Log.d("currentUser",AVUser.getCurrentUser().toString());
+        Toast.makeText(context, "注册并登陆成功", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+        RegisterActivity.this.finish();
     }
 
     @Override
@@ -89,5 +88,11 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     protected void onResume() {
         super.onResume();
         AVAnalytics.onResume(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) registerPresenter = null;
     }
 }

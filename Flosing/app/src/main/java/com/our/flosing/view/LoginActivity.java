@@ -1,17 +1,20 @@
 package com.our.flosing.view;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVAnalytics;
+import com.our.flosing.MainActivity;
 import com.our.flosing.R;
 import com.our.flosing.presenter.LoginPresenter;
 
@@ -31,12 +34,26 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         setContentView(R.layout.activity_login);
 
         if (loginPresenter == null) loginPresenter = new LoginPresenter(this);
+        loginPresenter.takeView(this);
 
         usernameView = (AutoCompleteTextView) findViewById(R.id.username);
         passwordView = (EditText) findViewById(R.id.password);
 
         loginDialog = new ProgressDialog(LoginActivity.this);
         loginDialog.setMessage("正在登录...");
+
+        loginPresenter.isLogin();
+
+        passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if(id == R.id.login || id == EditorInfo.IME_NULL){
+                    loginPresenter.login(usernameView.getText().toString(),passwordView.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
 
         findViewById(R.id.username_login_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,15 +72,10 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     }
 
     @Override
-    protected void onDestroy() {
-        if (loginDialog != null) loginDialog.dismiss();
-        super.onDestroy();
-    }
-
-    @Override
     public void updateView() {
-        Intent intent = new Intent(LoginActivity.this, LostPublishActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
+        this.finish();
     }
 
     @Override
@@ -100,4 +112,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         super.onResume();
         AVAnalytics.onResume(this);
     }
+
+    @Override
+    protected void onDestroy() {
+        if (loginDialog != null) loginDialog.dismiss();
+        super.onDestroy();
+        if (isFinishing()) loginPresenter = null;
+    }
+
 }

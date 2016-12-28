@@ -6,6 +6,7 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -16,25 +17,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVAnalytics;
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.SaveCallback;
-//<<<<<<< HEAD:Flosing/app/src/main/java/com/our/flosing/view/LostPublishActivity.java
 import com.our.flosing.R;
-import com.our.flosing.presenter.LoginPresenter;
+import com.our.flosing.bean.LostCard;
 import com.our.flosing.presenter.LostPublishPresenter;
-//=======
 
 import java.util.Date;
 import java.util.Locale;
-//>>>>>>> e8663f96069315a7a5e380275dfa39d4ef865600:Flosing/app/src/main/java/com/our/flosing/LostPublishActivity.java
+
 
 /**
  * Created by RunNishino on 2016/12/26.
  */
 
-public class LostPublishActivity extends AppCompatActivity {
+
+//TODO:界面布局修改，添加name，时间判断，空指针问题
+public class LostPublishActivity extends AppCompatActivity implements ILostPublishView {
     static private LostPublishPresenter lostPublishPresenter;
 
     private EditText titleView;
@@ -53,6 +50,9 @@ public class LostPublishActivity extends AppCompatActivity {
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.avtivity_lost_publish);
+
+        if(lostPublishPresenter == null) lostPublishPresenter = new LostPublishPresenter(this);
+        lostPublishPresenter.takeView(this);
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("发布");
@@ -98,7 +98,37 @@ public class LostPublishActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                attemptLostPublish();
+                boolean cancel = false;
+                View focusView = null;
+
+                if ("请选择类型".equals(typesView.getSelectedItem().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请选择类型",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                }
+/*                if ("".equals(startDateView.getText().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请选择起始时间",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                }
+                if ("".equals(endDateView.getText().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请选择结束时间",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                }*/
+                if ("".equals(titleView.getText().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                    focusView = titleView;
+                }
+                if ("".equals(descriptionView.getText().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请输入正文",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                    focusView = descriptionView;
+                }
+
+                if(cancel){
+                    focusView.requestFocus();
+                }else{
+                    attemptLostPublish();
+                }
 
             }
         });
@@ -128,76 +158,53 @@ public class LostPublishActivity extends AppCompatActivity {
         {
             //在TextView上显示日期
             dateChange.setText(year+"-"+(month+1)+"-"+day);
-            System.out.println(dateChange.getText().toString());
+            Log.d("dateChange",dateChange.getText().toString());
             dateChange = null;
         }
     };
 
-    private void attemptLostPublish(){
+    private void attemptLostPublish() {
 
-        boolean cancel = false;
-        View focusView = null;
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate;
+        Date endDate;
+        try {
 
-        if ("请选择类型".equals(typesView.getSelectedItem().toString())){
-            Toast.makeText(LostPublishActivity.this,"请选择类型",Toast.LENGTH_SHORT).show();
-            cancel = true;
-        }
-        if ("".equals(startDateView.getText().toString())){
-            Toast.makeText(LostPublishActivity.this,"请选择起始时间",Toast.LENGTH_SHORT).show();
-            cancel = true;
-        }
-        if ("".equals(endDateView.getText().toString())){
-            Toast.makeText(LostPublishActivity.this,"请选择结束时间",Toast.LENGTH_SHORT).show();
-            cancel = true;
-        }
-        if ("".equals(titleView.getText().toString())){
-            Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
-            cancel = true;
-            focusView = titleView;
-        }
-        if ("".equals(descriptionView.getText().toString())){
-            Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
-            cancel = true;
-            focusView = descriptionView;
-        }
+            startDate = sdf.parse(startDateView.getText().toString());
+            endDate = sdf.parse(endDateView.getText().toString());
 
-        if(cancel){
-            focusView.requestFocus();
-        }else {
-            DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date startDate;
-            Date endDate;
-            try {
+            LostCard lostCard = new LostCard();
 
-                startDate = sdf.parse(startDateView.getText().toString());
-                endDate = sdf.parse(endDateView.getText().toString());
+            lostCard.setTitle(titleView.getText().toString());
+            lostCard.setType(typesView.getSelectedItem().toString());
+            lostCard.setDescription(descriptionView.getText().toString());
+            lostCard.setSDate(startDate);
+            lostCard.setEDate(endDate);
+            lostCard.setIsFinish(false);
 
-                AVObject lost = new AVObject("Lost");
+            //test
+            Log.d("lostCard",lostCard.getTitle());
+            Log.d("lostCard",lostCard.getType());
+            Log.d("lostCard",lostCard.getDescription());
+            Log.d("lostCard",lostCard.getSDate().toString());
+            Log.d("lostCard",lostCard.getEDate().toString());
 
-                lost.put("title",titleView.getText().toString());
-                lost.put("type",typesView.getSelectedItem().toString());
-                lost.put("description",descriptionView.getText().toString());
-                lost.put("owner", AVUser.getCurrentUser());
-                lost.put("startDate",startDate);
-                lost.put("endDate",endDate);
-                lost.put("isFinish",false);
-                lost.put("picker",null);
+            lostPublishPresenter.publishLost(lostCard);
 
-                lost.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(AVException e) {
-                        if (e==null){
-                            LostPublishActivity.this.finish();
-                        }else {
-                            Toast.makeText(LostPublishActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            } catch (Exception e) {
-                Toast.makeText(LostPublishActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-            }
+        } catch (Exception e) {
 
         }
+    }
+
+    @Override
+    public void updateView(){
+        Toast.makeText(LostPublishActivity.this,"发布成功",Toast.LENGTH_SHORT).show();
+        this.finish();
+    }
+
+    @Override
+    public void showError(String msg){
+        Toast.makeText(LostPublishActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -218,5 +225,11 @@ public class LostPublishActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         AVAnalytics.onResume(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) lostPublishPresenter = null;
     }
 }

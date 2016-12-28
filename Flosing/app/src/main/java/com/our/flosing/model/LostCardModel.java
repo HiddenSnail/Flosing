@@ -29,6 +29,7 @@ public class LostCardModel implements ILostCardModel {
                 avLost.put("startDate", lostCard.getSDate());
                 avLost.put("endDate", lostCard.getEDate());
                 avLost.put("owner", AVUser.getCurrentUser());
+                avLost.put("isFinish", lostCard.getIsFinish());
                 avLost.saveInBackground(new SaveCallback()
                 {
                     @Override

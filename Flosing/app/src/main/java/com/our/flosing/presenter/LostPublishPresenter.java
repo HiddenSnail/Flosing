@@ -1,10 +1,11 @@
 package com.our.flosing.presenter;
 
 import com.our.flosing.bean.LostCard;
-import com.our.flosing.model.ILostCardModel;
 import com.our.flosing.model.LostCardModel;
+import com.our.flosing.view.IBaseView;
 import com.our.flosing.view.ILostPublishView;
 
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
@@ -16,6 +17,10 @@ public class LostPublishPresenter implements ILostPublishPresenter {
     private ILostPublishView lostPublishView;
     private LostCardModel lostCardModel;
 
+    public void takeView(IBaseView baseView) {
+        this.lostPublishView = (ILostPublishView) baseView;
+    }
+
     public LostPublishPresenter(ILostPublishView lostPublishView) {
         this.lostPublishView = lostPublishView;
         this.lostCardModel = new LostCardModel();
@@ -23,7 +28,8 @@ public class LostPublishPresenter implements ILostPublishPresenter {
 
     public void publishLost(LostCard lostCard) {
         lostCardModel.publishLost(lostCard)
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Boolean>() {
                     @Override
                     public void call(Boolean aBoolean) {
@@ -36,4 +42,5 @@ public class LostPublishPresenter implements ILostPublishPresenter {
                     }
                 });
     }
+
 }

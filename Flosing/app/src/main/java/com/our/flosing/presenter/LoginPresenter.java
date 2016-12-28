@@ -2,6 +2,7 @@ package com.our.flosing.presenter;
 
 import com.our.flosing.bean.User;
 import com.our.flosing.model.UserModel;
+import com.our.flosing.view.IBaseView;
 import com.our.flosing.view.ILoginView;
 
 import rx.Subscriber;
@@ -16,6 +17,10 @@ import rx.schedulers.Schedulers;
 public class LoginPresenter implements ILoginPresenter {
     private ILoginView loginView;
     private UserModel userModel;
+
+    public void takeView(IBaseView baseVaiew) {
+        this.loginView = (ILoginView) baseVaiew;
+    }
 
     public LoginPresenter(ILoginView loginView) {
         this.loginView = loginView;

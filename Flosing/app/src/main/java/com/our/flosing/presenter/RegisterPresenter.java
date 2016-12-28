@@ -1,13 +1,13 @@
 package com.our.flosing.presenter;
 
 import com.our.flosing.model.UserModel;
+import com.our.flosing.view.IBaseView;
+import com.our.flosing.view.ILoginView;
 import com.our.flosing.view.IRegisterView;
 
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -18,6 +18,10 @@ import rx.schedulers.Schedulers;
 public class RegisterPresenter implements IRegisterPresenter {
     private IRegisterView registerView;
     private UserModel userModel;
+
+    public void takeView(IBaseView baseVaiew) {
+        this.registerView = (IRegisterView) baseVaiew;
+    }
 
     public RegisterPresenter(IRegisterView registerView) {
         this.registerView = registerView;
