@@ -16,11 +16,12 @@ import rx.Subscriber;
  */
 
 public class UserModel implements IUserModel {
-    public Observable<Boolean> login(final String name, final String password) {
+
+    public Observable<Boolean> login(final String username, final String password) {
         return Observable.create(new Observable.OnSubscribe<Boolean>() {
             @Override
             public void call(final Subscriber subscriber) {
-                AVUser.logInInBackground(name, password, new LogInCallback<AVUser>() {
+                AVUser.logInInBackground(username, password, new LogInCallback<AVUser>() {
                     @Override
                     public void done(AVUser avUser, AVException e) {
                         if (e == null) {
@@ -54,4 +55,21 @@ public class UserModel implements IUserModel {
         });
     }
 
+    public Observable<User> getCurrentUser() {
+        return Observable.create(new Observable.OnSubscribe<User>() {
+            @Override
+            public void call(Subscriber<? super User> subscriber) {
+                AVUser avUser = AVUser.getCurrentUser();
+                if (avUser != null) {
+                    User user = new User();
+                    user.setUid(avUser.getObjectId());
+                    user.setEmail(avUser.getEmail());
+                    user.setUsername(avUser.getUsername());
+
+                    subscriber.onNext(user);
+                    subscriber.onCompleted();
+                }
+            }
+        });
+    }
 }

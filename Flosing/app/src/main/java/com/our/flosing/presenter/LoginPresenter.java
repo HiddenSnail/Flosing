@@ -1,10 +1,12 @@
 package com.our.flosing.presenter;
 
+import com.our.flosing.bean.User;
 import com.our.flosing.model.UserModel;
 import com.our.flosing.view.ILoginView;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -22,13 +24,13 @@ public class LoginPresenter implements ILoginPresenter {
 
     public void login(final String username, final String password) {
         loginView.showProgressDialog();
-        userModel.login(username, password).subscribeOn(Schedulers.io())
+        userModel.login(username, password)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Boolean>() {
+                .subscribe(new Subscriber<Boolean>()
+                {
                     @Override
-                    public void onCompleted() {
-
-                    }
+                    public void onCompleted() {}
 
                     @Override
                     public void onError(Throwable e) {
@@ -39,6 +41,16 @@ public class LoginPresenter implements ILoginPresenter {
                     @Override
                     public void onNext(Boolean state) {
                         loginView.hideProgressDialog();
+                        loginView.updateView();
+                }
+            });
+    }
+
+    public void isLogin() {
+        userModel.getCurrentUser()
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(User user) {
                         loginView.updateView();
                     }
                 });

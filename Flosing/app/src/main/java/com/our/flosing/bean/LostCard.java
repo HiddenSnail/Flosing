@@ -13,22 +13,26 @@ public class LostCard {
     private String description;
     private Date sDate;
     private Date eDate;
+    private Boolean isFinish;
 
-    String getType() { return this.type; }
-    void setType(String type) { this.type = type; }
+    public String getType() { return this.type; }
+    public void setType(String type) { this.type = type; }
 
-    String getName() { return this.name; }
-    void setName(String name) { this.name = name; }
+    public String getName() { return this.name; }
+    public void setName(String name) { this.name = name; }
 
-    String getTitle() { return this.title; }
-    void setTitle(String title) { this.title = title; }
+    public String getTitle() { return this.title; }
+    public void setTitle(String title) { this.title = title; }
 
-    String getDescription()  { return this.description; }
-    void setDescription(String description) { this.description = description; }
+    public String getDescription()  { return this.description; }
+    public void setDescription(String description) { this.description = description; }
 
-    Date getSDate() { return this.sDate; }
-    void setSDate(Date sDate) { this.sDate = sDate; }
+    public Date getSDate() { return this.sDate; }
+    public void setSDate(Date sDate) { this.sDate = sDate; }
 
-    Date getEDate() { return this.eDate; }
-    void setEDate(Date eDate) { this.eDate = eDate; }
+    public Date getEDate() { return this.eDate; }
+    public void setEDate(Date eDate) { this.eDate = eDate; }
+
+    public Boolean getIsFinish() { return this.isFinish; }
+    public void setIsFinish(Boolean isFinish) { this.isFinish = isFinish; }
 }

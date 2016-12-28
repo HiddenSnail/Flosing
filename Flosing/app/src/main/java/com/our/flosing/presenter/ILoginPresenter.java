@@ -6,4 +6,5 @@ package com.our.flosing.presenter;
 
 public interface ILoginPresenter {
     void login(final String username, final String password);
+    void isLogin();
 }
