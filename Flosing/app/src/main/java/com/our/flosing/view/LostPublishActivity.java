@@ -31,7 +31,6 @@ import java.util.Locale;
  */
 
 
-//TODO:界面布局修改，时间
 public class LostPublishActivity extends AppCompatActivity implements ILostPublishView {
     static private LostPublishPresenter lostPublishPresenter;
 
