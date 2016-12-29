@@ -5,6 +5,7 @@ import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -30,15 +31,19 @@ import java.util.Locale;
  */
 
 
-//TODO:界面布局修改，添加name，时间判断，空指针问题
+//TODO:界面布局修改，时间
 public class LostPublishActivity extends AppCompatActivity implements ILostPublishView {
     static private LostPublishPresenter lostPublishPresenter;
 
     private EditText titleView;
     private EditText descriptionView;
     private Spinner typesView;
+    private EditText nameView;
     private TextView startDateView;
     private TextView endDateView;
+
+    private Date startDate;
+    private Date endDate;
 
     private TextView dateChange = null;
 
@@ -60,6 +65,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         titleView = (EditText) findViewById(R.id.edittext_title_publish);
         descriptionView = (EditText) findViewById(R.id.edittext_description_publish);
         typesView = (Spinner) findViewById(R.id.spinner_types_publish);
+        nameView = (EditText) findViewById(R.id.edittext_name_publish);
         startDateView = (TextView) findViewById(R.id.textview_startdate_publish);
         endDateView = (TextView) findViewById(R.id.textview_enddate_publish);
 
@@ -73,6 +79,15 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         day=calendar.get(Calendar.DAY_OF_MONTH);//获取这个月的第几天
         startDateView.setText(year+"-"+(month+1)+"-"+day); //显示当前的年月日
         endDateView.setText(year+"-"+(month+1)+"-"+day);
+
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            startDate = sdf.parse(startDateView.getText().toString());
+            endDate = sdf.parse(endDateView.getText().toString());
+        }catch (Exception e){
+        }
+
+
 
         startDateView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +128,15 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
                     Toast.makeText(LostPublishActivity.this,"请选择结束时间",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }*/
+                if (startDate.after(endDate)){
+                    Toast.makeText(LostPublishActivity.this,"开始时间必须早于或等于结束时间",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                }
+                if ("".equals(nameView.getText().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请输入名称",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                    focusView = nameView;
+                }
                 if ("".equals(titleView.getText().toString())){
                     Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
                     cancel = true;
@@ -125,7 +149,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
                 }
 
                 if(cancel){
-                    focusView.requestFocus();
+                    if (focusView !=null ) focusView.requestFocus();
                 }else{
                     attemptLostPublish();
                 }
@@ -160,24 +184,27 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
             dateChange.setText(year+"-"+(month+1)+"-"+day);
             Log.d("dateChange",dateChange.getText().toString());
             dateChange = null;
+
+            DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            try{
+                startDate = sdf.parse(startDateView.getText().toString());
+                endDate = sdf.parse(endDateView.getText().toString());
+            }catch (Exception e){
+            }
         }
     };
 
     private void attemptLostPublish() {
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date startDate;
-        Date endDate;
+//        Date startDate;
+//        Date endDate;
         try {
-
-            startDate = sdf.parse(startDateView.getText().toString());
-            endDate = sdf.parse(endDateView.getText().toString());
-
             LostCard lostCard = new LostCard();
 
             lostCard.setTitle(titleView.getText().toString());
             lostCard.setType(typesView.getSelectedItem().toString());
             lostCard.setDescription(descriptionView.getText().toString());
+            lostCard.setName(nameView.getText().toString());
             lostCard.setSDate(startDate);
             lostCard.setEDate(endDate);
             lostCard.setIsFinish(false);
@@ -189,7 +216,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
             Log.d("lostCard",lostCard.getSDate().toString());
             Log.d("lostCard",lostCard.getEDate().toString());
 
-            lostPublishPresenter.publishLost(lostCard);
+//            lostPublishPresenter.publishLost(lostCard);
 
         } catch (Exception e) {
 
