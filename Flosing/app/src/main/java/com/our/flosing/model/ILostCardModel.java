@@ -2,6 +2,8 @@ package com.our.flosing.model;
 
 import com.our.flosing.bean.LostCard;
 
+import java.util.List;
+
 import rx.Observable;
 
 /**
@@ -10,4 +12,5 @@ import rx.Observable;
 
 public interface ILostCardModel {
     Observable<Boolean> publishLost(final LostCard lostCard);
+    Observable<List<LostCard>> getPageOfLosts(final Integer pageNumber);
 }

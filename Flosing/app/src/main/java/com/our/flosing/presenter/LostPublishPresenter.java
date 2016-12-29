@@ -5,6 +5,8 @@ import com.our.flosing.model.LostCardModel;
 import com.our.flosing.view.IBaseView;
 import com.our.flosing.view.ILostPublishView;
 
+import java.util.List;
+
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -17,6 +19,7 @@ public class LostPublishPresenter implements ILostPublishPresenter {
     private ILostPublishView lostPublishView;
     private LostCardModel lostCardModel;
 
+    @Override
     public void takeView(IBaseView baseView) {
         this.lostPublishView = (ILostPublishView) baseView;
     }
@@ -26,6 +29,7 @@ public class LostPublishPresenter implements ILostPublishPresenter {
         this.lostCardModel = new LostCardModel();
     }
 
+    @Override
     public void publishLost(LostCard lostCard) {
         lostCardModel.publishLost(lostCard)
                 .subscribeOn(Schedulers.io())

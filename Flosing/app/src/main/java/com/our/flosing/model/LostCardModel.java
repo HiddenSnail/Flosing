@@ -2,10 +2,16 @@ package com.our.flosing.model;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -15,6 +21,8 @@ import rx.Subscriber;
  */
 
 public class LostCardModel implements ILostCardModel {
+    static private final Integer EPN = 10;
+
     public Observable<Boolean> publishLost(final LostCard lostCard) {
         return Observable.create(new Observable.OnSubscribe<Boolean>()
         {
@@ -43,6 +51,53 @@ public class LostCardModel implements ILostCardModel {
             }
         });
     }
+
+    public Observable<List<LostCard>> getPageOfLosts(final Integer pageNumber) {
+        return Observable.create(new Observable.OnSubscribe<List<LostCard>>() {
+            @Override
+            public void call(final Subscriber<? super List<LostCard>> subscriber) {
+
+                AVQuery<AVObject> queryLost = new AVQuery<>("Lost");
+                List<String> keys = Arrays.asList("title", "name", "type", "startDate", "endDate");
+                queryLost.selectKeys(keys).limit(EPN).skip((pageNumber-1)*EPN);
+                queryLost.findInBackground(new FindCallback<AVObject>() {
+
+                    @Override
+                    public void done(List<AVObject> list, AVException e) {
+
+                        if (e == null) {
+                            List<LostCard> losts = new ArrayList<>();
+                            for (AVObject object:list) {
+                                LostCard lostCard = new LostCard();
+                                lostCard.setTitle(object.getString("title"));
+                                lostCard.setName(object.getString("name"));
+                                lostCard.setType(object.getString("type"));
+                                lostCard.setSDate(object.getDate("startDate"));
+                                lostCard.setEDate(object.getDate("endDate"));
+                                losts.add(lostCard);
+                            }
+                            subscriber.onNext(losts);
+                            subscriber.onCompleted();
+                        } else subscriber.onError(e);
+                    }
+                });
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
