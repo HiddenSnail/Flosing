@@ -6,6 +6,6 @@ import com.our.flosing.view.IBaseView;
  * Created by huangrui on 2016/12/29.
  */
 
-public interface  IBasePresenter {
+public interface IBasePresenter {
     void takeView(IBaseView baseView);
 }

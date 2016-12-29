@@ -4,7 +4,6 @@ import com.our.flosing.bean.LostCard;
 import com.our.flosing.model.LostCardModel;
 import com.our.flosing.view.IBaseView;
 import com.our.flosing.view.IHomePageView;
-import com.our.flosing.view.ILostPublishView;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import rx.schedulers.Schedulers;
  * Created by huangrui on 2016/12/29.
  */
 
-public class HomePagePresenter implements IHomePagePrensenter {
+public class HomePagePresenter implements IHomePagePresenter {
     private LostCardModel lostCardModel;
     private IHomePageView homePageView;
 
@@ -38,7 +37,7 @@ public class HomePagePresenter implements IHomePagePrensenter {
                 .subscribe(new Action1<List<LostCard>>() {
                     @Override
                     public void call(List<LostCard> lostCards) {
-                        homePageView.updateView(lostCards);
+                        homePageView.refreshView(lostCards);
                     }
                 }, new Action1<Throwable>() {
                     @Override

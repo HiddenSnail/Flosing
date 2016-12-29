@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVUser;
-import com.our.flosing.MainActivity;
 import com.our.flosing.R;
 import com.our.flosing.presenter.RegisterPresenter;
 
@@ -60,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     public void updateView() {
         Log.d("currentUser",AVUser.getCurrentUser().toString());
         Toast.makeText(context, "注册并登陆成功", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         RegisterActivity.this.finish();
     }
 

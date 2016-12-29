@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVAnalytics;
-import com.our.flosing.MainActivity;
 import com.our.flosing.R;
 import com.our.flosing.presenter.LoginPresenter;
 
@@ -75,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     public void updateView() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
-        this.finish();
+        LoginActivity.this.finish();
     }
 
     @Override

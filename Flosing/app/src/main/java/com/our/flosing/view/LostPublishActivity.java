@@ -1,11 +1,11 @@
 package com.our.flosing.view;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -215,7 +215,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
             Log.d("lostCard",lostCard.getSDate().toString());
             Log.d("lostCard",lostCard.getEDate().toString());
 
-//            lostPublishPresenter.publishLost(lostCard);
+            lostPublishPresenter.publishLost(lostCard);
 
         } catch (Exception e) {
 

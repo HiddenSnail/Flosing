@@ -88,17 +88,4 @@ public class LostCardModel implements ILostCardModel {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

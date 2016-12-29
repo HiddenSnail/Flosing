@@ -9,7 +9,8 @@ import java.util.List;
  */
 
 public interface IHomePageView extends IBaseView {
-    void updateView(List<LostCard> lostCards);
+    void updateView();  //指activity之间的跳转
+    void refreshView(List<LostCard> lostCards);
     void showError(String msg);
 //    void showProgressDialog();
 //    void hideProgressDialog();
