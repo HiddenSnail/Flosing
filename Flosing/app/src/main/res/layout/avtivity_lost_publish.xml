@@ -23,6 +23,12 @@
 
             </Spinner>
 
+            <EditText
+                android:id="@+id/edittext_name_publish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入名称"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
