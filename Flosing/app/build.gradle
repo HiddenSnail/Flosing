@@ -35,7 +35,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.0.0'
     testCompile 'junit:junit:4.12'
-//    compile 'com.android.support:support-v4:21.0.3'
+    //    compile 'com.android.support:support-v4:21.0.3'
     // LeanCloud 基础包
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
     // 推送与实时聊天需要的包
@@ -55,5 +55,5 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     // RxJava 第三方库
     compile 'io.reactivex:rxjava:1.1.6'
-    compile project(':android-pullToResfresh-library')
+    compile project(':PullToRefresh')
 }

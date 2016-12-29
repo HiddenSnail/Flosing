@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.LostCardAdapter;
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements IHomePageView {
     @Override
     public void refreshView(List<LostCard> lostCards) {
         LostCardAdapter lostCardAdapter = new LostCardAdapter(MainActivity.this, R.layout.lostcard_item, lostCards);
-        ListView listView = (ListView) findViewById(R.id.listview_lostcards);
+        PullToRefreshListView listView = (PullToRefreshListView) findViewById(R.id.listview_lostcards);
         listView.setAdapter(lostCardAdapter);
     }
 
