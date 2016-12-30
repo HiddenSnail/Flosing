@@ -12,6 +12,7 @@ import com.our.flosing.bean.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import rx.Observable;
@@ -90,10 +91,10 @@ public class LostCardModel implements ILostCardModel {
         });
     }
 
-    public Observable<LostCard> getLostById(final String lid) {
-        return Observable.create(new Observable.OnSubscribe<LostCard>() {
+    public Observable<HashMap<String, Object>> getLostById(final String lid) {
+        return Observable.create(new Observable.OnSubscribe<HashMap<String, Object>>() {
             @Override
-            public void call(final Subscriber<? super LostCard> subscriber) {
+            public void call(final Subscriber<? super HashMap<String, Object>> subscriber) {
 
                 final AVObject avLost = AVObject.createWithoutData("Lost", lid);
                 avLost.fetchInBackground(new GetCallback<AVObject>() {
@@ -107,13 +108,18 @@ public class LostCardModel implements ILostCardModel {
                             lostCard.setType(avObject.getString("type"));
                             lostCard.setSDate(avObject.getDate("startDate"));
                             lostCard.setEDate(avObject.getDate("endDate"));
+                            lostCard.setContactWay(avObject.getString("contactWay"));
+                            lostCard.setContactDetail(avObject.getString("contactDetail"));
 
-//                            TODO:记得把它恢复
-//                            lostCard.setContactWay(avObject.getString("contactWay"));
-//                            lostCard.setContactDetail(avObject.getString("contactDetail"));
-                            subscriber.onNext(lostCard);
-                            subscriber.onCompleted();
-                        } else subscriber.onError(e);
+//                            User owner = new User();
+//                            owner.setUid(avObject.getAVUser("owner").getObjectId());
+//                            owner.setUsername(avObject.getAVUser("owner").getUsername());
+                            //还有一个头像的东西
+
+//                            subscriber.onNext(lostCard);
+//                            subscriber.onCompleted();
+//                        } else subscriber.onError(e);
+                        }
                     }
                 });
             }
