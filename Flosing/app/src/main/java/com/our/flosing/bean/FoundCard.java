@@ -7,6 +7,7 @@ import java.util.Date;
  */
 
 public class FoundCard {
+    private String id;
     private String type;
     private String name;
     private String title;
@@ -14,6 +15,11 @@ public class FoundCard {
     private Date sDate;
     private Date eDate;
     private Boolean isFinish;
+    private String contactWay;
+    private String contactDetail;
+
+    public String getId() { return this.id; }
+    public void setId(String id) { this.id = id; }
 
     public String getType() { return this.type; }
     public void setType(String type) { this.type = type; }
@@ -35,4 +41,10 @@ public class FoundCard {
 
     public Boolean getIsFinish() { return this.isFinish; }
     public void setIsFinish(Boolean isFinish) { this.isFinish = isFinish; }
+
+    public String getContactWay() { return this.contactWay; }
+    public void setContactWay(String contactWay) { this.contactWay = contactWay; }
+
+    public String getContactDetail()  { return this.contactDetail; }
+    public void setContactDetail(String contactDetail) { this.contactDetail = contactDetail; }
 }
