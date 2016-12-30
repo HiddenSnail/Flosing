@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements IHomePageView {
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 homePagePresenter.getPageOfLosts(++pageNumber);
-//                refreshView.onRefreshComplete();
+                refreshView.onRefreshComplete();
             }
         });
 
