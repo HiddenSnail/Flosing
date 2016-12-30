@@ -40,6 +40,9 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
     private EditText nameView;
     private TextView startDateView;
     private TextView endDateView;
+    private Spinner contactWayView;
+    private EditText contactDetailView;
+
 
     private Date startDate;
     private Date endDate;
@@ -67,6 +70,8 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         nameView = (EditText) findViewById(R.id.edittext_name_publish);
         startDateView = (TextView) findViewById(R.id.textview_startdate_publish);
         endDateView = (TextView) findViewById(R.id.textview_enddate_publish);
+        contactWayView = (Spinner) findViewById(R.id.spinner_contactWay_publish);
+        contactDetailView = (EditText) findViewById(R.id.edittext_contactDetail_publish);
 
         //设置calendar对象时间为现在时间
         Calendar calendar = Calendar.getInstance(Locale.CHINA);
@@ -115,10 +120,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
                 boolean cancel = false;
                 View focusView = null;
 
-                if ("请选择类型".equals(typesView.getSelectedItem().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请选择类型",Toast.LENGTH_SHORT).show();
-                    cancel = true;
-                }
+
 /*                if ("".equals(startDateView.getText().toString())){
                     Toast.makeText(LostPublishActivity.this,"请选择起始时间",Toast.LENGTH_SHORT).show();
                     cancel = true;
@@ -127,24 +129,38 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
                     Toast.makeText(LostPublishActivity.this,"请选择结束时间",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }*/
-                if (startDate.after(endDate)){
-                    Toast.makeText(LostPublishActivity.this,"开始时间必须早于或等于结束时间",Toast.LENGTH_SHORT).show();
+
+                if ("选择联系方式".equals(contactWayView.getSelectedItem().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请选择联系方式",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }
-                if ("".equals(nameView.getText().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请输入名称",Toast.LENGTH_SHORT).show();
+                if ("".equals(contactDetailView.getText().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请输入联系方式",Toast.LENGTH_SHORT).show();
                     cancel = true;
-                    focusView = nameView;
+                    focusView = contactDetailView;
+                }
+                if ("".equals(descriptionView.getText().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请输入正文",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                    focusView = descriptionView;
                 }
                 if ("".equals(titleView.getText().toString())){
                     Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
                     cancel = true;
                     focusView = titleView;
                 }
-                if ("".equals(descriptionView.getText().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请输入正文",Toast.LENGTH_SHORT).show();
+                if ("".equals(nameView.getText().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请输入名称",Toast.LENGTH_SHORT).show();
                     cancel = true;
-                    focusView = descriptionView;
+                    focusView = nameView;
+                }
+                if (startDate.after(endDate)){
+                    Toast.makeText(LostPublishActivity.this,"开始时间必须早于或等于结束时间",Toast.LENGTH_SHORT).show();
+                    cancel = true;
+                }
+                if ("请选择类型".equals(typesView.getSelectedItem().toString())){
+                    Toast.makeText(LostPublishActivity.this,"请选择类型",Toast.LENGTH_SHORT).show();
+                    cancel = true;
                 }
 
                 if(cancel){
@@ -207,6 +223,8 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
             lostCard.setSDate(startDate);
             lostCard.setEDate(endDate);
             lostCard.setIsFinish(false);
+            lostCard.setContactWay(contactWayView.getSelectedItem().toString());
+            lostCard.setContactDetail(contactDetailView.getText().toString());
 
             //test
             Log.d("lostCard",lostCard.getTitle());
@@ -214,6 +232,8 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
             Log.d("lostCard",lostCard.getDescription());
             Log.d("lostCard",lostCard.getSDate().toString());
             Log.d("lostCard",lostCard.getEDate().toString());
+            Log.d("lostCard",lostCard.getContactWay());
+            Log.d("lostCard",lostCard.getContactDetail());
 
             lostPublishPresenter.publishLost(lostCard);
 

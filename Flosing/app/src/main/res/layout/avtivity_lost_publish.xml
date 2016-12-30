@@ -65,6 +65,23 @@
                 android:gravity="top"
                 android:hint="请输入正文"/>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinner_contactWay_publish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/contactway"></Spinner>
+                <EditText
+                    android:id="@+id/edittext_contactDetail_publish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入联系方式"/>
+            </LinearLayout>
+
             <Button
                 android:id="@+id/submit_publish_button"
                 android:layout_width="match_parent"
