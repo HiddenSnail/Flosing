@@ -10,12 +10,15 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.LostCardAdapter;
 import com.our.flosing.presenter.HomePagePresenter;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -24,17 +27,44 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IHomePageView {
     static private HomePagePresenter homePagePresenter;
+    static private int pageNumber;
+    private PullToRefreshListView listView;
+    static private List<LostCard> mLostCards = new ArrayList<>();
+    LostCardAdapter lostCardAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        listView = (PullToRefreshListView) findViewById(R.id.listview_lostcards);
+        listView.setMode(PullToRefreshBase.Mode.BOTH);
+        pageNumber = 1;
+
+
+
         if (homePagePresenter == null) homePagePresenter = new HomePagePresenter(this);
         homePagePresenter.takeView(this);
 
+        lostCardAdapter = new LostCardAdapter(MainActivity.this, R.layout.lostcard_item, mLostCards);
+        listView.setAdapter(lostCardAdapter);
 
-        //        initLostCards();
+        homePagePresenter.getPageOfLosts(pageNumber);
+
+        listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                Toast.makeText(MainActivity.this,"pulldownrefresh",Toast.LENGTH_SHORT).show();
+                refreshView.onRefreshComplete();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                homePagePresenter.getPageOfLosts(++pageNumber);
+                refreshView.onRefreshComplete();
+            }
+        });
+
 
 
         //TODO:方便使用，到时候去掉
@@ -94,9 +124,10 @@ public class MainActivity extends AppCompatActivity implements IHomePageView {
 
     @Override
     public void refreshView(List<LostCard> lostCards) {
-        LostCardAdapter lostCardAdapter = new LostCardAdapter(MainActivity.this, R.layout.lostcard_item, lostCards);
-        PullToRefreshListView listView = (PullToRefreshListView) findViewById(R.id.listview_lostcards);
-        listView.setAdapter(lostCardAdapter);
+
+        mLostCards.addAll(lostCards);
+        lostCardAdapter.notifyDataSetChanged();
+
     }
 
     @Override
@@ -109,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements IHomePageView {
     @Override
     protected void onResume(){
         super.onResume();
-        homePagePresenter.getPageOfLosts(1);
     }
 
     @Override
