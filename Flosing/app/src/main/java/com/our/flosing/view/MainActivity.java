@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements IHomePageView {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                LostCard lostCard = mLostCards.get(position);
+                LostCard lostCard = mLostCards.get(position - 1);
                 Intent intent = new Intent(MainActivity.this,LostDetailActivity.class);
                 intent.putExtra("lostDetailId",lostCard.getId());
                 startActivity(intent);

@@ -10,8 +10,8 @@ public class User {
     private String email;
     private String password;
 
-    public String getUid() { return this.id; }
-    public void setUid(String uid) { this.id = id; }
+    public String getId() { return this.id; }
+    public void setId(String uid) { this.id = id; }
 
     public String getUsername() { return this.username; }
     public void setUsername(String username) { this.username = username; }
