@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -60,6 +61,17 @@ public class MainActivity extends AppCompatActivity implements IHomePageView {
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 new GetDataTask().execute();
+            }
+        });
+
+        //子项点击事件，将子项id带入intent中启动lostDetailActivity
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                LostCard lostCard = mLostCards.get(position);
+                Intent intent = new Intent(MainActivity.this,LostDetailActivity.class);
+                intent.putExtra("lostDetailId",lostCard.getId());
+                startActivity(intent);
             }
         });
 
