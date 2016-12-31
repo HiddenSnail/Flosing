@@ -64,7 +64,11 @@ public class LostCardModel implements ILostCardModel {
 
                 AVQuery<AVObject> queryLost = new AVQuery<>("Lost");
                 List<String> keys = Arrays.asList("title", "name", "type", "startDate", "endDate");
-                queryLost.selectKeys(keys).limit(EPN).skip((pageNumber-1)*EPN);
+                queryLost.selectKeys(keys).limit(EPN)
+                        .skip((pageNumber-1)*EPN)
+                        .whereEqualTo("isFinish", false)
+                        .orderByDescending("createdAt");
+
                 queryLost.findInBackground(new FindCallback<AVObject>() {
 
                     @Override
@@ -91,10 +95,10 @@ public class LostCardModel implements ILostCardModel {
         });
     }
 
-    public Observable<HashMap<String, Object>> getLostById(final String lid) {
-        return Observable.create(new Observable.OnSubscribe<HashMap<String, Object>>() {
+    public Observable<LostCard> getLostByLid(final String lid) {
+        return Observable.create(new Observable.OnSubscribe<LostCard>() {
             @Override
-            public void call(final Subscriber<? super HashMap<String, Object>> subscriber) {
+            public void call(final Subscriber<? super LostCard> subscriber) {
 
                 final AVObject avLost = AVObject.createWithoutData("Lost", lid);
                 avLost.fetchInBackground(new GetCallback<AVObject>() {
@@ -111,21 +115,34 @@ public class LostCardModel implements ILostCardModel {
                             lostCard.setContactWay(avObject.getString("contactWay"));
                             lostCard.setContactDetail(avObject.getString("contactDetail"));
 
-//                            User owner = new User();
-//                            owner.setUid(avObject.getAVUser("owner").getObjectId());
-//                            owner.setUsername(avObject.getAVUser("owner").getUsername());
-                            //还有一个头像的东西
-
-//                            subscriber.onNext(lostCard);
-//                            subscriber.onCompleted();
-//                        } else subscriber.onError(e);
-                        }
+                            subscriber.onNext(lostCard);
+                            subscriber.onCompleted();
+                        } else subscriber.onError(e);
                     }
                 });
             }
         });
     }
 
+    public Observable<User> getOwnerByLid(final String lid) {
+
+        return Observable.create(new Observable.OnSubscribe<User>() {
+            @Override
+            public void call(Subscriber<? super User> subscriber) {
+                AVObject avLost = AVObject.createWithoutData("Lost", lid);
+                try {
+                    avLost.fetch("owner");
+                    User owner = new User();
+                    owner.setId(avLost.getAVUser("owner").getObjectId());
+                    owner.setUsername(avLost.getAVUser("owner").getUsername());
+                    subscriber.onNext(owner);
+                    subscriber.onCompleted();
+                } catch (AVException e) {
+                    subscriber.onError(e);
+                }
+            }
+        });
+    }
 
 
 }
