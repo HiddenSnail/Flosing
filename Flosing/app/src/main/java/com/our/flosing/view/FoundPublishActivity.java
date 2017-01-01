@@ -201,8 +201,6 @@ public class FoundPublishActivity extends AppCompatActivity implements IFoundPub
 
     private void attemptFoundPublish() {
 
-//        Date startDate;
-//        Date endDate;
         try {
             FoundCard foundCard = new FoundCard();
 
