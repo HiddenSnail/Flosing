@@ -10,8 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.our.flosing.R;
+import com.our.flosing.bean.FoundCard;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
+import com.our.flosing.presenter.FoundCardPresenter;
 
 
 /**
@@ -19,7 +21,7 @@ import com.our.flosing.bean.User;
  */
 
 public class FoundDetailActivity extends AppCompatActivity implements IFoundDetailView {
-//    static private FoundCardPresenter foundCardPresenter;
+    static private FoundCardPresenter foundCardPresenter;
 
     String foundDetailSDate;
     String foundDetailEDate;
@@ -40,8 +42,8 @@ public class FoundDetailActivity extends AppCompatActivity implements IFoundDeta
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_lostandfound_detail);
 
-//        if (foundCardPresenter == null) foundCardPresenter = new FoundCardPresenter(this);
-//        foundCardPresenter.takeView(this);
+        if (foundCardPresenter == null) foundCardPresenter = new FoundCardPresenter(this);
+        foundCardPresenter.takeView(this);
 
         foundDetailTitleView = (TextView) findViewById(R.id.textview_title_lostDetail);
         foundDetailTypeView = (TextView) findViewById(R.id.textview_type_lostDetail);
@@ -56,31 +58,30 @@ public class FoundDetailActivity extends AppCompatActivity implements IFoundDeta
         Intent intent = getIntent();
         String foundDetailId = intent.getStringExtra("foundDetailId");
 
-//        foundCardPresenter.getLostDetail(foundDetailId);
-//        foundCardPresenter.getOwner(foundDetailId);
+        foundCardPresenter.getFoundDetail(foundDetailId);
+        foundCardPresenter.getPicker(foundDetailId);
     }
 
-    public void initFoundDetail(LostCard lostCard) {
+    public void initFoundDetail(FoundCard foundCard) {
 
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        foundDetailSDate = sdf.format(lostCard.getSDate());
-        foundDetailEDate = sdf.format(lostCard.getEDate());
+        foundDetailSDate = sdf.format(foundCard.getSDate());
+        foundDetailEDate = sdf.format(foundCard.getEDate());
 
-        Log.d("lostDetail","title:"+lostCard.getTitle());
-        Log.d("lostDetail","type:"+lostCard.getType());
-        Log.d("lostDetail","name:"+lostCard.getName());
-        Log.d("lostDetail","description:"+lostCard.getDescription());
+        Log.d("lostDetail","title:"+foundCard.getTitle());
+        Log.d("lostDetail","type:"+foundCard.getType());
+        Log.d("lostDetail","name:"+foundCard.getName());
+        Log.d("lostDetail","description:"+foundCard.getDescription());
 
-        foundDetailTitleView.setText(lostCard.getTitle());
-        foundDetailTypeView.setText("书籍");
-        foundDetailNameView.setText(lostCard.getName());
-        foundDetailDescriptionView.setText(lostCard.getDescription());
+        foundDetailTitleView.setText(foundCard.getTitle());
+        foundDetailNameView.setText(foundCard.getName());
+        foundDetailDescriptionView.setText(foundCard.getDescription());
         foundDetailSDateView.setText(foundDetailSDate);
         foundDetailEDateView.setText(foundDetailEDate);
-        foundDetailContactWayView.setText(lostCard.getContactWay());
-        foundDetailContactDetailView.setText(lostCard.getContactDetail());
+        foundDetailContactWayView.setText(foundCard.getContactWay());
+        foundDetailContactDetailView.setText(foundCard.getContactDetail());
     }
-    public void initOwnerInfo(User owner) {
+    public void initPickerInfo(User owner) {
 
         Log.d("lostDetail","ownerName:"+owner.getUsername());
 

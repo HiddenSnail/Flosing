@@ -17,6 +17,7 @@ import com.our.flosing.R;
 import com.our.flosing.bean.FoundCard;
 import com.our.flosing.bean.FoundCardAdapter;
 import com.our.flosing.bean.LostCard;
+import com.our.flosing.presenter.FoundFragmentPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
 
     static private List<FoundCard> mFoundCards = new ArrayList<>();
     FoundCardAdapter foundCardAdapter;
-//    static private FoundFragmentPresenter foundFragmentPresenter;
+    static private FoundFragmentPresenter foundFragmentPresenter;
     static private int pageNumber;
     private PullToRefreshListView listView;
 
@@ -43,10 +44,10 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
         listView.setMode(PullToRefreshBase.Mode.BOTH);
         pageNumber = 1;
 
-//        if (foundFragmentPresenter == null) foundFragmentPresenter = new FoundFragmentPresenter(this);
-//        foundFragmentPresenter.takeView(this);
+        if (foundFragmentPresenter == null) foundFragmentPresenter = new FoundFragmentPresenter(this);
+        foundFragmentPresenter.takeView(this);
 
-        foundCardAdapter = new FoundCardAdapter(this.getActivity(),R.layout.fragment_found_list,mFoundCards);
+        foundCardAdapter = new FoundCardAdapter(this.getActivity(),R.layout.foundcard_item,mFoundCards);
         listView.setAdapter(foundCardAdapter);
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -61,7 +62,7 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
             }
         });
 
-        //子项点击事件，将子项id带入intent中启动lostDetailActivity
+        //子项点击事件，将子项id带入intent中启动foundDetailActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -83,7 +84,7 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
         protected String doInBackground(Void... params){
             foundCardAdapter.clear();
             pageNumber = 0;
-//            foundFragmentPresenter.getPageOfLosts(++pageNumber);
+            foundFragmentPresenter.getPageOfFounds(++pageNumber);
             return "";
         }
 
@@ -97,7 +98,7 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
 
         @Override
         protected String doInBackground(Void... params){
-//            foundFragmentPresenter.getPageOfLosts(++pageNumber);
+            foundFragmentPresenter.getPageOfFounds(++pageNumber);
             return "";
         }
 
@@ -136,13 +137,13 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
 
         //重新获取第一页数据
         pageNumber = 0;
-//        foundFragmentPresenter.getPageOfLosts(++pageNumber);
+        foundFragmentPresenter.getPageOfFounds(++pageNumber);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        if (getActivity().isFinishing()) foundFragmentPresenter = null;
+        if (getActivity().isFinishing()) foundFragmentPresenter = null;
     }
 
 }

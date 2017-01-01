@@ -17,16 +17,16 @@ import rx.schedulers.Schedulers;
 
 public class LostFragmentPresenter implements ILostFragmentPresenter {
     private LostCardModel lostCardModel;
-    private ILostFragmentView homePageView;
+    private ILostFragmentView lostFragmentView;
 
-    public LostFragmentPresenter(ILostFragmentView homePageView) {
-        this.homePageView = homePageView;
+    public LostFragmentPresenter(ILostFragmentView lostFragmentView) {
+        this.lostFragmentView = lostFragmentView;
         this.lostCardModel = new LostCardModel();
     }
 
     @Override
     public void takeView(IBaseView baseView) {
-        this.homePageView = (ILostFragmentView) baseView;
+        this.lostFragmentView = (ILostFragmentView) baseView;
     }
 
     @Override
@@ -37,12 +37,12 @@ public class LostFragmentPresenter implements ILostFragmentPresenter {
                 .subscribe(new Action1<List<LostCard>>() {
                     @Override
                     public void call(List<LostCard> lostCards) {
-                        homePageView.refreshView(lostCards);
+                        lostFragmentView.refreshView(lostCards);
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        homePageView.showError(throwable.getMessage());
+                        lostFragmentView.showError(throwable.getMessage());
                     }
                 });
     }

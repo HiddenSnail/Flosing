@@ -37,7 +37,7 @@
                 android:id="@+id/lost_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="失物招领"
+                android:text="寻物启示"
                 android:layout_weight="1"/>
 
             <Button
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="寻物启事"/>
+                android:text="失物招领"/>
 
 
         </LinearLayout>
@@ -56,6 +56,13 @@
 
             <Button
                 android:id="@+id/lost_publish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="发布寻物启事"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/found_publish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="发布失物招领"

@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.our.flosing.R;
 import com.our.flosing.bean.FoundCard;
+import com.our.flosing.presenter.FoundPublishPresenter;
+
 import java.util.Date;
 import java.util.Locale;
 
@@ -25,7 +27,7 @@ import java.util.Locale;
 
 public class FoundPublishActivity extends AppCompatActivity implements IFoundPublishView {
 
-//    static private FoundPublishPresenter foundPublishPresenter;
+    static private FoundPublishPresenter foundPublishPresenter;
 
     private EditText titleView;
     private EditText descriptionView;
@@ -50,11 +52,11 @@ public class FoundPublishActivity extends AppCompatActivity implements IFoundPub
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_lostandfound_publish);
 
-//        if(foundPublishPresenter == null) foundPublishPresenter = new FoundPublishPresenter(this);
-//        foundPublishPresenter.takeView(this);
+        if(foundPublishPresenter == null) foundPublishPresenter = new FoundPublishPresenter(this);
+        foundPublishPresenter.takeView(this);
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("发布寻物启事");
+        getSupportActionBar().setTitle("发布失物招领");
 
         titleView = (EditText) findViewById(R.id.edittext_title_publish);
         descriptionView = (EditText) findViewById(R.id.edittext_description_publish);
@@ -223,7 +225,7 @@ public class FoundPublishActivity extends AppCompatActivity implements IFoundPub
             Log.d("lostCard",foundCard.getContactWay());
             Log.d("lostCard",foundCard.getContactDetail());
 
-//            foundPublishPresenter.publishFound(foundCard);
+            foundPublishPresenter.publishFound(foundCard);
 
         } catch (Exception e) {
 

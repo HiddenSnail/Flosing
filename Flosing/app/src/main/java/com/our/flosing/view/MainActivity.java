@@ -93,11 +93,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Lost:寻物启事
         final Button lostPublish = (Button) findViewById(R.id.lost_publish);
         lostPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, LostPublishActivity.class));
+            }
+        });
+
+        //Found:失物招领
+        final Button foundPublish = (Button) findViewById(R.id.found_publish);
+        foundPublish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FoundPublishActivity.class));
             }
         });
     }

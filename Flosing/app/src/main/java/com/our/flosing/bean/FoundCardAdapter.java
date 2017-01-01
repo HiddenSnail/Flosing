@@ -31,11 +31,11 @@ public class FoundCardAdapter extends ArrayAdapter<FoundCard> {
         FoundCard foundCard = getItem(position);
         View view = LayoutInflater.from(getContext()).inflate(resourceId,null);
 
-        TextView lostCardTitle = (TextView) view.findViewById(R.id.foundcard_title);
-        TextView lostCardName = (TextView) view.findViewById(R.id.foundcard_name);
-        TextView lostCardType = (TextView) view.findViewById(R.id.foundcard_type);
-        TextView lostCardSDate = (TextView) view.findViewById(R.id.foundcard_sDate);
-        TextView lostCardEDate = (TextView) view.findViewById(R.id.foundcard_eDate);
+        TextView foundCardTitle = (TextView) view.findViewById(R.id.foundcard_title);
+        TextView foundCardName = (TextView) view.findViewById(R.id.foundcard_name);
+        TextView foundCardType = (TextView) view.findViewById(R.id.foundcard_type);
+        TextView foundCardSDate = (TextView) view.findViewById(R.id.foundcard_sDate);
+        TextView foundCardEDate = (TextView) view.findViewById(R.id.foundcard_eDate);
 
         String sDate;
         String eDate;
@@ -45,11 +45,11 @@ public class FoundCardAdapter extends ArrayAdapter<FoundCard> {
         eDate = sdf.format(foundCard.getEDate());
 
 
-        lostCardTitle.setText(foundCard.getTitle());
-        lostCardName.setText(foundCard.getName());
-        lostCardType.setText(foundCard.getType());
-        lostCardSDate.setText(sDate);
-        lostCardEDate.setText(eDate);
+        foundCardTitle.setText(foundCard.getTitle());
+        foundCardName.setText(foundCard.getName());
+        foundCardType.setText(foundCard.getType());
+        foundCardSDate.setText(sDate);
+        foundCardEDate.setText(eDate);
 
 
         return view;

@@ -62,6 +62,13 @@
         <activity android:name=".view.LostDetailActivity">
 
         </activity>
+
+        <activity android:name=".view.FoundPublishActivity">
+
+        </activity>
+        <activity android:name=".view.FoundDetailActivity">
+            
+        </activity>
     </application>
 
 </manifest>
