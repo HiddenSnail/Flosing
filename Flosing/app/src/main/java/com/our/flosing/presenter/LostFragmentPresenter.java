@@ -3,7 +3,7 @@ package com.our.flosing.presenter;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.model.LostCardModel;
 import com.our.flosing.view.IBaseView;
-import com.our.flosing.view.IHomePageView;
+import com.our.flosing.view.ILostFragmentView;
 
 import java.util.List;
 
@@ -15,18 +15,18 @@ import rx.schedulers.Schedulers;
  * Created by huangrui on 2016/12/29.
  */
 
-public class HomePagePresenter implements IHomePagePresenter {
+public class LostFragmentPresenter implements ILostFragmentPresenter {
     private LostCardModel lostCardModel;
-    private IHomePageView homePageView;
+    private ILostFragmentView homePageView;
 
-    public HomePagePresenter(IHomePageView homePageView) {
+    public LostFragmentPresenter(ILostFragmentView homePageView) {
         this.homePageView = homePageView;
         this.lostCardModel = new LostCardModel();
     }
 
     @Override
     public void takeView(IBaseView baseView) {
-        this.homePageView = (IHomePageView) baseView;
+        this.homePageView = (ILostFragmentView) baseView;
     }
 
     @Override
