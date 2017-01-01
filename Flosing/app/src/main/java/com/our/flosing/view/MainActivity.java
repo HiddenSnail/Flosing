@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AVUser.getCurrentUser().logOut();
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                MainActivity.this.finish();
             }
         });
 

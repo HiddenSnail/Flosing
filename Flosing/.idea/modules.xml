@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Flosing.iml" filepath="$PROJECT_DIR$/Flosing.iml" />
       <module fileurl="file://$PROJECT_DIR$/PullToRefresh/PullToRefresh.iml" filepath="$PROJECT_DIR$/PullToRefresh/PullToRefresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zxing/Zxing.iml" filepath="$PROJECT_DIR$/Zxing/Zxing.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

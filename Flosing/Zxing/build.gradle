@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 22
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile files('libs/core-3.3.0.jar')
+    compile files('libs/android-core-3.3.0.jar')
+}
