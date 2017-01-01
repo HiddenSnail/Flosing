@@ -14,8 +14,6 @@ import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
 import com.our.flosing.presenter.LostCardPresenter;
 
-import java.util.Date;
-
 /**
  * Created by RunNishino on 2016/12/31.
  */
@@ -41,7 +39,7 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
     @Override
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
-        setContentView(R.layout.activity_lost_detail);
+        setContentView(R.layout.activity_lostandfound_detail);
 
         if (lostCardPresenter == null) lostCardPresenter = new LostCardPresenter(this);
         lostCardPresenter.takeView(this);
