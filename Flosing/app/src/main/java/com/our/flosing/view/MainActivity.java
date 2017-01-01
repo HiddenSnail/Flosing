@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.avos.avoscloud.AVUser;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
 
 /**
@@ -18,7 +17,11 @@ import com.our.flosing.R;
 
 public class MainActivity extends AppCompatActivity {
     LostCardFragment lostCardFragment;
-    FindCardFragment findCardFragment;
+    FoundCardFragment foundCardFragment;
+
+    private Button lost_list;
+    private Button find_list;
+    private Button search;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -29,8 +32,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        final Button lost_list = (Button) findViewById(R.id.lost_list);
-        final Button find_list = (Button) findViewById(R.id.find_list);
+        lost_list = (Button) findViewById(R.id.lost_list);
+        find_list = (Button) findViewById(R.id.find_list);
+        search = (Button) findViewById(R.id.search);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SearchActivity.class));
+            }
+        });
 
 //        默认fragment
         fragmentManager = getSupportFragmentManager();
@@ -57,11 +68,11 @@ public class MainActivity extends AppCompatActivity {
         find_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (findCardFragment == null) {
-                    findCardFragment = new FindCardFragment();
+                if (foundCardFragment == null) {
+                    foundCardFragment = new FoundCardFragment();
                 }
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content,findCardFragment);
+                fragmentTransaction.replace(R.id.content, foundCardFragment);
                 fragmentTransaction.commit();
             }
         });

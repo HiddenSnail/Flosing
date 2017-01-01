@@ -42,6 +42,7 @@
                     android:gravity="center"
                     android:text=""
                     android:clickable="true"/>
+
                 <TextView
                     android:id="@+id/textview_enddate_publish"
                     android:layout_width="match_parent"
