@@ -7,7 +7,6 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -15,23 +14,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.avos.avoscloud.AVAnalytics;
 import com.our.flosing.R;
-import com.our.flosing.bean.LostCard;
-import com.our.flosing.presenter.LostPublishPresenter;
-
+import com.our.flosing.bean.FoundCard;
 import java.util.Date;
 import java.util.Locale;
 
-
 /**
- * Created by RunNishino on 2016/12/26.
+ * Created by RunNishino on 2017/1/2.
  */
 
+public class FoundPublishActivity extends AppCompatActivity implements IFoundPublishView {
 
-public class LostPublishActivity extends AppCompatActivity implements ILostPublishView {
-    static private LostPublishPresenter lostPublishPresenter;
+//    static private FoundPublishPresenter foundPublishPresenter;
 
     private EditText titleView;
     private EditText descriptionView;
@@ -41,7 +35,6 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
     private TextView endDateView;
     private Spinner contactWayView;
     private EditText contactDetailView;
-
 
     private Date startDate;
     private Date endDate;
@@ -53,15 +46,15 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
     private int day;
 
     @Override
-    protected void onCreate(Bundle saveInstanceState){
+    protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_lostandfound_publish);
 
-        if(lostPublishPresenter == null) lostPublishPresenter = new LostPublishPresenter(this);
-        lostPublishPresenter.takeView(this);
+//        if(foundPublishPresenter == null) foundPublishPresenter = new FoundPublishPresenter(this);
+//        foundPublishPresenter.takeView(this);
 
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("发布失物招领");
+        getSupportActionBar().setTitle("发布寻物启事");
 
         titleView = (EditText) findViewById(R.id.edittext_title_publish);
         descriptionView = (EditText) findViewById(R.id.edittext_description_publish);
@@ -90,13 +83,11 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         }catch (Exception e){
         }
 
-
-
         startDateView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dateChange = startDateView;
-                DatePickerDialog datePickerDialog = new DatePickerDialog(LostPublishActivity.this,dateListener,year,month,day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(FoundPublishActivity.this,dateListener,year,month,day);
                 datePickerDialog.show();
             }
         });
@@ -105,11 +96,10 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
             @Override
             public void onClick(View view) {
                 dateChange = endDateView;
-                DatePickerDialog datePickerDialog = new DatePickerDialog(LostPublishActivity.this,dateListener,year,month,day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(FoundPublishActivity.this,dateListener,year,month,day);
                 datePickerDialog.show();
             }
         });
-
 
         final Button submitPublish = (Button) findViewById(R.id.submit_publish_button);
         submitPublish.setOnClickListener(new View.OnClickListener() {
@@ -130,42 +120,42 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
                 }*/
 
                 if ("选择联系方式".equals(contactWayView.getSelectedItem().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请选择联系方式",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoundPublishActivity.this,"请选择联系方式",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }
                 if ("".equals(contactDetailView.getText().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请输入联系方式",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoundPublishActivity.this,"请输入联系方式",Toast.LENGTH_SHORT).show();
                     cancel = true;
                     focusView = contactDetailView;
                 }
                 if ("".equals(descriptionView.getText().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请输入正文",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoundPublishActivity.this,"请输入正文",Toast.LENGTH_SHORT).show();
                     cancel = true;
                     focusView = descriptionView;
                 }
                 if ("".equals(titleView.getText().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoundPublishActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
                     cancel = true;
                     focusView = titleView;
                 }
                 if ("".equals(nameView.getText().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请输入名称",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoundPublishActivity.this,"请输入名称",Toast.LENGTH_SHORT).show();
                     cancel = true;
                     focusView = nameView;
                 }
                 if (startDate.after(endDate)){
-                    Toast.makeText(LostPublishActivity.this,"开始时间必须早于或等于结束时间",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoundPublishActivity.this,"开始时间必须早于或等于结束时间",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }
                 if ("请选择类型".equals(typesView.getSelectedItem().toString())){
-                    Toast.makeText(LostPublishActivity.this,"请选择类型",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoundPublishActivity.this,"请选择类型",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }
 
                 if(cancel){
                     if (focusView !=null ) focusView.requestFocus();
                 }else{
-                    attemptLostPublish();
+                    attemptFoundPublish();
                 }
 
             }
@@ -208,33 +198,34 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         }
     };
 
-    private void attemptLostPublish() {
+
+    private void attemptFoundPublish() {
 
 //        Date startDate;
 //        Date endDate;
         try {
-            LostCard lostCard = new LostCard();
+            FoundCard foundCard = new FoundCard();
 
-            lostCard.setTitle(titleView.getText().toString());
-            lostCard.setType(typesView.getSelectedItem().toString());
-            lostCard.setDescription(descriptionView.getText().toString());
-            lostCard.setName(nameView.getText().toString());
-            lostCard.setSDate(startDate);
-            lostCard.setEDate(endDate);
-            lostCard.setIsFinish(false);
-            lostCard.setContactWay(contactWayView.getSelectedItem().toString());
-            lostCard.setContactDetail(contactDetailView.getText().toString());
+            foundCard.setTitle(titleView.getText().toString());
+            foundCard.setType(typesView.getSelectedItem().toString());
+            foundCard.setDescription(descriptionView.getText().toString());
+            foundCard.setName(nameView.getText().toString());
+            foundCard.setSDate(startDate);
+            foundCard.setEDate(endDate);
+            foundCard.setIsFinish(false);
+            foundCard.setContactWay(contactWayView.getSelectedItem().toString());
+            foundCard.setContactDetail(contactDetailView.getText().toString());
 
             //test
-            Log.d("lostCard",lostCard.getTitle());
-            Log.d("lostCard",lostCard.getType());
-            Log.d("lostCard",lostCard.getDescription());
-            Log.d("lostCard",lostCard.getSDate().toString());
-            Log.d("lostCard",lostCard.getEDate().toString());
-            Log.d("lostCard",lostCard.getContactWay());
-            Log.d("lostCard",lostCard.getContactDetail());
+            Log.d("lostCard",foundCard.getTitle());
+            Log.d("lostCard",foundCard.getType());
+            Log.d("lostCard",foundCard.getDescription());
+            Log.d("lostCard",foundCard.getSDate().toString());
+            Log.d("lostCard",foundCard.getEDate().toString());
+            Log.d("lostCard",foundCard.getContactWay());
+            Log.d("lostCard",foundCard.getContactDetail());
 
-            lostPublishPresenter.publishLost(lostCard);
+//            foundPublishPresenter.publishFound(foundCard);
 
         } catch (Exception e) {
 
@@ -242,39 +233,13 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
     }
 
     @Override
-    public void updateView(){
-        Toast.makeText(LostPublishActivity.this,"发布成功",Toast.LENGTH_SHORT).show();
+    public void updateView() {
+        Toast.makeText(FoundPublishActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
         this.finish();
     }
 
     @Override
-    public void showError(String msg){
-        Toast.makeText(LostPublishActivity.this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        AVAnalytics.onPause(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        AVAnalytics.onResume(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (isFinishing()) lostPublishPresenter = null;
+    public void showError(String msg) {
+        Toast.makeText(FoundPublishActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 }
