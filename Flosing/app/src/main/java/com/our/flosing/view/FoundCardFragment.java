@@ -1,11 +1,13 @@
 package com.our.flosing.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
 import com.our.flosing.bean.FoundCard;
 import com.our.flosing.bean.FoundCardAdapter;
+import com.our.flosing.bean.LostCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +61,16 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
             }
         });
 
+        //子项点击事件，将子项id带入intent中启动lostDetailActivity
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                FoundCard foundCard = mFoundCards.get(position - 1);
+                Intent intent = new Intent(getActivity(),FoundDetailActivity.class);
+                intent.putExtra("foundDetailId",foundCard.getId());
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
