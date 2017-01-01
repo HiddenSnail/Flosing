@@ -2,30 +2,29 @@ package com.our.flosing.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.avos.avoscloud.AVUser;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
-import com.our.flosing.bean.LostCard;
-import com.our.flosing.bean.LostCardAdapter;
-import com.our.flosing.presenter.LostFragmentPresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by huangrui on 2016/12/29.
  */
 
 public class MainActivity extends AppCompatActivity {
-    private PullToRefreshListView listView;
     LostCardFragment lostCardFragment;
+    FoundCardFragment foundCardFragment;
 
-    private android.app.FragmentManager fragmentManager;
-    private android.app.FragmentTransaction fragmentTransaction;
+    private Button lost_list;
+    private Button find_list;
+    private Button search;
+
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +32,55 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Button lost_list = (Button) findViewById(R.id.lost_list);
-        Button find_list = (Button) findViewById(R.id.find_list);
+        lost_list = (Button) findViewById(R.id.lost_list);
+        find_list = (Button) findViewById(R.id.find_list);
+        search = (Button) findViewById(R.id.search);
 
-        //默认fragment
-//        fragmentManager = getFragmentManager();
-//        fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.content,new LostCardFragment());
-//        fragmentTransaction.commit();
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SearchActivity.class));
+            }
+        });
 
-        lostCardFragment = (LostCardFragment) getFragmentManager().findFragmentById(R.id.content);
-        listView = lostCardFragment.getPullToRefreshListView();
+//        默认fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
 
-        listView = (PullToRefreshListView) findViewById(R.id.listview_lostcards);
+        lostCardFragment = new LostCardFragment();
+        fragmentTransaction.replace(R.id.content,lostCardFragment);
+        fragmentTransaction.commit();
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        lost_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (lostCardFragment == null) {
+                    lostCardFragment = new LostCardFragment();
+                }
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content,lostCardFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        find_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (foundCardFragment == null) {
+                    foundCardFragment = new FoundCardFragment();
+                }
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content, foundCardFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+//        lostCardFragment = (LostCardFragment) getSupportFragmentManager().findFragmentById(R.id.content);
+//        listView = lostCardFragment.getPullToRefreshListView();
+//
+//        listView = (PullToRefreshListView) findViewById(R.id.listview_lostcards);
 
         //TODO:方便使用，到时候去掉
         Button logout = (Button) findViewById(R.id.logout);

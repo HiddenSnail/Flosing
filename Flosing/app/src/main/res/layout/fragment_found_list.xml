@@ -3,10 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/listview_foundcards"
+        android:layout_height="345dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello"
-        android:gravity="center"/>
+        android:layout_weight="1.49"/>
 
 </LinearLayout>

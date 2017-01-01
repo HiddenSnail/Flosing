@@ -1,21 +1,19 @@
 package com.our.flosing.view;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.support.v4.app.Fragment;
+
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
-import com.our.flosing.bean.LostCard;
-import com.our.flosing.bean.LostCardAdapter;
-import com.our.flosing.presenter.LostFragmentPresenter;
+import com.our.flosing.bean.FoundCard;
+import com.our.flosing.bean.FoundCardAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,29 +22,29 @@ import java.util.List;
  * Created by RunNishino on 2017/1/1.
  */
 
-public class LostCardFragment extends Fragment implements ILostFragmentView {
 
-    static private List<LostCard> mLostCards = new ArrayList<>();
-    LostCardAdapter lostCardAdapter;
-    static private LostFragmentPresenter lostFragmentPresenter;
+//TODO:将foundFragmentPresenter添加进代码
+public class FoundCardFragment extends Fragment implements IFoundFragmentView{
+
+    static private List<FoundCard> mFoundCards = new ArrayList<>();
+    FoundCardAdapter foundCardAdapter;
+//    static private FoundFragmentPresenter foundFragmentPresenter;
     static private int pageNumber;
     private PullToRefreshListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_lost_list,container,false);
-        listView = (PullToRefreshListView) view.findViewById(R.id.listview_lostcards);
+        View view = inflater.inflate(R.layout.fragment_found_list, container, false);
+        listView = (PullToRefreshListView) view.findViewById(R.id.listview_foundcards);
 
         listView.setMode(PullToRefreshBase.Mode.BOTH);
         pageNumber = 1;
 
-        if (lostFragmentPresenter == null) lostFragmentPresenter = new LostFragmentPresenter(this);
-        lostFragmentPresenter.takeView(this);
+//        if (foundFragmentPresenter == null) foundFragmentPresenter = new FoundFragmentPresenter(this);
+//        foundFragmentPresenter.takeView(this);
 
-        //TODO:判断在fragment中使用哪个context
-        lostCardAdapter = new LostCardAdapter(this.getActivity(), R.layout.lostcard_item, mLostCards);
-        listView.setAdapter(lostCardAdapter);
-
+        foundCardAdapter = new FoundCardAdapter(this.getActivity(),R.layout.fragment_found_list,mFoundCards);
+        listView.setAdapter(foundCardAdapter);
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
@@ -60,20 +58,9 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
             }
         });
 
-        //子项点击事件，将子项id带入intent中启动lostDetailActivity
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                LostCard lostCard = mLostCards.get(position - 1);
-                Intent intent = new Intent(getActivity(),LostDetailActivity.class);
-                intent.putExtra("lostDetailId",lostCard.getId());
-                startActivity(intent);
-            }
-        });
 
         return view;
     }
-
     public PullToRefreshListView getPullToRefreshListView(){
         return listView;
     }
@@ -81,9 +68,9 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
     private class ResetDataTask extends AsyncTask<Void,Void,String> {
         @Override
         protected String doInBackground(Void... params){
-            lostCardAdapter.clear();
+            foundCardAdapter.clear();
             pageNumber = 0;
-            lostFragmentPresenter.getPageOfLosts(++pageNumber);
+//            foundFragmentPresenter.getPageOfLosts(++pageNumber);
             return "";
         }
 
@@ -97,7 +84,7 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
 
         @Override
         protected String doInBackground(Void... params){
-            lostFragmentPresenter.getPageOfLosts(++pageNumber);
+//            foundFragmentPresenter.getPageOfLosts(++pageNumber);
             return "";
         }
 
@@ -113,11 +100,11 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
     }
 
     @Override
-    public void refreshView(List<LostCard> lostCards) {
+    public void refreshView(List<FoundCard> foundCards) {
 
         //将新一页的数据放入adapter并更新
-        mLostCards.addAll(lostCards);
-        lostCardAdapter.notifyDataSetChanged();
+        mFoundCards.addAll(foundCards);
+        foundCardAdapter.notifyDataSetChanged();
 
     }
 
@@ -131,19 +118,18 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
         super.onResume();
 
         //清空listView
-        lostCardAdapter.clear();
-        listView.setAdapter(lostCardAdapter);
+        foundCardAdapter.clear();
+        listView.setAdapter(foundCardAdapter);
 
         //重新获取第一页数据
         pageNumber = 0;
-        lostFragmentPresenter.getPageOfLosts(++pageNumber);
+//        foundFragmentPresenter.getPageOfLosts(++pageNumber);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (getActivity().isFinishing()) lostFragmentPresenter = null;
+//        if (getActivity().isFinishing()) foundFragmentPresenter = null;
     }
-
 
 }
