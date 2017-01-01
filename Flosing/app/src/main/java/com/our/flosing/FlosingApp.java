@@ -2,6 +2,7 @@ package com.our.flosing;
 
 import android.app.Application;
 import com.avos.avoscloud.AVOSCloud;
+import com.our.flosing.presenter.LostCardPresenter;
 
 /**
  * Created by RunNishino on 2016/12/25.

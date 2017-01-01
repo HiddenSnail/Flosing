@@ -62,7 +62,7 @@ public class UserModel implements IUserModel {
                 AVUser avUser = AVUser.getCurrentUser();
                 if (avUser != null) {
                     User user = new User();
-                    user.setUid(avUser.getObjectId());
+                    user.setId(avUser.getObjectId());
                     user.setEmail(avUser.getEmail());
                     user.setUsername(avUser.getUsername());
 
@@ -72,4 +72,5 @@ public class UserModel implements IUserModel {
             }
         });
     }
+
 }
