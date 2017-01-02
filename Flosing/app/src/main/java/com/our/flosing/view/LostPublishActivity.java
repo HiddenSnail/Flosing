@@ -148,7 +148,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
                     cancel = true;
                     focusView = titleView;
                 }
-                if ("".equals(nameView.getText().toString())){
+                if ((!"现金".equals(typesView.getSelectedItem().toString())) && "".equals(nameView.getText().toString())){
                     Toast.makeText(LostPublishActivity.this,"请输入名称",Toast.LENGTH_SHORT).show();
                     cancel = true;
                     focusView = nameView;

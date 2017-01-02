@@ -85,13 +85,13 @@ public class MainActivity extends AppCompatActivity {
 //        listView = (PullToRefreshListView) findViewById(R.id.listview_lostcards);
 
         //TODO:方便使用，到时候去掉
-        Button logout = (Button) findViewById(R.id.logout);
+        Button logout = (Button) findViewById(R.id.person);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AVUser.getCurrentUser().logOut();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                MainActivity.this.finish();
+//                AVUser.getCurrentUser().logOut();
+//                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+//                MainActivity.this.finish();
             }
         });
 

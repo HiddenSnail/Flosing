@@ -48,6 +48,8 @@ public class SearchResultActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+
+        lostSearchResultFragment = new LostSearchResultFragment();
         fragmentTransaction.replace(R.id.search_content,lostSearchResultFragment);
         fragmentTransaction.commit();
 
@@ -61,7 +63,7 @@ public class SearchResultActivity extends AppCompatActivity {
                     lostSearchResultFragment = new LostSearchResultFragment();
                 }
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content,lostSearchResultFragment);
+                fragmentTransaction.replace(R.id.search_content,lostSearchResultFragment);
                 fragmentTransaction.commit();
             }
         });
@@ -73,7 +75,7 @@ public class SearchResultActivity extends AppCompatActivity {
                     foundSearchResultFragment = new FoundSearchResultFragment();
                 }
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content,foundSearchResultFragment );
+                fragmentTransaction.replace(R.id.search_content,foundSearchResultFragment );
                 fragmentTransaction.commit();
             }
         });
