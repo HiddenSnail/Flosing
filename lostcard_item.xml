@@ -12,7 +12,7 @@
         android:textSize="23dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="5dp"
-        android:textColor="@color/md_blue_grey_800"/>
+        android:textColor="@color/md_teal_600"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
