@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.our.flosing.R;
 
@@ -36,7 +37,6 @@ public class SearchActivity extends AppCompatActivity {
 
     private Date searchDate;
     private String searchDateStr;
-
 
     @Override
     public void onCreate(Bundle saveInstanceState){
@@ -67,15 +67,21 @@ public class SearchActivity extends AppCompatActivity {
         searchStartView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SearchActivity.this,SearchResultActivity.class);
-                intent.putExtra("searchName",searchNameView.getText().toString());
-                intent.putExtra("searchType",searchTypeView.getSelectedItem().toString());
 
-                DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                searchDateStr = sdf.format(searchDate);
-                intent.putExtra("searchDate",searchDateStr);
+                Boolean cancel = false;
 
-                startActivity(intent);
+                if ("请选择类型".equals(searchTypeView.getSelectedItem().toString())){
+                    cancel = true;
+                    Toast.makeText(SearchActivity.this,"必须选择类型",Toast.LENGTH_SHORT).show();
+                }
+                if ("".equals(searchDateView.getText().toString())){
+                    cancel = true;
+                    Toast.makeText(SearchActivity.this,"请选择时间",Toast.LENGTH_SHORT).show();
+                }
+
+                if (!cancel){
+                    attemptSearch();
+                }
             }
         });
     }
@@ -112,4 +118,17 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void attemptSearch(){
+        Intent intent = new Intent(SearchActivity.this,SearchResultActivity.class);
+
+        intent.putExtra("searchName",searchNameView.getText().toString());
+        intent.putExtra("searchType",searchTypeView.getSelectedItem().toString());
+
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        searchDateStr = sdf.format(searchDate);
+        intent.putExtra("searchDate",searchDateStr);
+
+        startActivity(intent);
+    }
 }
