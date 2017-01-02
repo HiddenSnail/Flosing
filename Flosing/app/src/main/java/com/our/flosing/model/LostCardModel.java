@@ -12,6 +12,7 @@ import com.our.flosing.bean.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -145,5 +146,52 @@ public class LostCardModel implements ILostCardModel {
         });
     }
 
+    public Observable<List<LostCard>> searchLosts(final String type, final String name,
+                                                  final Date pickdate, final Integer pageNumber)
+    {
+        return Observable.create(new Observable.OnSubscribe<List<LostCard>>() {
+            @Override
+            public void call(final Subscriber<? super List<LostCard>> subscriber) {
+                AVQuery<AVObject> typeQuery = new AVQuery<AVObject>("Lost");
+                if (type != null && !type.isEmpty()) { typeQuery.whereEqualTo("type", type); }
+
+                AVQuery<AVObject>  nameQuery = new AVQuery<AVObject>("Lost");
+                if (name != null && !name.isEmpty()) { nameQuery.whereContains("name", name); }
+
+                AVQuery<AVObject> dateQuery = new AVQuery<AVObject>("Lost");
+                if (pickdate != null) { dateQuery.whereGreaterThanOrEqualTo("startDate", pickdate); }
+
+                AVQuery<AVObject> query = AVQuery.and(Arrays.asList(typeQuery, nameQuery, dateQuery));
+                List<String> keys = Arrays.asList("title", "name", "type", "startDate", "endDate");
+                query.selectKeys(keys)
+                        .limit(EPN).skip((pageNumber-1)*EPN)
+                        .whereEqualTo("isFinish", false)
+                        .orderByDescending("createdAt");
+
+                query.findInBackground(new FindCallback<AVObject>() {
+                    @Override
+                    public void done(List<AVObject> list, AVException e) {
+
+                        if (e == null) {
+                            List<LostCard> losts = new ArrayList<>();
+                            for (AVObject object:list) {
+                                LostCard lostCard = new LostCard();
+                                lostCard.setId(object.getObjectId());
+                                lostCard.setTitle(object.getString("title"));
+                                lostCard.setName(object.getString("name"));
+                                lostCard.setType(object.getString("type"));
+                                lostCard.setSDate(object.getDate("startDate"));
+                                lostCard.setEDate(object.getDate("endDate"));
+                                losts.add(lostCard);
+                            }
+                            subscriber.onNext(losts);
+                            subscriber.onCompleted();
+                        } else subscriber.onError(e);
+                    }
+                });
+
+            }
+        });
+    }
 
 }
