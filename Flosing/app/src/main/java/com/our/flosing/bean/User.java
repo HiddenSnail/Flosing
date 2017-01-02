@@ -5,13 +5,13 @@ package com.our.flosing.bean;
  */
 
 public class User {
-    private String uid;
+    private String id;
     private String username;
     private String email;
     private String password;
 
-    public String getUid() { return this.uid; }
-    public void setUid(String uid) { this.uid = uid; }
+    public String getId() { return this.id; }
+    public void setId(String uid) { this.id = id; }
 
     public String getUsername() { return this.username; }
     public void setUsername(String username) { this.username = username; }

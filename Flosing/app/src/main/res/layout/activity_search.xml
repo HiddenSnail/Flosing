@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edittext_name_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="请输入名称"/>
+        <Button
+            android:id="@+id/button_start_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查找"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/spinner_types_search"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:entries="@array/types">
+
+        </Spinner>
+
+        <TextView
+            android:id="@+id/textview_date_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:hint="请输入最早拾取时间或最晚丢失时间"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+</LinearLayout>

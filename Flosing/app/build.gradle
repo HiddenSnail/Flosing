@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.our.flosing"
-        minSdkVersion 24
+        minSdkVersion 18
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -18,13 +18,14 @@ android {
         }
     }
 
-    packagingOptions{
+    packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
     lintOptions {
         abortOnError false
     }
+
 }
 
 dependencies {
@@ -56,4 +57,7 @@ dependencies {
     // RxJava 第三方库
     compile 'io.reactivex:rxjava:1.1.6'
     compile project(':PullToRefresh')
+    //TabView第三方库
+    compile 'com.ycl.tabview.library:tabviewlibrary:1.0'
+    compile project(':Zxing')
 }
