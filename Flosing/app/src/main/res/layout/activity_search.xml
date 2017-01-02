@@ -7,14 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Spinner
-            android:id="@+id/spinner_lostorfind_search"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:entries="@array/search_types">
-
-        </Spinner>
-
         <EditText
             android:id="@+id/edittext_name_search"
             android:layout_width="match_parent"
@@ -22,10 +14,10 @@
             android:layout_weight="1"
             android:hint="请输入名称"/>
         <Button
-            android:id="@+id/button_cancel_search"
+            android:id="@+id/button_start_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="取消"/>
+            android:text="查找"/>
     </LinearLayout>
 
     <LinearLayout
@@ -34,21 +26,17 @@
         <Spinner
             android:id="@+id/spinner_types_search"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="37dp"
             android:entries="@array/types">
 
         </Spinner>
 
         <TextView
-            android:id="@+id/textview_startdate_search"
+            android:id="@+id/textview_date_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/textview_enddate_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:gravity="center"
+            android:hint="请输入最早拾取时间或最晚丢失时间"
             android:layout_weight="1"/>
     </LinearLayout>
 

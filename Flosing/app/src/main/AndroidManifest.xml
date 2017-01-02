@@ -71,6 +71,12 @@
         <activity android:name=".view.FoundDetailActivity">
             
         </activity>
+        <activity android:name=".view.SearchActivity">
+
+        </activity>
+        <activity android:name=".view.SearchResultActivity">
+
+        </activity>
     </application>
 
 </manifest>

@@ -22,6 +22,8 @@
             android:layout_height="wrap_content"
             android:text="搜索"/>
 
+
+
         <fragment
             android:id="@+id/content"
             android:name="com.our.flosing.view.LostCardFragment"
