@@ -3,6 +3,8 @@ package com.our.flosing.view;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +28,29 @@ import java.util.List;
 
 public class LostCardFragment extends Fragment implements ILostFragmentView {
 
+    private final int RESETDATA = 1;
+    private final int GETDATA = 2;
+
     static private List<LostCard> mLostCards = new ArrayList<>();
     LostCardAdapter lostCardAdapter;
     static private LostFragmentPresenter lostFragmentPresenter;
     static private int pageNumber;
     private PullToRefreshListView listView;
+
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg){
+            switch (msg.what){
+                case RESETDATA:
+                    lostCardAdapter.clear();
+                    pageNumber = 0;
+                    lostFragmentPresenter.getPageOfLosts(++pageNumber);
+                    break;
+                case GETDATA:
+                    lostFragmentPresenter.getPageOfLosts(++pageNumber);
+            }
+        }
+    };
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -81,9 +101,10 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
     private class ResetDataTask extends AsyncTask<Void,Void,String> {
         @Override
         protected String doInBackground(Void... params){
-            lostCardAdapter.clear();
-            pageNumber = 0;
-            lostFragmentPresenter.getPageOfLosts(++pageNumber);
+//            lostCardAdapter.clear();
+            Message message = new Message();
+            message.what = RESETDATA;
+            handler.sendMessage(message);
             return "";
         }
 
@@ -97,7 +118,9 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
 
         @Override
         protected String doInBackground(Void... params){
-            lostFragmentPresenter.getPageOfLosts(++pageNumber);
+            Message message = new Message();
+            message.what = GETDATA;
+            handler.sendMessage(message);
             return "";
         }
 
