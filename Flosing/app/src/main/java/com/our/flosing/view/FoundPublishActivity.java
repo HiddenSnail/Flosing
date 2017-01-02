@@ -140,7 +140,7 @@ public class FoundPublishActivity extends AppCompatActivity implements IFoundPub
                     cancel = true;
                     focusView = titleView;
                 }
-                if ("".equals(nameView.getText().toString())){
+                if ((!"现金".equals(typesView.getSelectedItem().toString())) && "".equals(nameView.getText().toString())){
                     Toast.makeText(FoundPublishActivity.this,"请输入名称",Toast.LENGTH_SHORT).show();
                     cancel = true;
                     focusView = nameView;
