@@ -74,6 +74,7 @@ public final class OpenCameraInterface {
     if (index < numCameras) {
       Log.i(TAG, "Opening camera #" + index);
       camera = Camera.open(index);
+
     } else {
       if (explicitRequest) {
         Log.w(TAG, "Requested camera does not exist: " + cameraId);
