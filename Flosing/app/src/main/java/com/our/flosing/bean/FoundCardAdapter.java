@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by RunNishino on 2017/1/1.
  */
-
+/**失物招领帖**/
 public class FoundCardAdapter extends ArrayAdapter<FoundCard> {
 
     private int resourceId;

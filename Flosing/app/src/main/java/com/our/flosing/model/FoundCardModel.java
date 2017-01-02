@@ -13,6 +13,7 @@ import com.our.flosing.bean.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import rx.Observable;
@@ -140,6 +141,60 @@ public class FoundCardModel implements IFoundCardModel {
                 } catch (AVException e) {
                     subscriber.onError(e);
                 }
+            }
+        });
+    }
+
+    public Observable<List<FoundCard>> searchFounds(final String type, final String name,
+                                                  final Date lostdate, final Integer pageNumber)
+    {
+        return Observable.create(new Observable.OnSubscribe<List<FoundCard>>() {
+            @Override
+            public void call(final Subscriber<? super List<FoundCard>> subscriber) {
+
+                if (type.isEmpty() || type == null) {
+                    subscriber.onError(new Throwable("类型为空无法返回"));
+                    return;
+                }
+
+                AVQuery<AVObject> typeQuery = new AVQuery<AVObject>("Found");
+                if (type != null && !type.isEmpty()) { typeQuery.whereEqualTo("type", type); }
+
+                AVQuery<AVObject>  nameQuery = new AVQuery<AVObject>("Found");
+                if (name != null && !name.isEmpty()) { nameQuery.whereContains("name", name); }
+
+                AVQuery<AVObject> dateQuery = new AVQuery<AVObject>("Found");
+                if (lostdate != null) { dateQuery.whereGreaterThanOrEqualTo("endDate", lostdate); }
+
+                AVQuery<AVObject> query = AVQuery.and(Arrays.asList(typeQuery, nameQuery, dateQuery));
+                List<String> keys = Arrays.asList("title", "name", "type", "startDate", "endDate");
+                query.selectKeys(keys)
+                        .limit(EPN).skip((pageNumber-1)*EPN)
+                        .whereEqualTo("isFinish", false)
+                        .orderByDescending("createdAt");
+
+                query.findInBackground(new FindCallback<AVObject>() {
+                    @Override
+                    public void done(List<AVObject> list, AVException e) {
+
+                        if (e == null) {
+                            List<FoundCard> founds = new ArrayList<>();
+                            for (AVObject object:list) {
+                                FoundCard foundCard = new FoundCard();
+                                foundCard.setId(object.getObjectId());
+                                foundCard.setTitle(object.getString("title"));
+                                foundCard.setName(object.getString("name"));
+                                foundCard.setType(object.getString("type"));
+                                foundCard.setSDate(object.getDate("startDate"));
+                                foundCard.setEDate(object.getDate("endDate"));
+                                founds.add(foundCard);
+                            }
+                            subscriber.onNext(founds);
+                            subscriber.onCompleted();
+                        } else subscriber.onError(e);
+                    }
+                });
+
             }
         });
     }

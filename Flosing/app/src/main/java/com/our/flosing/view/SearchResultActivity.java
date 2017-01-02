@@ -53,6 +53,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
 
         fragmentTransaction = fragmentManager.beginTransaction();
+
         lost_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

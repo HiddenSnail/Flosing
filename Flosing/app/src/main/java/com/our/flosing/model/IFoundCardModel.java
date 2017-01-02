@@ -3,6 +3,7 @@ package com.our.flosing.model;
 import com.our.flosing.bean.FoundCard;
 import com.our.flosing.bean.User;
 
+import java.util.Date;
 import java.util.List;
 
 import rx.Observable;
@@ -16,4 +17,6 @@ public interface IFoundCardModel {
     Observable<List<FoundCard>> getPageOfFounds(final Integer pageNumber);
     Observable<FoundCard> getFoundByFid(final String fid);
     Observable<User> getPickerByFid(final String fid);
+    Observable<List<FoundCard>> searchFounds(final String type, final String name,
+                                             final Date lostdate, final Integer pageNumber);
 }

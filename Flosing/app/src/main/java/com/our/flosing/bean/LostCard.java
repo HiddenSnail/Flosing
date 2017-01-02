@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by huangrui on 2016/12/28.
  */
 
+/**寻物启示帖**/
 public class LostCard {
     private String id;
     private String type;

@@ -165,7 +165,7 @@ public class LostCardModel implements ILostCardModel {
                 if (name != null && !name.isEmpty()) { nameQuery.whereContains("name", name); }
 
                 AVQuery<AVObject> dateQuery = new AVQuery<AVObject>("Lost");
-                if (pickdate != null) { dateQuery.whereGreaterThanOrEqualTo("startDate", pickdate); }
+                if (pickdate != null) { dateQuery.whereLessThanOrEqualTo("startDate", pickdate); }
 
                 AVQuery<AVObject> query = AVQuery.and(Arrays.asList(typeQuery, nameQuery, dateQuery));
                 List<String> keys = Arrays.asList("title", "name", "type", "startDate", "endDate");

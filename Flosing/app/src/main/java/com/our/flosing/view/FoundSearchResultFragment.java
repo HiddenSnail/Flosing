@@ -22,6 +22,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
 import com.our.flosing.bean.FoundCard;
 import com.our.flosing.bean.FoundCardAdapter;
+import com.our.flosing.presenter.FoundSearchPresenter;
 
 import java.util.ArrayList;
 import java.util.Date;
