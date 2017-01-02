@@ -29,7 +29,7 @@
 
 
     <fragment
-        android:name="com.our.flosing.view.LostSearchResultFragment"
+        android:name="com.our.flosing.view.LostSearchSearchResultFragment"
         android:id="@+id/search_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -5,6 +5,7 @@ import android.util.Log;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.model.LostCardModel;
 import com.our.flosing.view.IBaseView;
+import com.our.flosing.view.ILostSearchResultFragmentView;
 import com.our.flosing.view.TestActivity;
 
 import java.util.Date;
@@ -20,16 +21,16 @@ import rx.schedulers.Schedulers;
 
 public class LostSearchPresenter implements ILostSearchPresenter {
     private LostCardModel lostCardModel;
-    private TestActivity testActivity;
+    private ILostSearchResultFragmentView lostSearchResultFragmentView;
 
-    public LostSearchPresenter(TestActivity testActivity) {
-        this.testActivity = testActivity;
+    public LostSearchPresenter(ILostSearchResultFragmentView lostSearchResultFragmentView) {
+        this.lostSearchResultFragmentView = lostSearchResultFragmentView;
         lostCardModel = new LostCardModel();
     }
 
     @Override
     public void takeView(IBaseView baseView) {
-        this.testActivity = (TestActivity) baseView;
+        this.lostSearchResultFragmentView = (ILostSearchResultFragmentView) baseView;
     }
 
     public void searchLosts(final String type, final String name,
@@ -41,7 +42,12 @@ public class LostSearchPresenter implements ILostSearchPresenter {
                 .subscribe(new Action1<List<LostCard>>() {
                     @Override
                     public void call(List<LostCard> lostCards) {
-                        Log.e("数组长度", String.valueOf(lostCards.size()));
+                        lostSearchResultFragmentView.refreshView(lostCards);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+//                        lostSearchResultFragmentView.showError(throwable.getMessage());
                     }
                 });
     }

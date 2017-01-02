@@ -3,14 +3,11 @@ package com.our.flosing.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 
 import com.our.flosing.R;
-import com.our.flosing.bean.LostCard;
 
 /**
  * Created by RunNishino on 2017/1/2.
@@ -22,7 +19,7 @@ public class SearchResultActivity extends AppCompatActivity {
     private String searchType = "";
     private String searchDate = "";
 
-    LostSearchResultFragment lostSearchResultFragment;
+    LostSearchSearchResultFragment lostSearchResultFragment;
 
     private Button lost_list;
 
@@ -43,7 +40,7 @@ public class SearchResultActivity extends AppCompatActivity {
         searchDate = intent.getStringExtra("searchDate");
 
 
-        lostSearchResultFragment = new LostSearchResultFragment();
+        lostSearchResultFragment = new LostSearchSearchResultFragment();
 
 
         fragmentManager = getSupportFragmentManager();

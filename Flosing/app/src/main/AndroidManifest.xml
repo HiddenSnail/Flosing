@@ -41,7 +41,7 @@
         </activity>
         <!-- 反馈组件 END -->
 
-        <activity android:name=".view.TestActivity">
+        <activity android:name=".view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -26,10 +26,5 @@ public class TestActivity extends AppCompatActivity implements IBaseView {
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_register);
-        LostCardModel lostCardModel = new LostCardModel();
-        LostSearchPresenter lostSearchPresenter = new LostSearchPresenter(this);
-//        lostSearchPresenter.searchLosts("现金", null, null, 1);
-        UserModel userModel = new UserModel();
-        userModel.uploadAvatar();
     }
 }

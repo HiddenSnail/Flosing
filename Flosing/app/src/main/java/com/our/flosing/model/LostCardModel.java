@@ -152,6 +152,12 @@ public class LostCardModel implements ILostCardModel {
         return Observable.create(new Observable.OnSubscribe<List<LostCard>>() {
             @Override
             public void call(final Subscriber<? super List<LostCard>> subscriber) {
+
+                if (type.isEmpty() || type == null) {
+                    subscriber.onError(new Throwable("类型为空无法返回"));
+                    return;
+                }
+
                 AVQuery<AVObject> typeQuery = new AVQuery<AVObject>("Lost");
                 if (type != null && !type.isEmpty()) { typeQuery.whereEqualTo("type", type); }
 

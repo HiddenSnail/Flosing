@@ -1,9 +1,7 @@
 package com.our.flosing.view;
 
-import android.app.Activity;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
-import android.icu.util.BuddhistCalendar;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,7 +18,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.LostCardAdapter;
-import com.our.flosing.presenter.FoundFragmentPresenter;
+import com.our.flosing.presenter.LostSearchPresenter;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +28,7 @@ import java.util.List;
  * Created by RunNishino on 2017/1/2.
  */
 
-public class LostSearchResultFragment extends Fragment implements ILostResultFragmentView {
+public class LostSearchSearchResultFragment extends Fragment implements ILostSearchResultFragmentView {
 
     static private LostSearchPresenter lostSearchPresenter;
     static private List<LostCard> mLostCards = new ArrayList<>();
@@ -50,6 +47,9 @@ public class LostSearchResultFragment extends Fragment implements ILostResultFra
 
         View view = inflater.inflate(R.layout.fragment_lost_result,container,false);
         listView = (PullToRefreshListView) view.findViewById(R.id.listview_lostcards_result);
+
+        if (lostSearchPresenter == null) lostSearchPresenter = new LostSearchPresenter(this);
+        lostSearchPresenter.takeView(this);
 
         if (!"".equals(((SearchResultActivity) getActivity()).getSearchName()))
             fragmentSearchName = ((SearchResultActivity) getActivity()).getSearchName();
