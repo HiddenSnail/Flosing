@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal|center_vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/classroom"
     tools:context="com.our.flosing.view.RegisterActivity">
 
     <ScrollView
@@ -13,62 +14,98 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--<android.support.design.widget.TextInputLayout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/alpha80">
+
+                <!--<android.support.design.widget.TextInputLayout-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content" >-->
 
                 <AutoCompleteTextView
+                    android:layout_marginLeft="5pt"
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="请输入用户名"
+                    android:textColorHint="@color/HintColor"
                     android:maxLines="1"/>
-            <!--</android.support.design.widget.TextInputLayout>-->
+                <!--</android.support.design.widget.TextInputLayout>-->
+            </LinearLayout>
 
-            <!--&lt;!&ndash;<android.support.design.widget.TextInputLayout&ndash;&gt;-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:maxLines="1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/alpha80">
+
+                <!--<android.support.design.widget.TextInputLayout-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content" >-->
 
                 <AutoCompleteTextView
+                    android:layout_marginLeft="5pt"
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="请输入邮箱"
+                    android:textColorHint="@color/HintColor"
                     android:maxLines="1"/>
-            <!--</android.support.design.widget.TextInputLayout>-->
+                <!--</android.support.design.widget.TextInputLayout>-->
+            </LinearLayout>
 
-            <!--<android.support.design.widget.TextInputLayout-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:maxLines="1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/alpha80">
+
+                <!--<android.support.design.widget.TextInputLayout-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="match_parent" >-->
 
                 <AutoCompleteTextView
+                    android:layout_marginLeft="5pt"
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="请输入密码"
+                    android:textColorHint="@color/HintColor"
                     android:maxLines="1"
                     android:imeActionId="@+id/register"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"/>
+                <!--</android.support.design.widget.TextInputLayout>-->
+            </LinearLayout>
 
-            <!--</android.support.design.widget.TextInputLayout>-->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:maxLines="1"/>
 
-
             <Button
                 android:id="@+id/username_register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#2EB872"
                 android:text="注册并登陆"/>
 
             <TextView
