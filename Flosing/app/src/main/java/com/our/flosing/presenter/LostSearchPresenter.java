@@ -6,7 +6,6 @@ import com.our.flosing.bean.LostCard;
 import com.our.flosing.model.LostCardModel;
 import com.our.flosing.view.IBaseView;
 import com.our.flosing.view.ILostSearchResultFragmentView;
-import com.our.flosing.view.TestActivity;
 
 import java.util.Date;
 import java.util.List;
