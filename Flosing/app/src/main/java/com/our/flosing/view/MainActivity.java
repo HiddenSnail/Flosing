@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction = fragmentManager.beginTransaction();
 
+
+        //TODO:改为隐藏
         lost_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
