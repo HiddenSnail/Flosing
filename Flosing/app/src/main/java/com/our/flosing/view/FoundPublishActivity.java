@@ -55,8 +55,8 @@ public class FoundPublishActivity extends AppCompatActivity implements IFoundPub
         if(foundPublishPresenter == null) foundPublishPresenter = new FoundPublishPresenter(this);
         foundPublishPresenter.takeView(this);
 
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("发布失物招领");
+//        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setTitle("发布失物招领");
 
         titleView = (EditText) findViewById(R.id.edittext_title_publish);
         descriptionView = (EditText) findViewById(R.id.edittext_description_publish);

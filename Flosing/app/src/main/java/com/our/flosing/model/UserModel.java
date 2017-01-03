@@ -31,6 +31,7 @@ import static android.os.Environment.DIRECTORY_DCIM;
  */
 
 public class UserModel implements IUserModel {
+    static private final Integer EPN = 10;
 
     public Observable<Boolean> login(final String username, final String password) {
         return Observable.create(new Observable.OnSubscribe<Boolean>() {
@@ -88,7 +89,7 @@ public class UserModel implements IUserModel {
         });
     }
 
-    public Observable<List<LostCard>> getUserLost() {
+    public Observable<List<LostCard>> getUserLost(final Integer pageNumber) {
         return Observable.create(new Observable.OnSubscribe<List<LostCard>>() {
             @Override
             public void call(final Subscriber<? super List<LostCard>> subscriber) {
@@ -96,6 +97,7 @@ public class UserModel implements IUserModel {
                 if (avUser != null) {
                     AVQuery<AVObject> query = new AVQuery<AVObject>("Lost");
                     query.whereEqualTo("owner", avUser);
+                    query.limit(EPN).skip((pageNumber-1)*EPN);
                     query.findInBackground(new FindCallback<AVObject>() {
                         @Override
                         public void done(List<AVObject> list, AVException e) {

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:text="username"
+            android:id="@+id/username_personPage"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="8"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/lost_person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="我的失物招领"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="我的寻物启事"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+
+    <FrameLayout
+        android:id="@+id/personPage_content"
+        android:name="com.our.flosing.view.PersonLostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_weight="0.90">
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退出登录"/>
+
+</LinearLayout>

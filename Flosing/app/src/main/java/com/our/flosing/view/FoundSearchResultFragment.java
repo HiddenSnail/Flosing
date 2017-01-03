@@ -66,7 +66,6 @@ public class FoundSearchResultFragment extends Fragment implements IFoundSearchR
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        //TODO:修改fragment构建使用布局
         View view = inflater.inflate(R.layout.fragment_found_result,container,false);
         listView = (PullToRefreshListView) view.findViewById(R.id.listview_foundcards_result);
 
