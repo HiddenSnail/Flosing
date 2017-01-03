@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="types">
-        <item>请选择类型</item>
+        <item>物品类型</item>
         <item>现金</item>
         <item>书籍</item>
         <item>证件</item>

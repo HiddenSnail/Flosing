@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.avos.avoscloud.AVUser;
 import com.our.flosing.R;
@@ -22,6 +23,8 @@ public class PersonPageActivity extends AppCompatActivity {
     Button lost_list;
     Button found_list;
 
+    TextView usernameView;
+
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
@@ -30,6 +33,8 @@ public class PersonPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personpage);
 
+        usernameView.setText("你好," + AVUser.getCurrentUser().getUsername());
+
 
         lost_list = (Button) findViewById(R.id.lost_person);
         //退出按钮
@@ -37,10 +42,9 @@ public class PersonPageActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(AVUser.getCurrentUser());
-//                AVUser.getCurrentUser().logOut();
-//                startActivity(new Intent(PersonPageActivity.this,LoginActivity.class));
-//                PersonPageActivity.this.finish();
+                AVUser.getCurrentUser().logOut();
+                startActivity(new Intent(PersonPageActivity.this,LoginActivity.class));
+                PersonPageActivity.this.finish();
             }
         });
 

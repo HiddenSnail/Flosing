@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
     EditText searchNameView;
-    Button searchStartView;
+    ImageButton searchStartView;
     Spinner searchTypeView;
     TextView searchDateView;
 
@@ -44,7 +45,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         searchNameView = (EditText) findViewById(R.id.edittext_name_search);
-        searchStartView = (Button) findViewById(R.id.button_start_search);
+        searchStartView = (ImageButton) findViewById(R.id.button_start_search);
         searchTypeView = (Spinner) findViewById(R.id.spinner_types_search);
         searchDateView = (TextView) findViewById(R.id.textview_date_search);
 
