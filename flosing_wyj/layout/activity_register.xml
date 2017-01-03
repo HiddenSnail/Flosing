@@ -37,6 +37,8 @@
                     android:layout_height="wrap_content"
                     android:hint="请输入用户名"
                     android:textColorHint="@color/HintColor"
+                    android:text="hhhhh"
+                    android:textColor="@color/md_black_1000"
                     android:maxLines="1"/>
                 <!--</android.support.design.widget.TextInputLayout>-->
             </LinearLayout>
@@ -62,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请输入邮箱"
                     android:textColorHint="@color/HintColor"
+                    android:textColor="@color/md_black_1000"
                     android:maxLines="1"/>
                 <!--</android.support.design.widget.TextInputLayout>-->
             </LinearLayout>
@@ -88,6 +91,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请输入密码"
                     android:textColorHint="@color/HintColor"
+                    android:textColor="@color/md_black_1000"
                     android:maxLines="1"
                     android:imeActionId="@+id/register"
                     android:imeOptions="actionUnspecified"
@@ -105,7 +109,7 @@
                 android:id="@+id/username_register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#2EB872"
+                android:background="@drawable/button_register"
                 android:text="注册并登陆"/>
 
             <TextView
