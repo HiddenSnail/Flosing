@@ -6,13 +6,18 @@ import android.util.Log;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
@@ -77,45 +82,43 @@ public class UserModel implements IUserModel {
 
                     subscriber.onNext(user);
                     subscriber.onCompleted();
-                }
+                } else subscriber.onError(new Throwable("用户未登陆"));
             }
         });
     }
 
-//    public Observable<Boolean> uploadAvatar() {
-//        return Observable.create(new Observable.OnSubscribe<Boolean>() {
-//            @Override
-//            public void call(Subscriber<? super Boolean> subscriber) {
-//                try {
-//                    AVFile avatarFile = AVFile.withAbsoluteLocalPath("test.png",  Environment.getExternalStorageDirectory() + "/test.png");
-//
-//
-//
-//                } catch (IOException e) {
-//                    subscriber.onError(e);
-//                }
-//            }
-//        });
-//    }
-
-    public void uploadAvatar() {
-        try {
-//            AVFile avatarFile = AVFile.withAbsoluteLocalPath("test.png",
-//                    Environment.getExternalStorageDirectory() + "/test.png");
-            File files = Environment.getExternalStoragePublicDirectory(DIRECTORY_DCIM);
-            files.createNewFile();
-
-            File[] fileList = files.listFiles();
-
-//            File ss = new File(image.getPath(), "/jj.txt");
-            Log.e("路径为", files.getPath());
-//            System.out.println("image是文件么？:" + image.isDirectory());
-//            Log.e("长度为", files.toURI().toString());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public Observable<List<LostCard>> getUserLost() {
+        return Observable.create(new Observable.OnSubscribe<List<LostCard>>() {
+            @Override
+            public void call(final Subscriber<? super List<LostCard>> subscriber) {
+                AVUser avUser = AVUser.getCurrentUser();
+                if (avUser != null) {
+                    AVQuery<AVObject> query = new AVQuery<AVObject>("Lost");
+                    query.whereEqualTo("owner", avUser);
+                    query.findInBackground(new FindCallback<AVObject>() {
+                        @Override
+                        public void done(List<AVObject> list, AVException e) {
+                            if (list.size() > 0) {
+                                List<LostCard> losts = new ArrayList<>();
+                                for (AVObject avObject:list) {
+                                    LostCard lostCard = new LostCard();
+                                    lostCard.setId(avObject.getObjectId());
+                                    lostCard.setTitle(avObject.getString("title"));
+                                    lostCard.setName(avObject.getString("name"));
+                                    lostCard.setType(avObject.getString("type"));
+                                    lostCard.setSDate(avObject.getDate("startDate"));
+                                    lostCard.setEDate(avObject.getDate("endDate"));
+                                    lostCard.setIsFinish(avObject.getBoolean("isFinish"));
+                                    losts.add(lostCard);
+                                }
+                                subscriber.onNext(losts);
+                                subscriber.onCompleted();
+                            } else subscriber.onError(e);
+                        }
+                    });
+                } else subscriber.onError(new Throwable("用户未登陆"));
+            }
+        });
     }
-
+    //PersonLost
 }
