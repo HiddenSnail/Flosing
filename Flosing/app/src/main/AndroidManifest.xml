@@ -95,6 +95,11 @@
 
         </activity>
 
+        <activity android:name=".view.QRCodeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
+
         <!--<activity-->
             <!--android:configChanges="orientation|keyboardHidden"-->
             <!--android:name="com.google.zxing.client.android.CaptureActivity"-->

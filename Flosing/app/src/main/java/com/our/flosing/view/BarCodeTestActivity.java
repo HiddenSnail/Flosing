@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,7 @@ import com.our.flosing.R;
  * Created by huangrui on 2016/12/31.
  */
 
-public class BarCodeTestActivity extends Activity {
+public class BarCodeTestActivity extends AppCompatActivity {
     /** Called when the activity is first created. */
     private TextView resultTextView;
     private EditText qrStrEditText;

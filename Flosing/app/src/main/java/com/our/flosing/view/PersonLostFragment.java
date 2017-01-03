@@ -82,16 +82,15 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
             }
         });
 
-        //TODO:点击子项事件
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                LostCard lostCard = mLostCards.get(position - 1);
-//                Intent intent = new Intent(getActivity(),LostDetailActivity.class);
-//                intent.putExtra("lostDetailId",lostCard.getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                LostCard lostCard = mLostCards.get(position - 1);
+                Intent intent = new Intent(getActivity(),QRCodeActivity.class);
+                intent.putExtra("cardID","L"+lostCard.getId());
+                startActivity(intent);
+            }
+       });
 
         return view;
     }
