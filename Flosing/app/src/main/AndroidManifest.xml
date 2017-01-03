@@ -53,32 +53,45 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
 
-        <activity android:name=".view.RegisterActivity">
+        <activity android:name=".view.RegisterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
 
-        <activity android:name=".view.LostPublishActivity">
+        <activity android:name=".view.LostPublishActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
 
-        <activity android:name=".view.LostDetailActivity">
+        <activity android:name=".view.LostDetailActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
 
-        <activity android:name=".view.FoundPublishActivity">
+        <activity android:name=".view.FoundPublishActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
-        <activity android:name=".view.FoundDetailActivity">
+        <activity android:name=".view.FoundDetailActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             
         </activity>
-        <activity android:name=".view.SearchActivity">
+        <activity android:name=".view.SearchActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
-        <activity android:name=".view.SearchResultActivity">
+        <activity android:name=".view.SearchResultActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
+
+        <activity android:name=".view.PersonPageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         </activity>
 

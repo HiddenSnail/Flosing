@@ -18,6 +18,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.LostCardAdapter;
+import com.our.flosing.presenter.PersonLostPresenter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
     private final int RESETDATA = 1;
     private final int GETDATA = 2;
 
-    static private List<LostCard> mLostCards = new ArrayList<>();
+    private List<LostCard> mLostCards = new ArrayList<>();
     LostCardAdapter lostCardAdapter;
     static private PersonLostPresenter personLostPresenter;
     static private int pageNumber;
@@ -44,16 +46,17 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
                 case RESETDATA:
                     lostCardAdapter.clear();
                     pageNumber = 0;
-                    personLostPresenter.getPageOfLosts(++pageNumber);
+                    personLostPresenter.getPersonLost(++pageNumber);
                     break;
                 case GETDATA:
-                    lostFragmentPresenter.getPageOfLosts(++pageNumber);
+                    personLostPresenter.getPersonLost(++pageNumber);
             }
         }
     };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
         View view = inflater.inflate(R.layout.fragment_lost_person, container, false);
         listView = (PullToRefreshListView) view.findViewById(R.id.listview_lostcards_person);
 
@@ -64,6 +67,7 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
         personLostPresenter.takeView(this);
 
         lostCardAdapter = new LostCardAdapter(this.getActivity(), R.layout.lostcard_item, mLostCards);
+        lostCardAdapter.clear();
         listView.setAdapter(lostCardAdapter);
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -156,7 +160,7 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
 
         //重新获取第一页数据
         pageNumber = 0;
-        personLostPresenter.getPageOfLosts(++pageNumber);
+        personLostPresenter.getPersonLost(++pageNumber);
     }
 
     @Override

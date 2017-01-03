@@ -28,13 +28,12 @@ import java.util.List;
  * Created by RunNishino on 2017/1/1.
  */
 
-
 public class FoundCardFragment extends Fragment implements IFoundFragmentView{
 
     private final int RESETDATA = 1;
     private final int GETDATA = 2;
 
-    static private List<FoundCard> mFoundCards = new ArrayList<>();
+    private List<FoundCard> mFoundCards = new ArrayList<>();
     FoundCardAdapter foundCardAdapter;
     static private FoundFragmentPresenter foundFragmentPresenter;
     static private int pageNumber;
@@ -60,7 +59,7 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
         listView = (PullToRefreshListView) view.findViewById(R.id.listview_foundcards);
 
         listView.setMode(PullToRefreshBase.Mode.BOTH);
-        pageNumber = 1;
+        pageNumber = 0;
 
         if (foundFragmentPresenter == null) foundFragmentPresenter = new FoundFragmentPresenter(this);
         foundFragmentPresenter.takeView(this);
@@ -93,9 +92,7 @@ public class FoundCardFragment extends Fragment implements IFoundFragmentView{
 
         return view;
     }
-    public PullToRefreshListView getPullToRefreshListView(){
-        return listView;
-    }
+
 
     private class ResetDataTask extends AsyncTask<Void,Void,String> {
         @Override

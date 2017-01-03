@@ -60,8 +60,8 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         if(lostPublishPresenter == null) lostPublishPresenter = new LostPublishPresenter(this);
         lostPublishPresenter.takeView(this);
 
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("发布寻物启示");
+//        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setTitle("发布寻物启示");
 
         titleView = (EditText) findViewById(R.id.edittext_title_publish);
         descriptionView = (EditText) findViewById(R.id.edittext_description_publish);

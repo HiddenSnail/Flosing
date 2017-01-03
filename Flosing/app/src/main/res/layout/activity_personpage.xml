@@ -38,14 +38,14 @@
 
 
 
-    <fragment
+    <FrameLayout
         android:id="@+id/personPage_content"
         android:name="com.our.flosing.view.PersonLostFragment"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_weight="0.90">
 
-    </fragment>
+    </FrameLayout>
 
     <Button
         android:id="@+id/logout"

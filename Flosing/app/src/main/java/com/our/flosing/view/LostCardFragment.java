@@ -31,7 +31,7 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
     private final int RESETDATA = 1;
     private final int GETDATA = 2;
 
-    static private List<LostCard> mLostCards = new ArrayList<>();
+    private List<LostCard> mLostCards = new ArrayList<>();
     LostCardAdapter lostCardAdapter;
     static private LostFragmentPresenter lostFragmentPresenter;
     static private int pageNumber;
@@ -51,21 +51,17 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
         }
     };
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_lost_list,container,false);
         listView = (PullToRefreshListView) view.findViewById(R.id.listview_lostcards);
 
         listView.setMode(PullToRefreshBase.Mode.BOTH);
-        pageNumber = 1;
+        pageNumber = 0;
 
         if (lostFragmentPresenter == null) lostFragmentPresenter = new LostFragmentPresenter(this);
         lostFragmentPresenter.takeView(this);
 
-        //TODO:判断在fragment中使用哪个context
-        lostCardAdapter = new LostCardAdapter(this.getActivity(), R.layout.lostcard_item, mLostCards);
-        listView.setAdapter(lostCardAdapter);
 
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -94,9 +90,6 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
         return view;
     }
 
-    public PullToRefreshListView getPullToRefreshListView(){
-        return listView;
-    }
 
     private class ResetDataTask extends AsyncTask<Void,Void,String> {
         @Override
@@ -104,6 +97,7 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
             Message message = new Message();
             message.what = RESETDATA;
             handler.sendMessage(message);
+
             return "";
         }
 
@@ -120,6 +114,7 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
             Message message = new Message();
             message.what = GETDATA;
             handler.sendMessage(message);
+
             return "";
         }
 
@@ -153,7 +148,11 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
         super.onResume();
 
         //清空listView
-        lostCardAdapter.clear();
+//        lostCardAdapter.clear();
+//        listView.setAdapter(lostCardAdapter);
+
+        lostCardAdapter = new LostCardAdapter(this.getActivity(), R.layout.lostcard_item, mLostCards);
+        mLostCards.clear();
         listView.setAdapter(lostCardAdapter);
 
         //重新获取第一页数据

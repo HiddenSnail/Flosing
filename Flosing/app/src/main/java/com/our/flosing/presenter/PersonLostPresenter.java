@@ -1,8 +1,12 @@
 package com.our.flosing.presenter;
 
+import android.util.Log;
+
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.model.UserModel;
 import com.our.flosing.view.IBaseView;
+import com.our.flosing.view.ILostPersonFragmentView;
+import com.our.flosing.view.PersonLostFragment;
 
 import java.util.List;
 
@@ -16,25 +20,26 @@ import rx.schedulers.Schedulers;
 
 public class PersonLostPresenter implements IPersonLostPresenter {
     private UserModel userModel;
-    private IPersonLostFragment personLostFragment;
+    private ILostPersonFragmentView personLostFragment;
 
-    public PersonLostPresenter(IPersonLostFragment personLostFragment) {
+    public PersonLostPresenter(ILostPersonFragmentView personLostFragment) {
         this.personLostFragment = personLostFragment;
         userModel = new UserModel();
     }
 
     @Override
     public void takeView(IBaseView baseView) {
-        personLostFragment = (IPersonLostFragment) baseView;
+        personLostFragment = (ILostPersonFragmentView) baseView;
     }
 
-    void getPersonLost() {
-        userModel.getUserLost()
+    public void getPersonLost(Integer pageNumber) {
+        userModel.getUserLost(pageNumber)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<LostCard>>() {
                     @Override
                     public void call(List<LostCard> lostCards) {
+                        Log.e("length",String.valueOf(lostCards.size()));
                         personLostFragment.refreshView(lostCards);
                     }
                 }, new Action1<Throwable>() {

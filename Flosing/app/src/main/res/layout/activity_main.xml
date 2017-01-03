@@ -24,13 +24,12 @@
 
 
 
-        <fragment
+        <FrameLayout
             android:id="@+id/content"
-            android:name="com.our.flosing.view.LostCardFragment"
             android:layout_width="match_parent"
             android:layout_height="339dp">
 
-        </fragment>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

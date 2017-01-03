@@ -37,9 +37,10 @@ public class PersonPageActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AVUser.getCurrentUser().logOut();
-                startActivity(new Intent(PersonPageActivity.this,LoginActivity.class));
-                PersonPageActivity.this.finish();
+                System.out.println(AVUser.getCurrentUser());
+//                AVUser.getCurrentUser().logOut();
+//                startActivity(new Intent(PersonPageActivity.this,LoginActivity.class));
+//                PersonPageActivity.this.finish();
             }
         });
 
