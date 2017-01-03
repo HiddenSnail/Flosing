@@ -12,16 +12,40 @@
     <RelativeLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:background="#2EB872">
-        <TextView
+        <ImageButton
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/person"
+            android:background="#00000000"
+            android:src="@drawable/person"
+            android:scaleType="centerInside"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true"
+            />
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:textColor="@color/md_blue_50"
-            android:textSize="33sp"
-            android:text="主页"/>
+            android:layout_centerInParent="true">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/shape_corner_left"
+                android:id="@+id/lost_list"
+                android:text="寻物启示"
+                android:textColor="#2EB872"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/shape_corner_right"
+                android:id="@+id/find_list"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:text="失物招领"/>
+        </LinearLayout>
         <ImageButton
             android:id="@+id/search"
             android:layout_centerInParent="true"
@@ -44,54 +68,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/layout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF">
-
-            <Button
-                android:background="@color/white"
-                android:id="@+id/lost_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="寻物启示"
-                android:textColor="@color/md_blue_grey_500"
-                android:layout_weight="1"/>
-
-            <Button
-                android:background="@color/white"
-                android:id="@+id/find_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="失物招领"/>
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout4"
-            android:layout_width="match_parent"
-            android:layout_height="3sp"
-            android:background="#FFFFFF">
-            <Button
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/md_blue_300"
-                android:layout_weight="1"/>
-
-            <Button
-                android:background="@color/white"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-
-        </LinearLayout>
         </LinearLayout>
 
         <fragment
@@ -100,7 +76,7 @@
             android:id="@+id/content"
             android:name="com.our.flosing.view.LostCardFragment"
             android:layout_width="match_parent"
-            android:layout_height="320dp">
+            android:layout_height="360dp">
 
         </fragment>
 
@@ -163,35 +139,9 @@
                 android:gravity="center"
                 android:layout_weight="1"/>
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:layout_weight="1">
-            <ImageButton
-                android:layout_gravity="center_horizontal"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/person"
-                android:background="#00000000"
-                android:src="@drawable/person"
-                android:scaleType="centerInside"
-                android:layout_below="@+id/textView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_weight="1"/>
 
-            <TextView
-                android:text="个人主页"
-                android:textColor="@color/md_blue_grey_500"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="30sp"
-                android:gravity="center"
-                android:layout_weight="1"/>
 
-            </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>
