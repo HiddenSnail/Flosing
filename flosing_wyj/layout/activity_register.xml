@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@drawable/classroom"
+    tools:context="com.our.flosing.view.RegisterActivity">
+
+    <ScrollView
+        android:id="@+id/register_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:text="注 册"
+                android:textSize="42sp"
+                android:textColor="@color/md_blue_500"
+                android:textStyle=""
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/alpha80">
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" >-->
+
+                <AutoCompleteTextView
+                    android:layout_marginLeft="5pt"
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入用户名"
+                    android:textColorHint="@color/HintColor"
+                    android:text="hhhhh"
+                    android:textColor="@color/md_black_1000"
+                    android:maxLines="1"/>
+                <!--</android.support.design.widget.TextInputLayout>-->
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:maxLines="1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/alpha80">
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" >-->
+
+                <AutoCompleteTextView
+                    android:layout_marginLeft="5pt"
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入邮箱"
+                    android:textColorHint="@color/HintColor"
+                    android:textColor="@color/md_black_1000"
+                    android:maxLines="1"/>
+                <!--</android.support.design.widget.TextInputLayout>-->
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:maxLines="1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/alpha80">
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" >-->
+
+                <AutoCompleteTextView
+                    android:layout_marginLeft="5pt"
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入密码"
+                    android:textColorHint="@color/HintColor"
+                    android:textColor="@color/md_black_1000"
+                    android:maxLines="1"
+                    android:imeActionId="@+id/register"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"/>
+                <!--</android.support.design.widget.TextInputLayout>-->
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:maxLines="1"/>
+
+            <Button
+                android:id="@+id/username_register_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_register"
+                android:text="注册并登陆"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
