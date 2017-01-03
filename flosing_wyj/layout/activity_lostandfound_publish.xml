@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_grey_bg"
+    tools:context="com.our.flosing.view.LostPublishActivity">
+
+    <ScrollView
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="物品名称: *"
+                android:textSize="23dp"
+                android:textColor="@color/md_black_1000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip"
+                android:layout_marginBottom="7dip"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edittext_name_publish"
+
+                    android:layout_height="40dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/bg_edittext"
+                    android:padding="10dp"
+                    android:text="sssss"
+                    android:textColor="@color/md_black_1000"/>
+
+                <Spinner
+                    android:id="@+id/spinner_types_publish"
+
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:background="@drawable/spinner_selector"
+                    android:gravity="center"
+                    android:entries="@array/types">
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip"
+                android:layout_marginBottom="7dip"
+                android:background="@color/md_white_1000"
+                android:orientation="horizontal">
+                <TextView
+
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="From: "
+                    android:gravity="left"
+                    android:padding="7sp"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_black_1000" />
+                <TextView
+                    android:id="@+id/textview_startdate_publish"
+
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="2016-12-31"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_black_1000"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/textview_startdate_publish"
+
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="To: "
+                    android:gravity="center"
+                    android:padding="7sp"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_black_1000" />
+                <TextView
+                    android:id="@+id/textview_enddate_publish"
+
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="2017-01-03"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_black_1000"
+                    android:clickable="true"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="发帖标题: *"
+                android:textSize="23dp"
+                android:textColor="@color/md_black_1000"/>
+
+            <EditText
+                android:id="@+id/edittext_title_publish"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_edittext"
+                android:padding="10dp"
+                android:text="sssss"
+                android:layout_marginTop="7dip"
+                android:layout_marginBottom="7dip"
+                android:textColor="@color/md_black_1000"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="详细描述:"
+                android:textSize="23dp"
+                android:textColor="@color/md_black_1000"
+                android:id="@+id/textView2" />
+
+            <EditText
+                android:id="@+id/edittext_description_publish"
+                android:layout_width="match_parent"
+                android:gravity="top"
+                android:layout_height="240dp"
+                android:background="@drawable/bg_edittext"
+                android:padding="10dp"
+                android:hint="请添加图文描述"
+                android:textColorHint="@color/HintColor"
+                android:layout_marginTop="7dip"
+
+                android:textColor="@color/md_black_1000"/>
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip"
+                android:layout_marginBottom="7dip"
+                android:background="@color/md_white_1000"
+                app:srcCompat="@android:drawable/ic_input_add"
+                android:id="@+id/imageButton" />
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip">
+
+                <Spinner
+                    android:id="@+id/spinner_contactWay_publish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="7dip"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:background="@drawable/spinner_selector"
+                    android:entries="@array/contactway">
+                </Spinner>
+
+                <EditText
+                    android:id="@+id/edittext_contactDetail_publish"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_edittext"
+                    android:padding="10dp"
+                    android:hint="联系方式"
+                    android:textColorHint="@color/HintColor"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/submit_publish_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_blue_400"
+                android:text="发布"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
