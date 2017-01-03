@@ -39,7 +39,6 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
     private PullToRefreshListView listView;
 
 
-    //TODO：调用接口
     private Handler handler = new Handler() {
         public void handleMessage(Message msg){
             switch (msg.what){
