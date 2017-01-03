@@ -6,55 +6,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/layout3"
+        <RelativeLayout
+            android:id="@+id/layout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF">
+            android:layout_height="65dp"
+            android:background="#2EB872">
 
-            <Button
-                android:background="@color/white"
-                android:id="@+id/search_result_found"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="寻物启示"
-                android:textColor="@color/md_blue_grey_500"
-                android:layout_weight="1"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shape_corner_left"
+                    android:id="@+id/lost_list"
+                    android:text="寻物启示"
+                    android:textColor="#2EB872"
+                    android:layout_weight="1"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shape_corner_right"
+                    android:id="@+id/find_list"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:text="失物招领"/>
+            </LinearLayout>
 
-            <Button
-                android:background="@color/white"
-                android:id="@+id/search_result_lost"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="失物招领"/>
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout4"
-            android:layout_width="match_parent"
-            android:layout_height="3sp"
-            android:background="#FFFFFF">
-            <Button
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/md_blue_300"
-                android:layout_weight="1"/>
-
-            <Button
-                android:background="@color/white"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <fragment
