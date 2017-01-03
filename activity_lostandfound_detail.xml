@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/blur1"
     tools:context="com.our.flosing.view.LostPublishActivity">
 
     <ScrollView
@@ -14,6 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textview_title_lostDetail"
                 android:layout_width="wrap_content"
@@ -24,6 +28,16 @@
                 android:textColor="@color/md_teal_A700"
                 android:text="标题"
                 />
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/twodcode"
+                    android:background="@color/half_white_1000"/>
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -35,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="17dp"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:text="类型："/>
                 <TextView
                     android:id="@+id/textview_type_lostDetail"
@@ -49,12 +63,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:text="名称："
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:textSize="17dp"
                     android:layout_marginLeft="12dp"/>
                 <TextView
                     android:id="@+id/textview_name_lostDetail"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:textSize="17dp"
@@ -69,13 +83,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:textSize="17dp"
                     android:text="时间："/>
                 <TextView
                     android:textSize="17dp"
                     android:layout_marginLeft="3dp"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:id="@+id/textview_startdate_lostDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,13 +98,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:textSize="17dp"
                     android:layout_marginLeft="4dp"
-                    android:text="-"/>
+                    android:text="to"/>
                 <TextView
                     android:textSize="17dp"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:id="@+id/textview_enddate_lostDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,6 +113,13 @@
             </LinearLayout>
 
             <TextView
+                android:paddingLeft="13dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingRight="13dp"
+                android:text="详细文字说明"
+                android:textColor="@color/md_blue_grey_700"
+                android:background="@drawable/shape_corner"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
@@ -121,37 +142,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="发布人："
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/md_blue_grey_800"
                     android:textSize="17dp"/>
                 <TextView
                     android:id="@+id/textview_username_lostDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="17dp"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:layout_marginLeft="10sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
 
                 <TextView
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:textSize="17dp"
                     android:id="@+id/textview_contactway_lostDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="联系方式："
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="0dp"
                     />
                 <TextView
                     android:id="@+id/textview_contactdetial_lostDetail"
                     android:layout_width="wrap_content"
                     android:textSize="17dp"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/md_blue_grey_500"
+                    android:textColor="@color/md_blue_grey_800"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>

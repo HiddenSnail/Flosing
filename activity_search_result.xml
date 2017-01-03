@@ -37,7 +37,7 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <fragment
+    <FrameLayout
         android:name="com.our.flosing.view.LostSearchResultFragment"
         android:id="@+id/search_content"
         android:layout_width="match_parent"
