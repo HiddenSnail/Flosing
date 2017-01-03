@@ -101,7 +101,6 @@ public class LostCardFragment extends Fragment implements ILostFragmentView {
     private class ResetDataTask extends AsyncTask<Void,Void,String> {
         @Override
         protected String doInBackground(Void... params){
-//            lostCardAdapter.clear();
             Message message = new Message();
             message.what = RESETDATA;
             handler.sendMessage(message);
