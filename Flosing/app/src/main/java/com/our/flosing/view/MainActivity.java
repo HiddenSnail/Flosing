@@ -5,26 +5,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
+import com.google.zxing.client.android.CaptureActivity;
 import com.our.flosing.R;
+import com.our.flosing.qrcode.FindLostHandler;
 
 /**
  * Created by huangrui on 2016/12/29.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IBaseView {
     LostCardFragment lostCardFragment;
     FoundCardFragment foundCardFragment;
 
     private Button lost_list;
     private Button find_list;
-    private Button search;
+    private ImageButton search;
+    private ImageButton scan;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -38,7 +45,16 @@ public class MainActivity extends AppCompatActivity {
 
         lost_list = (Button) findViewById(R.id.lost_list);
         find_list = (Button) findViewById(R.id.find_list);
-        search = (Button) findViewById(R.id.search);
+        search = (ImageButton) findViewById(R.id.search);
+        scan = (ImageButton) findViewById(R.id.scan);
+
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent openCameraIntent = new Intent(MainActivity.this, CaptureActivity.class);
+                startActivityForResult(openCameraIntent, 0);
+            }
+        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //        listView = (PullToRefreshListView) findViewById(R.id.listview_lostcards);
 
-        Button person = (Button) findViewById(R.id.person);
+        ImageButton person = (ImageButton) findViewById(R.id.person);
         person.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Lost:寻物启事
-        final Button lostPublish = (Button) findViewById(R.id.lost_publish);
+        final ImageButton lostPublish = (ImageButton) findViewById(R.id.lost_publish);
         lostPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,13 +124,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Found:失物招领
-        final Button foundPublish = (Button) findViewById(R.id.found_publish);
+        final ImageButton foundPublish = (ImageButton) findViewById(R.id.found_publish);
         foundPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, FoundPublishActivity.class));
             }
         });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //处理扫描结果（在界面上显示）
+        if (resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            String scanResult = bundle.getString("result");
+            FindLostHandler handler = new FindLostHandler(MainActivity.this);
+            handler.findLost(scanResult);
+        }
+    }
+
+    public void onSuccess(String message){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    public void onFailue(String message){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
 }
