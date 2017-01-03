@@ -10,6 +10,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.our.flosing.bean.LostCard;
@@ -82,7 +83,7 @@ public class UserModel implements IUserModel {
 
                     subscriber.onNext(user);
                     subscriber.onCompleted();
-                } else subscriber.onError(new Throwable("用户未登陆"));
+                }
             }
         });
     }
@@ -120,5 +121,54 @@ public class UserModel implements IUserModel {
             }
         });
     }
-    //PersonLost
+
+
+    /**
+     * 方法说明：寻物启示找到东西（Lost结帖）
+     * @param lid
+     * @return
+     */
+    public Observable<Boolean> findLost(final String lid) {
+        return Observable.create(new Observable.OnSubscribe<Boolean>() {
+            @Override
+            public void call(final Subscriber<? super Boolean> subscriber) {
+                final AVUser picker = AVUser.getCurrentUser();
+                if (picker == null) subscriber.onError(new Throwable("用户未登陆"));
+                AVObject avLost = AVObject.createWithoutData("Lost", lid);
+                try {
+                    avLost.fetch();
+                    avLost.put("isFinish", true);
+                    avLost.put("picker", picker);
+                    subscriber.onNext(true);
+                    subscriber.onCompleted();
+                } catch (AVException e) {
+                    subscriber.onError(e);
+                }
+            }
+        });
+    }
+
+    /**
+     * 方法说明：失物招领找到主人（Found结帖）
+     * @param fid
+     * @return
+     */
+    public Observable<Boolean> giveFound(final String fid) {
+        return Observable.create(new Observable.OnSubscribe<Boolean>() {
+            @Override
+            public void call(Subscriber<? super Boolean> subscriber) {
+                final AVUser owner = AVUser.getCurrentUser();
+                if (owner == null) subscriber.onError(new Throwable("用户未登陆"));
+                AVObject avFound = AVObject.createWithoutData("Found", fid);
+                try {
+                    avFound.fetch();
+                    avFound.put("isFinish", owner);
+                    subscriber.onNext(true);
+                    subscriber.onCompleted();
+                } catch (AVException e) {
+                    subscriber.onError(e);
+                }
+            }
+        });
+    }
 }

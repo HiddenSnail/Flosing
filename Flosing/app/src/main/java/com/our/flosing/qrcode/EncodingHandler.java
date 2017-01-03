@@ -1,4 +1,4 @@
-package com.our.flosing.view;
+package com.our.flosing.qrcode;
 
 import android.graphics.Bitmap;
 

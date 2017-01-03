@@ -14,34 +14,34 @@ import rx.schedulers.Schedulers;
  * Created by huangrui on 2017/1/3.
  */
 
-public class PersonLostPresenter implements IPersonLostPresenter {
+public class PersonLostPresenter {
     private UserModel userModel;
-    private IPersonLostFragment personLostFragment;
+//    private IPersonLostFragment personLostFragment;
+//
+//    public PersonLostPresenter(IPersonLostFragment personLostFragment) {
+//        this.personLostFragment = personLostFragment;
+//        userModel = new UserModel();
+//    }
+//
+//    @Override
+//    public void takeView(IBaseView baseView) {
+//        personLostFragment = (IPersonLostFragment) baseView;
+//    }
 
-    public PersonLostPresenter(IPersonLostFragment personLostFragment) {
-        this.personLostFragment = personLostFragment;
-        userModel = new UserModel();
-    }
-
-    @Override
-    public void takeView(IBaseView baseView) {
-        personLostFragment = (IPersonLostFragment) baseView;
-    }
-
-    void getPersonLost() {
-        userModel.getUserLost()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<LostCard>>() {
-                    @Override
-                    public void call(List<LostCard> lostCards) {
-                        personLostFragment.refreshView(lostCards);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        personLostFragment.showError(throwable.getMessage());
-                    }
-                });
-    }
+//    void getPersonLost() {
+//        userModel.getUserLost()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<List<LostCard>>() {
+//                    @Override
+//                    public void call(List<LostCard> lostCards) {
+//                        personLostFragment.refreshView(lostCards);
+//                    }
+//                }, new Action1<Throwable>() {
+//                    @Override
+//                    public void call(Throwable throwable) {
+//                        personLostFragment.showError(throwable.getMessage());
+//                    }
+//                });
+//    }
 }

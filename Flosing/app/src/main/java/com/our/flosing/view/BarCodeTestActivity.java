@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.android.CaptureActivity;
 import com.our.flosing.R;
+import com.our.flosing.qrcode.EncodingHandler;
+import com.our.flosing.qrcode.FindLostHandler;
 
 /**
  * Created by huangrui on 2016/12/31.
@@ -40,10 +42,11 @@ public class BarCodeTestActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //打开扫描界面扫描条形码或二维码
-                Intent openCameraIntent = new Intent(BarCodeTestActivity.this,CaptureActivity.class);
+                Intent openCameraIntent = new Intent(BarCodeTestActivity.this, CaptureActivity.class);
                 startActivityForResult(openCameraIntent, 0);
             }
         });
+
 
         Button generateQRCodeButton = (Button) this.findViewById(R.id.btn_add_qrcode);
         generateQRCodeButton.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +57,7 @@ public class BarCodeTestActivity extends Activity {
                     String contentString = qrStrEditText.getText().toString();
                     if (!contentString.equals("")) {
                         //根据字符串生成二维码图片并显示在界面上，第二个参数为图片的大小（350*350）
-                        Bitmap qrCodeBitmap = EncodingHandler.createQRCode(contentString, 350);
+                        Bitmap qrCodeBitmap = EncodingHandler.createQRCode(contentString, 800);
                         qrImgImageView.setImageBitmap(qrCodeBitmap);
                     }else {
                         Toast.makeText(BarCodeTestActivity.this, "Text can not be empty", Toast.LENGTH_SHORT).show();
@@ -75,7 +78,10 @@ public class BarCodeTestActivity extends Activity {
         if (resultCode == RESULT_OK) {
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString("result");
-            resultTextView.setText(scanResult);
+            FindLostHandler handler = new FindLostHandler();
+            handler.findLost(scanResult);
+
+//            resultTextView.setText(scanResult);
         }
     }
 }
