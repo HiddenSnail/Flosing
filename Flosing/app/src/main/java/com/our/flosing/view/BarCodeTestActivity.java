@@ -80,9 +80,8 @@ public class BarCodeTestActivity extends AppCompatActivity {
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString("result");
             FindLostHandler handler = new FindLostHandler();
-            handler.findLost(scanResult);
-
-//            resultTextView.setText(scanResult);
+            handler.handleCode(scanResult);
+            resultTextView.setText(scanResult);
         }
     }
 }
