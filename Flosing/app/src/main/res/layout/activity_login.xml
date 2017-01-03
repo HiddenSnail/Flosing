@@ -10,56 +10,101 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/classroom"
     tools:context="com.our.flosing.view.LoginActivity">
 
     <LinearLayout
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:id="@+id/email_login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="45dp"
+            android:background="@drawable/alpha80">
+
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
             <AutoCompleteTextView
+                android:layout_marginLeft="5pt"
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="@color/md_grey_500"
                 android:hint="请输入用户名"
+                android:text="test"
                 android:inputType="text"
                 android:maxLines="1"/>
 
-        </android.support.design.widget.TextInputLayout>
+            <!--</android.support.design.widget.TextInputLayout>-->
 
-        <android.support.design.widget.TextInputLayout
+        </LinearLayout>
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="15dp"
+            android:maxLines="1"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/alpha80">
+
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" >-->
             <EditText
+                android:layout_marginLeft="5pt"
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入密码"
+                android:textColorHint="@color/md_grey_500"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="登录"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"/>
 
-        </android.support.design.widget.TextInputLayout>
+            <!--</android.support.design.widget.TextInputLayout>-->
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:maxLines="1"/>
 
         <Button
             android:id="@+id/username_login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="登录"/>
+            android:background="#2EB872"
+            android:text="登录"
+            android:textColor="@color/md_blue_50"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:maxLines="1"/>
 
         <Button
             android:id="@+id/username_register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="注册"/>
+            android:background="#0F81C7"
+            android:text="注册"
+            android:textColor="@color/md_blue_50"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:maxLines="1"/>
 
     </LinearLayout>
 
