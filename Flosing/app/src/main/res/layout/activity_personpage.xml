@@ -18,7 +18,7 @@
             android:textSize="30sp"
             android:id="@+id/username_personPage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <TextView
@@ -63,7 +63,7 @@
             android:text="我的寻物启事" />
         </LinearLayout>
     </LinearLayout>
-    
+
     <FrameLayout
         android:layout_marginTop="2dip"
         android:id="@+id/personPage_content"
