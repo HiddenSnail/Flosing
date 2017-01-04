@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_weight="0.05">
         <TextView
             android:text="username"
             android:textColor="@color/md_teal_700"
@@ -17,18 +18,21 @@
             android:textSize="30sp"
             android:id="@+id/username_personPage"
             android:layout_width="match_parent"
-            android:layout_height="40dip"
-            android:layout_weight="8"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="4dip"
+        android:layout_height="5dip"
+        android:layout_weight="0.01"
         android:background="@color/md_blue_grey_50"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="0.04">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,11 +43,12 @@
             android:id="@+id/lost_person"
             android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@color/md_teal_900"
             android:text="我的失物招领"
             />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,29 +63,24 @@
             android:text="我的寻物启事" />
         </LinearLayout>
     </LinearLayout>
-
-
+    
     <FrameLayout
-        android:layout_marginTop="3dip"
+        android:layout_marginTop="2dip"
         android:id="@+id/personPage_content"
         android:name="com.our.flosing.view.PersonLostFragment"
         android:layout_width="match_parent"
-        android:layout_height="330dip"
-        android:layout_weight="0.90">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9">
 
     </FrameLayout>
 
-        <Button
-            android:id="@+id/logout"
-            android:background="@color/md_teal_400"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="0dp"
-            android:text="退出登录"/>
-
-
-
+    <Button
+        android:id="@+id/logout"
+        android:background="@color/md_teal_400"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:text="退出登录"/>
 
 </LinearLayout>
