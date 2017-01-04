@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
             public void onClick(View view) {
                // AVUser.logOut();
                 startActivity(new Intent(MainActivity.this, PersonPageActivity.class));
-                MainActivity.this.finish();
             }
         });
 
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
-    public void onFailue(String message){
+    public void onFailure(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 

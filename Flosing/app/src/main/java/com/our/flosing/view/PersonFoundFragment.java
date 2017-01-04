@@ -16,25 +16,27 @@ import android.widget.Toast;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.our.flosing.R;
+import com.our.flosing.bean.FoundCard;
+import com.our.flosing.bean.FoundCardAdapter;
 import com.our.flosing.bean.LostCard;
-import com.our.flosing.bean.LostCardAdapter;
+import com.our.flosing.presenter.PersonFoundPresenter;
 import com.our.flosing.presenter.PersonLostPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by RunNishino on 2017/1/3.
+ * Created by RunNishino on 2017/1/4.
  */
 
-public class PersonLostFragment extends Fragment implements ILostPersonFragmentView {
+public class PersonFoundFragment extends Fragment implements IFoundPersonFragmentView {
 
     private final int RESETDATA = 1;
     private final int GETDATA = 2;
 
-    private List<LostCard> mLostCards = new ArrayList<>();
-    LostCardAdapter lostCardAdapter;
-    static private PersonLostPresenter personLostPresenter;
+    private List<FoundCard> mFoundCards = new ArrayList<>();
+    FoundCardAdapter foundCardAdapter;
+    static private PersonFoundPresenter personFoundPresenter;
     static private int pageNumber;
     private PullToRefreshListView listView;
 
@@ -43,12 +45,12 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
         public void handleMessage(Message msg){
             switch (msg.what){
                 case RESETDATA:
-                    lostCardAdapter.clear();
+                    foundCardAdapter.clear();
                     pageNumber = 0;
-                    personLostPresenter.getPersonLost(++pageNumber);
+                    personFoundPresenter.getPersonFound(++pageNumber);
                     break;
                 case GETDATA:
-                    personLostPresenter.getPersonLost(++pageNumber);
+                    personFoundPresenter.getPersonFound(++pageNumber);
             }
         }
     };
@@ -56,18 +58,18 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View view = inflater.inflate(R.layout.fragment_lost_person, container, false);
-        listView = (PullToRefreshListView) view.findViewById(R.id.listview_lostcards_person);
+        View view = inflater.inflate(R.layout.fragment_found_person, container, false);
+        listView = (PullToRefreshListView) view.findViewById(R.id.listview_foundcards_person);
 
         listView.setMode(PullToRefreshBase.Mode.BOTH);
         pageNumber = 1;
 
-        if (personLostPresenter == null) personLostPresenter = new PersonLostPresenter(this);
-        personLostPresenter.takeView(this);
+        if (personFoundPresenter == null) personFoundPresenter = new PersonFoundPresenter(this);
+        personFoundPresenter.takeView(this);
 
-        lostCardAdapter = new LostCardAdapter(this.getActivity(), R.layout.lostcard_item, mLostCards);
-        lostCardAdapter.clear();
-        listView.setAdapter(lostCardAdapter);
+        foundCardAdapter = new FoundCardAdapter(this.getActivity(), R.layout.foundcard_item, mFoundCards);
+        foundCardAdapter.clear();
+        listView.setAdapter(foundCardAdapter);
 
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
@@ -84,16 +86,17 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                LostCard lostCard = mLostCards.get(position - 1);
-                if (!lostCard.getIsFinish()) {
+                FoundCard foundCard = mFoundCards.get(position - 1);
+                if (!foundCard.getIsFinish()) {
                     Intent intent = new Intent(getActivity(), QRCodeActivity.class);
-                    intent.putExtra("cardID", "L" + lostCard.getId());
+                    intent.putExtra("cardID", "F" + foundCard.getId());
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getActivity(),"这件物品已经找回",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"这件物品已经归还",Toast.LENGTH_SHORT).show();
                 }
+
             }
-       });
+        });
 
         return view;
     }
@@ -139,11 +142,11 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
     }
 
     @Override
-    public void refreshView(List<LostCard> lostCards) {
+    public void refreshView(List<FoundCard> foundCards) {
 
         //将新一页的数据放入adapter并更新
-        mLostCards.addAll(lostCards);
-        lostCardAdapter.notifyDataSetChanged();
+        mFoundCards.addAll(foundCards);
+        foundCardAdapter.notifyDataSetChanged();
 
     }
 
@@ -157,17 +160,17 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
         super.onResume();
 
         //清空listView
-        lostCardAdapter.clear();
-        listView.setAdapter(lostCardAdapter);
+        foundCardAdapter.clear();
+        listView.setAdapter(foundCardAdapter);
 
         //重新获取第一页数据
         pageNumber = 0;
-        personLostPresenter.getPersonLost(++pageNumber);
+        personFoundPresenter.getPersonFound(++pageNumber);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (getActivity().isFinishing()) personLostPresenter = null;
+        if (getActivity().isFinishing()) personFoundPresenter = null;
     }
 }

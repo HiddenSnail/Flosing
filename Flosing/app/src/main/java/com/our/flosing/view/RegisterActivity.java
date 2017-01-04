@@ -38,7 +38,6 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         if (registerPresenter == null) registerPresenter = new RegisterPresenter(this);
         registerPresenter.takeView(this);
 
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         usernameView = (AutoCompleteTextView) findViewById(R.id.username);
         emailView = (AutoCompleteTextView) findViewById(R.id.email);
         passwordView = (EditText) findViewById(R.id.password);

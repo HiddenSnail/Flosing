@@ -18,6 +18,7 @@ import com.our.flosing.R;
 
 public class PersonPageActivity extends AppCompatActivity {
     PersonLostFragment personLostFragment;
+    PersonFoundFragment personFoundFragment;
 
     Button logout;
     Button lost_list;
@@ -33,10 +34,12 @@ public class PersonPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personpage);
 
+        usernameView = (TextView) findViewById(R.id.username_personPage);
         usernameView.setText("你好," + AVUser.getCurrentUser().getUsername());
 
 
         lost_list = (Button) findViewById(R.id.lost_person);
+        found_list = (Button) findViewById(R.id.found_person);
         //退出按钮
         logout = (Button) findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +68,18 @@ public class PersonPageActivity extends AppCompatActivity {
                 }
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.personPage_content,personLostFragment);
+                fragmentTransaction.commit();
+            }
+        });
+
+        found_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (personFoundFragment == null) {
+                    personFoundFragment = new PersonFoundFragment();
+                }
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.personPage_content,personFoundFragment);
                 fragmentTransaction.commit();
             }
         });

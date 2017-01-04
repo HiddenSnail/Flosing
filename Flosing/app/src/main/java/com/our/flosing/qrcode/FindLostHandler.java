@@ -36,7 +36,7 @@ public class FindLostHandler {
             giveFound(realId);
         } else {
             Log.e("ID报错","该id无法解析");
-            ((MainActivity)baseView).onFailue("操作失败,id格式无法解析");
+            ((MainActivity)baseView).onFailure("操作失败,id格式无法解析");
         }
     }
 
@@ -53,7 +53,7 @@ public class FindLostHandler {
                     @Override
                     public void call(Throwable throwable) {
                         throwable.printStackTrace();
-                        ((MainActivity)baseView).onFailue("操作失败,id错误");
+                        ((MainActivity)baseView).onFailure("操作失败,id错误");
                  }
                 });
     }
@@ -71,7 +71,7 @@ public class FindLostHandler {
                     @Override
                     public void call(Throwable throwable) {
                         throwable.printStackTrace();
-                        ((MainActivity)baseView).onFailue("操作失败,id错误");
+                        ((MainActivity)baseView).onFailure("操作失败,id错误");
                     }
                 });
     }

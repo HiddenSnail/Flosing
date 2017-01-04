@@ -24,12 +24,12 @@ public class PersonLostPresenter implements IPersonLostPresenter {
 
     public PersonLostPresenter(ILostPersonFragmentView personLostFragment) {
         this.personLostFragment = personLostFragment;
-        userModel = new UserModel();
+        this.userModel = new UserModel();
     }
 
     @Override
     public void takeView(IBaseView baseView) {
-        personLostFragment = (ILostPersonFragmentView) baseView;
+        this.personLostFragment = (ILostPersonFragmentView) baseView;
     }
 
     public void getPersonLost(Integer pageNumber) {
@@ -44,6 +44,7 @@ public class PersonLostPresenter implements IPersonLostPresenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+                        throwable.printStackTrace();
                         personLostFragment.showError(throwable.getMessage());
                     }
                 });

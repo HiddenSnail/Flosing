@@ -25,16 +25,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="30dip"
                 android:text="注 册"
                 android:textSize="42sp"
                 android:textColor="@color/md_blue_500"
-                android:textStyle=""
+
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="45dip"
                 android:background="@drawable/alpha80">
 
                 <!--<android.support.design.widget.TextInputLayout-->
@@ -48,20 +48,16 @@
                     android:layout_height="wrap_content"
                     android:hint="请输入用户名"
                     android:textColorHint="@color/HintColor"
-                    android:text="hhhhh"
+
                     android:textColor="@color/md_black_1000"
                     android:maxLines="1"/>
                 <!--</android.support.design.widget.TextInputLayout>-->
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:maxLines="1"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="45dip"
+                android:layout_marginTop="15dip"
                 android:background="@drawable/alpha80">
 
                 <!--<android.support.design.widget.TextInputLayout-->
@@ -80,15 +76,10 @@
                 <!--</android.support.design.widget.TextInputLayout>-->
             </LinearLayout>
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:maxLines="1"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="45dip"
+                android:layout_marginTop="15dip"
                 android:background="@drawable/alpha80">
 
                 <!--<android.support.design.widget.TextInputLayout-->
@@ -110,23 +101,14 @@
                 <!--</android.support.design.widget.TextInputLayout>-->
             </LinearLayout>
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:maxLines="1"/>
-
             <Button
                 android:id="@+id/username_register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dip"
+                android:layout_marginBottom="40dip"
                 android:background="@drawable/button_register"
                 android:text="注册并登陆"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:maxLines="1"/>
 
         </LinearLayout>
 

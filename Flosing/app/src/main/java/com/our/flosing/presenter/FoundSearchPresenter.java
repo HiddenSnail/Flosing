@@ -45,6 +45,7 @@ public class FoundSearchPresenter implements IFoundSearchPresenter {
                     @Override
                     public void call(Throwable throwable) {
 //                        foundSearchResultFragmentView.showError(throwable.getMessage());
+                        throwable.printStackTrace();
                     }
                 });
     }
