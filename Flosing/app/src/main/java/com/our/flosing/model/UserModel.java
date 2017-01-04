@@ -13,6 +13,7 @@ import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.our.flosing.bean.FoundCard;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
 
@@ -120,6 +121,44 @@ public class UserModel implements IUserModel {
                         }
                     });
                 } else subscriber.onError(new Throwable("用户未登陆"));
+            }
+        });
+    }
+
+    public Observable<List<FoundCard>> getUserFound(final Integer pageNumber) {
+        return Observable.create(new Observable.OnSubscribe<List<FoundCard>>() {
+            @Override
+            public void call(final Subscriber<? super List<FoundCard>> subscriber) {
+                AVUser avUser = AVUser.getCurrentUser();
+                if (avUser == null) {
+                    subscriber.onError(new Throwable("用户未登陆"));
+                }
+                else{
+                    AVQuery<AVObject> query = new AVQuery<AVObject>("Found");
+                    query.whereEqualTo("picker", avUser);
+                    query.limit(EPN).skip((pageNumber-1));
+                    query.findInBackground(new FindCallback<AVObject>() {
+                        @Override
+                        public void done(List<AVObject> list, AVException e) {
+                            if (list.size() > 0) {
+                                List<FoundCard> founds = new ArrayList<>();
+                                for (AVObject avObject:list) {
+                                    FoundCard foundCard = new FoundCard();
+                                    foundCard.setId(avObject.getObjectId());
+                                    foundCard.setTitle(avObject.getString("title"));
+                                    foundCard.setName(avObject.getString("name"));
+                                    foundCard.setType(avObject.getString("type"));
+                                    foundCard.setSDate(avObject.getDate("startDate"));
+                                    foundCard.setEDate(avObject.getDate("endDate"));
+                                    foundCard.setIsFinish(avObject.getBoolean("isFinish"));
+                                    founds.add(foundCard);
+                                }
+                                subscriber.onNext(founds);
+                                subscriber.onCompleted();
+                            } else subscriber.onError(e);
+                        }
+                    });
+                }
             }
         });
     }
