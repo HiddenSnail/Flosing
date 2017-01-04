@@ -164,7 +164,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
                     Toast.makeText(LostPublishActivity.this,"开始时间必须早于或等于结束时间",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }
-                if ("请选择类型".equals(typesView.getSelectedItem().toString())){
+                if ("物品类型".equals(typesView.getSelectedItem().toString())){
                     Toast.makeText(LostPublishActivity.this,"请选择类型",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }

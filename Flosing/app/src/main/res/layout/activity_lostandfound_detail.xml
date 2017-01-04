@@ -28,15 +28,6 @@
                 android:textColor="@color/md_teal_A700"
                 android:text="标题"
                 />
-                <ImageButton
-                    android:layout_width="40dip"
-                    android:layout_height="40dip"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dip"
-                    android:layout_marginTop="6dip"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/twodcode"
-                    android:background="@color/half_white_1000"/>
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
