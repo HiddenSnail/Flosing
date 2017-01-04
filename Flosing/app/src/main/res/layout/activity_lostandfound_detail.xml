@@ -22,73 +22,73 @@
                 android:id="@+id/textview_title_lostDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="10dip"
                 android:textColor="@color/md_teal_A700"
                 android:text="标题"
                 />
                 <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="40dip"
+                    android:layout_height="40dip"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="6dip"
                     android:scaleType="centerInside"
                     android:src="@drawable/twodcode"
                     android:background="@color/half_white_1000"/>
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginLeft="13dp"
+                android:layout_height="30dip"
+                android:layout_marginTop="4dip"
+                android:layout_marginLeft="13dip"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:textColor="@color/md_blue_grey_800"
                     android:text="类型："/>
                 <TextView
                     android:id="@+id/textview_type_lostDetail"
                     android:layout_width="wrap_content"
-                    android:textSize="17dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="3dp"
+                    android:textSize="17sp"
+                    android:layout_height="30dip"
+                    android:layout_marginLeft="3dip"
                     android:textColor="@color/md_blue_grey_500"
                     />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="30dip"
                     android:text="名称："
                     android:textColor="@color/md_blue_grey_800"
-                    android:textSize="17dp"
-                    android:layout_marginLeft="12dp"/>
+                    android:textSize="17sp"
+                    android:layout_marginLeft="12dip"/>
                 <TextView
                     android:id="@+id/textview_name_lostDetail"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:textSize="17dp"
-                    android:layout_marginLeft="3dp"/>
+                    android:layout_height="30dip"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="3dip"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="13dp">
+                android:layout_marginLeft="13dip">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_blue_grey_800"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:text="时间："/>
                 <TextView
-                    android:textSize="17dp"
-                    android:layout_marginLeft="3dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="3dip"
                     android:textColor="@color/md_blue_grey_800"
                     android:id="@+id/textview_startdate_lostDetail"
                     android:layout_width="wrap_content"
@@ -99,57 +99,57 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_blue_grey_800"
-                    android:textSize="17dp"
-                    android:layout_marginLeft="4dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="4dip"
                     android:text="to"/>
                 <TextView
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:textColor="@color/md_blue_grey_800"
                     android:id="@+id/textview_enddate_lostDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
+                    android:layout_marginLeft="4dip"
                     />
             </LinearLayout>
 
             <TextView
-                android:paddingLeft="13dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:paddingRight="13dp"
+                android:paddingLeft="13dip"
+                android:paddingTop="8dip"
+                android:paddingBottom="8dip"
+                android:paddingRight="13dip"
                 android:text="详细文字说明"
                 android:textColor="@color/md_blue_grey_700"
                 android:background="@drawable/shape_corner"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:textSize="19dp"
+                android:layout_marginLeft="15dip"
+                android:layout_marginTop="15dip"
+                android:layout_marginRight="15dip"
+                android:textSize="19sp"
                 android:id="@+id/textview_description_lostDetail"
                 android:layout_width="match_parent"
-                android:layout_height="250dp" />
+                android:layout_height="250dip" />
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginLeft="8dip"
+                android:layout_marginTop="5dip"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dip">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="发布人："
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="10dip"
                     android:textColor="@color/md_blue_grey_800"
-                    android:textSize="17dp"/>
+                    android:textSize="17sp"/>
                 <TextView
                     android:id="@+id/textview_username_lostDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_marginLeft="10sp"/>
             </LinearLayout>
@@ -157,22 +157,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_margin="10dip">
 
                 <TextView
                     android:textColor="@color/md_blue_grey_800"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:id="@+id/textview_contactway_lostDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="联系方式："
-                    android:layout_marginLeft="0dp"
+
                     />
                 <TextView
                     android:id="@+id/textview_contactdetial_lostDetail"
                     android:layout_width="wrap_content"
-                    android:textSize="17dp"
-                    android:layout_marginLeft="10dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dip"
                     android:textColor="@color/md_blue_grey_800"
                     android:layout_height="wrap_content" />
 

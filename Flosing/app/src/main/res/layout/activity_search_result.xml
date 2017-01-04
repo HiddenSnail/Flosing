@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/blur1">
     <LinearLayout
@@ -10,7 +11,7 @@
         <RelativeLayout
             android:id="@+id/layout1"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="65dip"
             android:background="#2EB872">
 
             <LinearLayout
@@ -19,17 +20,17 @@
                 android:layout_centerInParent="true">
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="35dip"
                     android:background="@drawable/shape_corner_left"
-                    android:id="@+id/search_result_lost"
+                    android:id="@+id/lost_list"
                     android:text="寻物启示"
                     android:textColor="#2EB872"
                     android:layout_weight="1"/>
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="35dip"
                     android:background="@drawable/shape_corner_right"
-                    android:id="@+id/search_result_found"
+                    android:id="@+id/find_list"
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:text="失物招领"/>

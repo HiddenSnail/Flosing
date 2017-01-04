@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="物品名称: *"
-                android:textSize="23dp"
+                android:textSize="23sp"
                 android:textColor="@color/md_grey_800"/>
 
             <LinearLayout
@@ -37,18 +37,18 @@
                 <EditText
                     android:id="@+id/edittext_name_publish"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="40dip"
                     android:layout_weight="55"
                     android:background="@drawable/bg_edittext"
-                    android:padding="10dp"
-                    android:text="sssss"
+                    android:padding="10dip"
+
                     android:textColor="@color/md_black_1000" />
 
                 <Spinner
                     android:id="@+id/spinner_types_publish"
 
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="40dip"
                     android:layout_marginLeft="5dip"
                     android:layout_weight="1"
                     android:spinnerMode="dropdown"
@@ -70,16 +70,17 @@
                     android:layout_weight="1"
                     android:text="From: "
                     android:gravity="left"
-                    android:padding="7sp"
+                    android:padding="7dip"
                     android:textSize="18sp"
                     android:textColor="@color/md_grey_800"
                     android:layout_width="wrap_content" />
                 <TextView
                     android:id="@+id/textview_startdate_publish"
+
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:text="2016-12-31"
+
                     android:textSize="18sp"
                     android:textColor="@color/md_black_1000"
                     android:clickable="true"
@@ -89,7 +90,7 @@
                     android:layout_weight="1"
                     android:text="To: "
                     android:gravity="center"
-                    android:padding="7sp"
+                    android:padding="7dip"
                     android:textSize="18sp"
                     android:textColor="@color/md_grey_800"
                     android:layout_width="wrap_content" />
@@ -99,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:text="2017-01-03"
+
                     android:textSize="18sp"
                     android:textColor="@color/md_black_1000"
                     android:clickable="true"
@@ -117,10 +118,10 @@
             <EditText
                 android:id="@+id/edittext_title_publish"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="40dip"
                 android:background="@drawable/bg_edittext"
-                android:padding="10dp"
-                android:text="sssss"
+                android:padding="10dip"
+
                 android:layout_marginTop="7dip"
                 android:layout_marginBottom="7dip"
                 android:textColor="@color/md_black_1000"/>
@@ -129,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="详细描述:"
-                android:textSize="23dp"
+                android:textSize="23sp"
                 android:textColor="@color/md_grey_800"
                 android:id="@+id/textView2" />
 
@@ -137,9 +138,9 @@
                 android:id="@+id/edittext_description_publish"
                 android:layout_width="match_parent"
                 android:gravity="top"
-                android:layout_height="200dp"
+                android:layout_height="200dip"
                 android:background="@drawable/bg_edittext"
-                android:padding="10dp"
+                android:padding="10dip"
                 android:hint="请添加图文描述"
                 android:textColorHint="@color/HintColor"
                 android:layout_marginTop="7dip"
@@ -165,7 +166,7 @@
                 <Spinner
                     android:id="@+id/spinner_contactWay_publish"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="40dip"
                     android:layout_marginRight="7dip"
                     android:gravity="center"
                     android:spinnerMode="dropdown"
@@ -176,9 +177,9 @@
                 <EditText
                     android:id="@+id/edittext_contactDetail_publish"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="40dip"
                     android:background="@drawable/bg_edittext"
-                    android:padding="10dp"
+                    android:padding="10dip"
                     android:hint="联系方式"
                     android:textColorHint="@color/HintColor"/>
             </LinearLayout>
@@ -193,7 +194,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_publish"
                 android:text="发布"
-                android:textSize="17sp"/>
+                android:textSize="17sp"
+                android:layout_marginBottom="40dip"/>
 
         </LinearLayout>
 

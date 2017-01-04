@@ -25,17 +25,17 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="30dip"
             android:text="登 录"
             android:textSize="42sp"
 
             android:textColor="@color/md_teal_300"
-            android:textStyle=""
+
             />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="45dip"
             android:background="@drawable/alpha80">
 
             <!--<android.support.design.widget.TextInputLayout-->
@@ -43,13 +43,13 @@
             <!--android:layout_height="wrap_content">-->
 
             <AutoCompleteTextView
-                android:paddingLeft="5pt"
+                android:paddingLeft="15dip"
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/HintColor"
                 android:hint="请输入用户名"
-                android:text="ssssss"
+
                 android:textColor="@color/md_black_1000"
                 android:inputType="text"
                 android:maxLines="1"/>
@@ -58,67 +58,51 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="11dp"
-            android:maxLines="1"/>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="45dip"
+            android:layout_marginTop="11dip"
             android:background="@drawable/alpha80">
 
             <!--<android.support.design.widget.TextInputLayout-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content" >-->
             <EditText
-                android:layout_marginLeft="5pt"
+                android:paddingLeft="15dip"
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入密码"
-                android:text="hfhfhhf"
+
                 android:textColor="@color/md_black_1000"
                 android:textColorHint="@color/HintColor"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="登录"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
-                android:maxLines="1"/>
+                android:maxLines="1" />
 
             <!--</android.support.design.widget.TextInputLayout>-->
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="27dp"
-            android:maxLines="1"/>
 
         <Button
             android:id="@+id/username_login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="27dip"
             android:background="@drawable/button_login"
             android:text="登录"
             android:textColor="@color/md_blue_50"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="9dp"
-            android:maxLines="1"/>
 
         <Button
             android:id="@+id/username_register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="9dip"
+            android:layout_marginBottom="40dip"
             android:background="@drawable/button_register"
             android:text="注册"
             android:textColor="@color/md_blue_50"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:maxLines="1"/>
 
     </LinearLayout>
 

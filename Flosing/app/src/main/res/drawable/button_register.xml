@@ -10,9 +10,9 @@
 
     <!-- padding：Button里面的文字与Button边界的间隔 -->
     <padding
-        android:left="10dp"
-        android:top="10dp"
-        android:right="10dp"
-        android:bottom="10dp"
+        android:left="10dip"
+        android:top="10dip"
+        android:right="10dip"
+        android:bottom="10dip"
         />
 </shape>
