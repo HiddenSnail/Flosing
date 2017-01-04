@@ -21,7 +21,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="35dip"
-                    android:background="@drawable/shape_corner_left"
+                    android:background="@drawable/shape_corner_left_white"
                     android:id="@+id/search_result_lost"
                     android:text="寻物启示"
                     android:textColor="#2EB872"
@@ -29,7 +29,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="35dip"
-                    android:background="@drawable/shape_corner_right"
+                    android:background="@drawable/shape_corner_right_green"
                     android:id="@+id/search_result_found"
                     android:layout_weight="1"
                     android:textColor="@color/white"

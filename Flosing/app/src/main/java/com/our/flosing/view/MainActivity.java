@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
         fragmentTransaction = fragmentManager.beginTransaction();
 
 
-        //TODO:改为隐藏
         lost_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +83,11 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content,lostCardFragment);
                 fragmentTransaction.commit();
+
+                lost_list.setTextColor(0xff2EB872);
+                find_list.setTextColor(0xffffffff);
+                lost_list.setBackgroundResource(R.drawable.shape_corner_left_white);
+                find_list.setBackgroundResource(R.drawable.shape_corner_right_green);
             }
         });
 
@@ -96,6 +100,11 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content, foundCardFragment);
                 fragmentTransaction.commit();
+
+                lost_list.setTextColor(0xffffffff);
+                find_list.setTextColor(0xff2EB872);
+                lost_list.setBackgroundResource(R.drawable.shape_corner_left_green);
+                find_list.setBackgroundResource(R.drawable.shape_corner_right_white);
             }
         });
 

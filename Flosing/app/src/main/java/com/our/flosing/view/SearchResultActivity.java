@@ -65,6 +65,11 @@ public class SearchResultActivity extends AppCompatActivity {
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.search_content,lostSearchResultFragment);
                 fragmentTransaction.commit();
+
+                lost_list.setTextColor(0xff2EB872);
+                found_list.setTextColor(0xffffffff);
+                lost_list.setBackgroundResource(R.drawable.shape_corner_left_white);
+                found_list.setBackgroundResource(R.drawable.shape_corner_right_green);
             }
         });
 
@@ -77,6 +82,11 @@ public class SearchResultActivity extends AppCompatActivity {
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.search_content,foundSearchResultFragment );
                 fragmentTransaction.commit();
+
+                lost_list.setTextColor(0xffffffff);
+                found_list.setTextColor(0xff2EB872);
+                lost_list.setBackgroundResource(R.drawable.shape_corner_left_green);
+                found_list.setBackgroundResource(R.drawable.shape_corner_right_white);
             }
         });
 
