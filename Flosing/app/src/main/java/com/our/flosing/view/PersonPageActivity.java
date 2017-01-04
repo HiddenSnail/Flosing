@@ -33,6 +33,7 @@ public class PersonPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personpage);
 
+        usernameView = (TextView) findViewById(R.id.username_personPage);
         usernameView.setText("你好," + AVUser.getCurrentUser().getUsername());
 
 

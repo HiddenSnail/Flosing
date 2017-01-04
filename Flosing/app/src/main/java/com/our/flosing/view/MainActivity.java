@@ -141,17 +141,17 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
         if (resultCode == RESULT_OK) {
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString("result");
-            FindLostHandler handler = new FindLostHandler(MainActivity.this);
+            FindLostHandler handler = new FindLostHandler(/*MainActivity.this*/);
             handler.findLost(scanResult);
         }
     }
 
-    public void onSuccess(String message){
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-    }
-
-    public void onFailue(String message){
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-    }
+//    public void onSuccess(String message){
+//        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+//    }
+//
+//    public void onFailue(String message){
+//        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+//    }
 
 }

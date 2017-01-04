@@ -5,16 +5,23 @@
     android:layout_height="wrap_content"
     android:background="@color/half_white_1000">
 
-    <TextView
-        android:background="@color/half_white_1000"
-        android:id="@+id/foundcard_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:textSize="23dp"
-        android:layout_marginTop="5dp"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:textColor="@color/md_teal_600"/>
+        android:layout_height="wrap_content"
+        android:background="@color/half_white_1000">
+        <TextView
+            android:background="@color/half_white_1000"
+            android:id="@+id/foundcard_title"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="18dp"
+            android:layout_marginTop="5dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/md_teal_600"/>
+    </LinearLayout>
     <LinearLayout
         android:background="@color/half_white_1000"
         android:layout_width="match_parent"
@@ -22,16 +29,17 @@
         android:paddingRight="8dp"
         android:paddingLeft="8dp">
         <TextView
+            android:layout_marginLeft="15dp"
             android:layout_width="100sp"
-            android:layout_height="30sp"
-            android:textSize="20sp"
+            android:layout_height="20sp"
+            android:textSize="15sp"
             android:text="拾物名称："
             android:textColor="@color/md_blue_grey_800"/>
         <TextView
             android:id="@+id/foundcard_name"
             android:layout_width="match_parent"
-            android:layout_height="30sp"
-            android:textSize="20dp"
+            android:layout_height="20sp"
+            android:textSize="15dp"
             android:layout_marginLeft="5sp"
             android:textColor="@color/md_blue_grey_700"/>
 
@@ -44,16 +52,17 @@
         android:paddingLeft="8dp">
 
         <TextView
+            android:layout_marginLeft="15dp"
             android:layout_width="100sp"
-            android:layout_height="30sp"
-            android:textSize="20sp"
+            android:layout_height="20sp"
+            android:textSize="15sp"
             android:text="拾物类型："
             android:textColor="@color/md_blue_grey_800"/>
         <TextView
             android:id="@+id/foundcard_type"
             android:layout_width="match_parent"
-            android:layout_height="30sp"
-            android:textSize="20dp"
+            android:layout_height="20sp"
+            android:textSize="15dp"
             android:layout_marginLeft="5sp"
             android:textColor="@color/md_blue_grey_700"
             />
@@ -71,16 +80,17 @@
 
 
         <TextView
+            android:layout_marginLeft="15dp"
             android:id="@+id/foundcard_sDate"
             android:layout_width="wrap_content"
-            android:layout_height="30sp"
-            android:textSize="18sp"
+            android:layout_height="20sp"
+            android:textSize="15sp"
             android:textColor="@color/md_blue_grey_700"
             />
         <TextView
             android:layout_width="20sp"
-            android:layout_height="30sp"
-            android:textSize="20sp"
+            android:layout_height="20sp"
+            android:textSize="15sp"
             android:text="起"
             android:layout_marginLeft="15dp"
             android:textColor="@color/md_blue_grey_800"/>
@@ -88,8 +98,8 @@
         <TextView
             android:id="@+id/foundcard_eDate"
             android:layout_width="wrap_content"
-            android:layout_height="30sp"
-            android:textSize="18sp"
+            android:layout_height="20sp"
+            android:textSize="15sp"
             android:layout_marginLeft="15dp"
             android:textColor="@color/md_blue_grey_700"
             />
@@ -97,13 +107,12 @@
             android:layout_width="20sp"
             android:layout_height="wrap_content"
             android:text="止"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:layout_marginLeft="15dp"
             android:textColor="@color/md_blue_grey_700"/>
 
 
     </LinearLayout>
-
 
 
 </LinearLayout>
