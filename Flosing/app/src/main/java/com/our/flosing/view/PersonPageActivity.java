@@ -60,6 +60,8 @@ public class PersonPageActivity extends AppCompatActivity {
 
         fragmentTransaction = fragmentManager.beginTransaction();
 
+
+        //TODO:点击替换背景图片
         lost_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +71,9 @@ public class PersonPageActivity extends AppCompatActivity {
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.personPage_content,personLostFragment);
                 fragmentTransaction.commit();
+
+                lost_list.setTextColor(0xff004D40);
+                found_list.setTextColor(0xffB0BBC5);
             }
         });
 
@@ -81,6 +86,9 @@ public class PersonPageActivity extends AppCompatActivity {
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.personPage_content,personFoundFragment);
                 fragmentTransaction.commit();
+
+                lost_list.setTextColor(0xffb0bbc5);
+                found_list.setTextColor(0x0ff004d40);
             }
         });
 
