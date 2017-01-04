@@ -1,9 +1,6 @@
 package com.our.flosing.view;
 
 import android.app.DatePickerDialog;
-import android.icu.text.DateFormat;
-import android.icu.text.SimpleDateFormat;
-//import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -192,7 +189,7 @@ public class FoundPublishActivity extends AppCompatActivity implements IFoundPub
             Log.d("dateChange",dateChange.getText().toString());
             dateChange = null;
 
-            DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
             try{
                 startDate = sdf.parse(startDateView.getText().toString());
                 endDate = sdf.parse(endDateView.getText().toString());
