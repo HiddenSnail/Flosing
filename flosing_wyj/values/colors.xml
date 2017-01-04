@@ -54,6 +54,9 @@
 
     <color name="HintColor">#9E9E9E</color>
 
+<<<<<<< HEAD
     <!--大概80%的透明度-->
     <color name="half_white_1000">#d0ffffff</color>
+=======
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
 </resources>

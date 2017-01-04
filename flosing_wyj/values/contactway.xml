@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="contactway">
-        <item>联系方式</item>
-        <item>电话</item>
-        <item>微信</item>
-        <item>QQ</item>
-    </string-array>
-</resources>

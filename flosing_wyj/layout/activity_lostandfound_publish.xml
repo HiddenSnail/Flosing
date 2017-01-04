@@ -6,7 +6,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@drawable/blur1"
+=======
+    android:background="@color/md_grey_bg"
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
     tools:context="com.our.flosing.view.LostPublishActivity">
 
     <ScrollView
@@ -26,7 +30,11 @@
                 android:layout_height="wrap_content"
                 android:text="物品名称: *"
                 android:textSize="23dp"
+<<<<<<< HEAD
                 android:textColor="@color/md_grey_800"/>
+=======
+                android:textColor="@color/md_black_1000"/>
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,6 +44,7 @@
                 android:orientation="horizontal">
                 <EditText
                     android:id="@+id/edittext_name_publish"
+<<<<<<< HEAD
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_weight="55"
@@ -43,11 +52,23 @@
                     android:padding="10dp"
                     android:text="sssss"
                     android:textColor="@color/md_black_1000" />
+=======
+
+                    android:layout_height="40dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/bg_edittext"
+                    android:padding="10dp"
+                    android:text="sssss"
+                    android:textColor="@color/md_black_1000"/>
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
 
                 <Spinner
                     android:id="@+id/spinner_types_publish"
 
+<<<<<<< HEAD
                     android:layout_width="wrap_content"
+=======
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dip"
                     android:layout_weight="1"
@@ -62,7 +83,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dip"
+<<<<<<< HEAD
                 android:background="@color/half_white_1000"
+=======
+                android:layout_marginBottom="7dip"
+                android:background="@color/md_white_1000"
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
                 android:orientation="horizontal">
                 <TextView
 
@@ -72,8 +98,12 @@
                     android:gravity="left"
                     android:padding="7sp"
                     android:textSize="18sp"
+<<<<<<< HEAD
                     android:textColor="@color/md_grey_800"
                     android:layout_width="wrap_content" />
+=======
+                    android:textColor="@color/md_black_1000" />
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
                 <TextView
                     android:id="@+id/textview_startdate_publish"
 
@@ -83,8 +113,12 @@
                     android:text="2016-12-31"
                     android:textSize="18sp"
                     android:textColor="@color/md_black_1000"
+<<<<<<< HEAD
                     android:clickable="true"
                     android:layout_width="wrap_content" />
+=======
+                    android:clickable="true"/>
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
                 <TextView
                     android:id="@+id/textview_startdate_publish"
 
@@ -94,8 +128,12 @@
                     android:gravity="center"
                     android:padding="7sp"
                     android:textSize="18sp"
+<<<<<<< HEAD
                     android:textColor="@color/md_grey_800"
                     android:layout_width="wrap_content" />
+=======
+                    android:textColor="@color/md_black_1000" />
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
                 <TextView
                     android:id="@+id/textview_enddate_publish"
 
@@ -105,17 +143,27 @@
                     android:text="2017-01-03"
                     android:textSize="18sp"
                     android:textColor="@color/md_black_1000"
+<<<<<<< HEAD
                     android:clickable="true"
                     android:layout_width="wrap_content" />
+=======
+                    android:clickable="true"/>
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:layout_marginTop="7dip"
                 android:text="发帖标题: *"
                 android:textSize="23sp"
                 android:textColor="@color/md_grey_800"/>
+=======
+                android:text="发帖标题: *"
+                android:textSize="23dp"
+                android:textColor="@color/md_black_1000"/>
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
 
             <EditText
                 android:id="@+id/edittext_title_publish"
@@ -133,19 +181,28 @@
                 android:layout_height="wrap_content"
                 android:text="详细描述:"
                 android:textSize="23dp"
+<<<<<<< HEAD
                 android:textColor="@color/md_grey_800"
+=======
+                android:textColor="@color/md_black_1000"
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
                 android:id="@+id/textView2" />
 
             <EditText
                 android:id="@+id/edittext_description_publish"
                 android:layout_width="match_parent"
                 android:gravity="top"
+<<<<<<< HEAD
                 android:layout_height="200dp"
+=======
+                android:layout_height="240dp"
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
                 android:background="@drawable/bg_edittext"
                 android:padding="10dp"
                 android:hint="请添加图文描述"
                 android:textColorHint="@color/HintColor"
                 android:layout_marginTop="7dip"
+<<<<<<< HEAD
                 android:textColor="@color/md_black_1000" />
 
                 <Button
@@ -158,6 +215,21 @@
                     android:text="+"
                     android:textColor="@color/md_teal_200"
                     android:textSize="42sp"/>
+=======
+
+                android:textColor="@color/md_black_1000"/>
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dip"
+                android:layout_marginBottom="7dip"
+                android:background="@color/md_white_1000"
+                app:srcCompat="@android:drawable/ic_input_add"
+                android:id="@+id/imageButton" />
+
+
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -194,9 +266,14 @@
                 android:id="@+id/submit_publish_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:background="@drawable/button_publish"
                 android:text="发布"
                 android:textSize="17sp"/>
+=======
+                android:background="@color/md_blue_400"
+                android:text="发布"/>
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
 
         </LinearLayout>
 

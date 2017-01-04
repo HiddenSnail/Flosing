@@ -21,6 +21,7 @@
         android:orientation="vertical"
         android:gravity="center">
 
+<<<<<<< HEAD
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -33,6 +34,8 @@
             android:textStyle=""
             />
 
+=======
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -60,7 +63,11 @@
 
         <TextView
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="11dp"
+=======
+            android:layout_height="15dp"
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
             android:maxLines="1"/>
 
         <LinearLayout
@@ -89,9 +96,16 @@
             <!--</android.support.design.widget.TextInputLayout>-->
         </LinearLayout>
 
+<<<<<<< HEAD
         <TextView
             android:layout_width="match_parent"
             android:layout_height="27dp"
+=======
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
             android:maxLines="1"/>
 
         <Button
@@ -104,7 +118,11 @@
 
         <TextView
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="9dp"
+=======
+            android:layout_height="10dp"
+>>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
             android:maxLines="1"/>
 
         <Button
