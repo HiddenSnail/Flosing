@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <!--blue-->
     <color name="md_blue_50">#E3F2FD</color>
     <color name="md_blue_100">#BBDEFB</color>
@@ -52,11 +54,20 @@
     <color name="md_black_1000">#000000</color>
     <color name="md_white_1000">#ffffff</color>
 
+    <!--blue grey-->
+    <color name="md_blue_grey_50">#ECEFF1</color>
+    <color name="md_blue_grey_100">#CFD8DC</color>
+    <color name="md_blue_grey_200">#B0BBC5</color>
+    <color name="md_blue_grey_300">#90A4AE</color>
+    <color name="md_blue_grey_400">#78909C</color>
+    <color name="md_blue_grey_500">#607D8B</color>
+    <color name="md_blue_grey_600">#546E7A</color>
+    <color name="md_blue_grey_700">#455A64</color>
+    <color name="md_blue_grey_800">#37474F</color>
+    <color name="md_blue_grey_900">#263238</color>
+
     <color name="HintColor">#9E9E9E</color>
 
-<<<<<<< HEAD
     <!--大概80%的透明度-->
     <color name="half_white_1000">#d0ffffff</color>
-=======
->>>>>>> 382dec0e3e37e3a0dec09f6a5eb92228d43f8596
 </resources>
