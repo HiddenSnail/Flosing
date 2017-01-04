@@ -27,6 +27,7 @@ import com.our.flosing.presenter.LostSearchPresenter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by RunNishino on 2017/1/2.
@@ -86,7 +87,7 @@ public class LostSearchResultFragment extends Fragment implements ILostSearchRes
         /*if (!"".equals(fragmentSearchDate))*/ Log.d("searchFragment","date:"+fragmentSearchDate);
 
         //TODO:jiexi date
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         try{
             searchDate = sdf.parse(fragmentSearchDate);
         }catch (Exception e){

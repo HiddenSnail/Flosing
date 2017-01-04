@@ -3,7 +3,7 @@ package com.our.flosing.view;
 import android.app.DatePickerDialog;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
+//import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,6 +18,7 @@ import com.our.flosing.R;
 import com.our.flosing.bean.FoundCard;
 import com.our.flosing.presenter.FoundPublishPresenter;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -78,7 +79,7 @@ public class FoundPublishActivity extends AppCompatActivity implements IFoundPub
         startDateView.setText(year+"-"+(month+1)+"-"+day); //显示当前的年月日
         endDateView.setText(year+"-"+(month+1)+"-"+day);
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
         try{
             startDate = sdf.parse(startDateView.getText().toString());
             endDate = sdf.parse(endDateView.getText().toString());

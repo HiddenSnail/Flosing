@@ -1,8 +1,8 @@
 package com.our.flosing.bean;
 
 import android.content.Context;
-import android.icu.text.DateFormat;
-import android.icu.text.SimpleDateFormat;
+//import android.icu.text.DateFormat;
+//import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.our.flosing.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by RunNishino on 2017/1/1.
@@ -40,7 +42,7 @@ public class FoundCardAdapter extends ArrayAdapter<FoundCard> {
         String sDate;
         String eDate;
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         sDate = sdf.format(foundCard.getSDate());
         eDate = sdf.format(foundCard.getEDate());
 

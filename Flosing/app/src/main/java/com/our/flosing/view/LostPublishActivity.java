@@ -1,9 +1,11 @@
 package com.our.flosing.view;
 
 import android.app.DatePickerDialog;
-import android.icu.text.DateFormat;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
+//import android.icu.text.DateFormat;
+import java.text.DateFormat;
+
+//import android.icu.text.SimpleDateFormat;
+//import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +23,8 @@ import com.our.flosing.R;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.presenter.LostPublishPresenter;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -72,6 +76,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         contactWayView = (Spinner) findViewById(R.id.spinner_contactWay_publish);
         contactDetailView = (EditText) findViewById(R.id.edittext_contactDetail_publish);
 
+
         //设置calendar对象时间为现在时间
         Calendar calendar = Calendar.getInstance(Locale.CHINA);
         java.util.Date date = new java.util.Date();
@@ -83,7 +88,9 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         startDateView.setText(year+"-"+(month+1)+"-"+day); //显示当前的年月日
         endDateView.setText(year+"-"+(month+1)+"-"+day);
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+//        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         try{
             startDate = sdf.parse(startDateView.getText().toString());
             endDate = sdf.parse(endDateView.getText().toString());

@@ -14,6 +14,8 @@ import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
 import com.our.flosing.presenter.LostCardPresenter;
 
+import java.util.Locale;
+
 /**
  * Created by RunNishino on 2016/12/31.
  */
@@ -66,7 +68,7 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
 
     public void initLostDetail(LostCard lostCard) {
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         lostDetailSDate = sdf.format(lostCard.getSDate());
         lostDetailEDate = sdf.format(lostCard.getEDate());
 

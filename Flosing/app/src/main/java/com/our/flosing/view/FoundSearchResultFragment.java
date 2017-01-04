@@ -27,6 +27,7 @@ import com.our.flosing.presenter.FoundSearchPresenter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by RunNishino on 2017/1/2.
@@ -83,7 +84,7 @@ public class FoundSearchResultFragment extends Fragment implements IFoundSearchR
         /*if (!"".equals(fragmentSearchType))*/ Log.d("searchFragment","type:"+fragmentSearchType);
         /*if (!"".equals(fragmentSearchDate))*/ Log.d("searchFragment","date:"+fragmentSearchDate);
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         try{
             searchDate = sdf.parse(fragmentSearchDate);
         }catch (Exception e){

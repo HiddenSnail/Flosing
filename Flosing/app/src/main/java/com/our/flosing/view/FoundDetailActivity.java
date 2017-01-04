@@ -15,6 +15,8 @@ import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
 import com.our.flosing.presenter.FoundCardPresenter;
 
+import java.util.Locale;
+
 
 /**
  * Created by RunNishino on 2017/1/2.
@@ -64,7 +66,7 @@ public class FoundDetailActivity extends AppCompatActivity implements IFoundDeta
 
     public void initFoundDetail(FoundCard foundCard) {
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         foundDetailSDate = sdf.format(foundCard.getSDate());
         foundDetailEDate = sdf.format(foundCard.getEDate());
 

@@ -4,7 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
+//import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.our.flosing.R;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -112,7 +113,7 @@ public class SearchActivity extends AppCompatActivity {
             //在TextView上显示日期
             searchDateView.setText(year+"-"+(month+1)+"-"+day);
 
-            DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
             try{
                 searchDate = sdf.parse(searchDateView.getText().toString());
             }catch (Exception e){
@@ -126,7 +127,7 @@ public class SearchActivity extends AppCompatActivity {
         intent.putExtra("searchName",searchNameView.getText().toString());
         intent.putExtra("searchType",searchTypeView.getSelectedItem().toString());
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
         searchDateStr = sdf.format(searchDate);
         intent.putExtra("searchDate",searchDateStr);
 
