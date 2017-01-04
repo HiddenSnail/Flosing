@@ -37,8 +37,7 @@ public class BitmapTryActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
+        
     }
 
 }

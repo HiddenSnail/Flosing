@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements IBaseView {
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString("result");
             FindLostHandler handler = new FindLostHandler(MainActivity.this);
-            handler.findLost(scanResult);
+            handler.handleCode(scanResult);
         }
     }
 

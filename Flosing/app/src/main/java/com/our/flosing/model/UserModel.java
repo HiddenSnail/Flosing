@@ -141,6 +141,7 @@ public class UserModel implements IUserModel {
                     avLost.fetch();
                     avLost.put("isFinish", true);
                     avLost.put("picker", picker);
+                    avLost.save();
                     subscriber.onNext(true);
                     subscriber.onCompleted();
                 } catch (AVException e) {
@@ -164,7 +165,9 @@ public class UserModel implements IUserModel {
                 AVObject avFound = AVObject.createWithoutData("Found", fid);
                 try {
                     avFound.fetch();
-                    avFound.put("isFinish", owner);
+                    avFound.put("isFinish", true);
+                    avFound.put("owner", owner);
+                    avFound.save();
                     subscriber.onNext(true);
                     subscriber.onCompleted();
                 } catch (AVException e) {
