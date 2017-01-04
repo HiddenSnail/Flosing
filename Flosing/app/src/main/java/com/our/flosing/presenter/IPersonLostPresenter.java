@@ -5,4 +5,5 @@ package com.our.flosing.presenter;
  */
 
 public interface IPersonLostPresenter extends IBasePresenter {
+    void getPersonLost(Integer pageNumber);
 }
