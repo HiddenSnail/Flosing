@@ -136,7 +136,7 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
                     cancel = true;
                 }*/
 
-                if ("选择联系方式".equals(contactWayView.getSelectedItem().toString())){
+                if ("联系方式".equals(contactWayView.getSelectedItem().toString())){
                     Toast.makeText(LostPublishActivity.this,"请选择联系方式",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }

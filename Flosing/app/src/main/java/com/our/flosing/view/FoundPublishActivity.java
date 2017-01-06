@@ -119,7 +119,7 @@ public class FoundPublishActivity extends AppCompatActivity implements IFoundPub
                     cancel = true;
                 }*/
 
-                if ("选择联系方式".equals(contactWayView.getSelectedItem().toString())){
+                if ("联系方式".equals(contactWayView.getSelectedItem().toString())){
                     Toast.makeText(FoundPublishActivity.this,"请选择联系方式",Toast.LENGTH_SHORT).show();
                     cancel = true;
                 }

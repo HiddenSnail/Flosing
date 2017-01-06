@@ -3,7 +3,7 @@
   <component name="Statistic">
     <option name="excludedDirectories">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/our/flosing" />
       </list>
     </option>
   </component>
