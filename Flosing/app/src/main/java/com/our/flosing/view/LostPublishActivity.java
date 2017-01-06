@@ -2,11 +2,16 @@ package com.our.flosing.view;
 
 import android.app.DatePickerDialog;
 //import android.icu.text.DateFormat;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 
 //import android.icu.text.SimpleDateFormat;
 //import android.icu.util.Calendar;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +19,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +52,10 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
     private TextView endDateView;
     private Spinner contactWayView;
     private EditText contactDetailView;
+    private Button imageButtonView;
+    private ImageView imageSelectView;
+
+    private byte[] imageBytes = null;
 
 
     private Date startDate;
@@ -75,6 +86,17 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         endDateView = (TextView) findViewById(R.id.textview_enddate_publish);
         contactWayView = (Spinner) findViewById(R.id.spinner_contactWay_publish);
         contactDetailView = (EditText) findViewById(R.id.edittext_contactDetail_publish);
+        imageButtonView = (Button) findViewById(R.id.imageButton);
+        imageSelectView = (ImageView) findViewById(R.id.imageview_select_publish);
+
+        imageButtonView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, 42);
+            }
+        });
 
 
         //设置calendar对象时间为现在时间
@@ -246,6 +268,30 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
         } catch (Exception e) {
 
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode == 42 && resultCode == RESULT_OK){
+            try{
+                imageSelectView.setImageBitmap(MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData()));
+                imageBytes = getBytes(getContentResolver().openInputStream(data.getData()));
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public byte[] getBytes(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteArrayOutputStream.write(buffer, 0, len);
+        }
+        return byteArrayOutputStream.toByteArray();
     }
 
     @Override
