@@ -90,7 +90,9 @@ public class PersonLostFragment extends Fragment implements ILostPersonFragmentV
                     intent.putExtra("cardID", "L" + lostCard.getId());
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getActivity(),"这件物品已经找回",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LostDetailActivity.class);
+                    intent.putExtra("lostDetailId", lostCard.getId());
+                    startActivity(intent);
                 }
             }
        });

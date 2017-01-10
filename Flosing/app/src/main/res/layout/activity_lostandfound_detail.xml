@@ -10,7 +10,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,48 +129,115 @@
                 android:layout_gravity="right"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dip">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="发布人："
-                    android:layout_marginLeft="10dip"
-                    android:textColor="@color/md_blue_grey_800"
-                    android:textSize="17sp"/>
-                <TextView
-                    android:id="@+id/textview_username_lostDetail"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="@color/md_blue_grey_800"
-                    android:layout_marginLeft="10sp"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发布人："
+                        android:layout_marginLeft="10dip"
+                        android:textColor="@color/md_blue_grey_800"
+                        android:textSize="17sp"/>
+
+                    <TextView
+                        android:id="@+id/textview_username_lostDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@color/md_blue_grey_800"
+                        android:layout_marginLeft="10sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dip"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:textColor="@color/md_blue_grey_800"
+                        android:textSize="17sp"
+                        android:id="@+id/textview_contactway_lostDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系方式："
+
+                        />
+                    <TextView
+                        android:id="@+id/textview_contactdetial_lostDetail"
+                        android:layout_width="wrap_content"
+                        android:textSize="17sp"
+                        android:layout_marginLeft="10dip"
+                        android:textColor="@color/md_blue_grey_800"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dip">
+                android:id="@+id/lostDetial_pickerInfo">
 
-                <TextView
-                    android:textColor="@color/md_blue_grey_800"
-                    android:textSize="17sp"
-                    android:id="@+id/textview_contactway_lostDetail"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="联系方式："
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1">
 
-                    />
-                <TextView
-                    android:id="@+id/textview_contactdetial_lostDetail"
-                    android:layout_width="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="10dip"
-                    android:textColor="@color/md_blue_grey_800"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="拾取人："
+                        android:layout_marginLeft="10dip"
+                        android:textColor="@color/md_blue_grey_800"
+                        android:textSize="17sp"
+                        android:id="@+id/textView" />
+
+                    <TextView
+                        android:id="@+id/textview_pickername_lostDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@color/md_blue_grey_800"
+                        android:layout_marginLeft="10sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dip"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:textColor="@color/md_blue_grey_800"
+                        android:textSize="17sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系方式："
+
+                        />
+                    <TextView
+                        android:id="@+id/textview_pickercontactdetial_lostDetail"
+                        android:layout_width="wrap_content"
+                        android:textSize="17sp"
+                        android:layout_marginLeft="10dip"
+                        android:textColor="@color/md_blue_grey_800"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
             </LinearLayout>
+
+
         </LinearLayout>
 
     </ScrollView>

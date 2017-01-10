@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -46,10 +47,14 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
     TextView lostDetailContactDetailView;
     TextView lostDetailUsernameView;
 
+    TextView lostDetailPickerContactDetailView;
+    TextView lostDetailPickerNameView;
+    View lostDetailPickerInfo;
+
     ImageView lostDetailImageView;
 
     //测试用：
-    private String url = "http://imgstore04.cdn.sogou.com/app/a/100520024/877e990117d6a7ebc68f46c5e76fc47a";
+    private String url = null;
 
     private Handler handler = new Handler(){
         public void handleMessage(Message msg){
@@ -82,6 +87,10 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
         lostDetailContactDetailView = (TextView) findViewById(R.id.textview_contactdetial_lostDetail);
         lostDetailImageView = (ImageView) findViewById(R.id.imageview_image_lostDetail);
 
+        lostDetailPickerInfo = findViewById(R.id.lostDetial_pickerInfo);
+        lostDetailPickerNameView = (TextView) findViewById(R.id.textview_pickername_lostDetail);
+        lostDetailPickerContactDetailView = (TextView) findViewById(R.id.textview_pickercontactdetial_lostDetail);
+
 
 
         Intent intent = getIntent();
@@ -112,16 +121,26 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
         lostDetailContactWayView.setText(lostCard.getContactWay());
         lostDetailContactDetailView.setText(lostCard.getContactDetail());
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Bitmap bitmap = getURLimage(url);
-                Message msg = new Message();
-                msg.what = 0;
-                msg.obj = bitmap;
-                handler.sendMessage(msg);
-            }
-        }).start();
+        if (lostCard.getIsFinish()){
+            lostDetailPickerInfo.setVisibility(View.GONE);
+        }else{
+//            lostDetailPickerNameView.setText();
+        }
+
+        if (url != ""){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Bitmap bitmap = getURLimage(url);
+                    Message msg = new Message();
+                    msg.what = 0;
+                    msg.obj = bitmap;
+                    handler.sendMessage(msg);
+                }
+            }).start();
+        }else{
+            lostDetailImageView.setVisibility(View.GONE);
+        }
 
         lostDetailImageView.setOnClickListener(new View.OnClickListener() {
             @Override
