@@ -7,4 +7,5 @@ package com.our.flosing.presenter;
 public interface IFoundCardPresenter extends IBasePresenter {
     void getFoundDetail(final String fid);
     void getPicker(final String fid);
+    void getOwner(final String fid);
 }

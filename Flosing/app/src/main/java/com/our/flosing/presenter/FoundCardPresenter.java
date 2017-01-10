@@ -63,4 +63,22 @@ public class FoundCardPresenter implements IFoundCardPresenter{
                 });
 
     }
+
+    @Override
+    public void getOwner(final String fid) {
+        foundCardModel.getOwnerByFid(fid)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(User user) {
+                        foundDetailView.initOwnerInfo(user);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        foundDetailView.showError(throwable.getMessage());
+                    }
+                });
+    }
 }

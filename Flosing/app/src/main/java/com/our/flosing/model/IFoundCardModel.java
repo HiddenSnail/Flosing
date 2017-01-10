@@ -19,4 +19,5 @@ public interface IFoundCardModel {
     Observable<User> getPickerByFid(final String fid);
     Observable<List<FoundCard>> searchFounds(final String type, final String name,
                                              final Date lostdate, final Integer pageNumber);
+    Observable<User> getOwnerByFid(final String fid);
 }
