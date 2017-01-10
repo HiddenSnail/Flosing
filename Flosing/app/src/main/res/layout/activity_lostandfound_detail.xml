@@ -28,15 +28,6 @@
                 android:textColor="@color/md_teal_A700"
                 android:text="标题"
                 />
-                <ImageButton
-                    android:layout_width="40dip"
-                    android:layout_height="40dip"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dip"
-                    android:layout_marginTop="6dip"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/twodcode"
-                    android:background="@color/half_white_1000"/>
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,7 +108,6 @@
                 android:paddingTop="8dip"
                 android:paddingBottom="8dip"
                 android:paddingRight="13dip"
-                android:text="详细文字说明"
                 android:textColor="@color/md_blue_grey_700"
                 android:background="@drawable/shape_corner"
                 android:layout_marginLeft="15dip"
@@ -129,10 +119,12 @@
                 android:layout_height="250dip" />
 
             <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
+                android:id="@+id/imageview_image_lostDetail"
+                android:layout_width="100dip"
+                android:layout_height="100dip"
                 android:layout_marginLeft="8dip"
-                android:layout_marginTop="5dip"/>
+                android:layout_marginTop="5dip"
+                android:layout_gravity="right"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

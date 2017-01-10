@@ -34,7 +34,7 @@
                 android:layout_height="35dip"
                 android:background="@drawable/shape_corner_left_white"
                 android:id="@+id/lost_list"
-                android:text="寻物启示"
+                android:text="寻物启事"
                 android:textColor="#2EB872"
                 android:layout_weight="1"/>
             <Button

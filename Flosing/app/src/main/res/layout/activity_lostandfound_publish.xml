@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="物品名称: *"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textColor="@color/md_grey_800"/>
 
             <LinearLayout
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dip"
                 android:text="发帖标题: *"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textColor="@color/md_grey_800"/>
 
             <EditText
@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="详细描述:"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textColor="@color/md_grey_800"
                 android:id="@+id/textView2" />
 
@@ -145,17 +145,33 @@
                 android:textColorHint="@color/HintColor"
                 android:layout_marginTop="7dip"
                 android:textColor="@color/md_black_1000" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imageview_select_publish"
+                    android:layout_width="85dip"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="7dip"
+                    android:layout_marginBottom="7dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_weight="0.03" />
 
                 <Button
                     android:id="@+id/imageButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="85dip"
+                    android:layout_height="80dip"
                     android:layout_marginTop="7dip"
                     android:layout_marginBottom="7dip"
                     android:background="@drawable/button_corner"
                     android:text="+"
                     android:textColor="@color/md_teal_200"
-                    android:textSize="42sp"/>
+                    android:textSize="42sp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"

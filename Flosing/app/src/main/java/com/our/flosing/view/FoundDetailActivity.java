@@ -6,6 +6,7 @@ import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,6 @@ public class FoundDetailActivity extends AppCompatActivity implements IFoundDeta
     TextView foundDetailDescriptionView;
     TextView foundDetailContactWayView;
     TextView foundDetailContactDetailView;
-
     TextView foundDetailUsernameView;
 
     @Override
@@ -76,6 +76,7 @@ public class FoundDetailActivity extends AppCompatActivity implements IFoundDeta
         Log.d("lostDetail","description:"+foundCard.getDescription());
 
         foundDetailTitleView.setText(foundCard.getTitle());
+        foundDetailTypeView.setText(foundCard.getType());
         foundDetailNameView.setText(foundCard.getName());
         foundDetailDescriptionView.setText(foundCard.getDescription());
         foundDetailSDateView.setText(foundDetailSDate);
