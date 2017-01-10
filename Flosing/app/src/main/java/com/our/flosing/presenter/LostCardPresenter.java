@@ -75,7 +75,7 @@ public class LostCardPresenter implements ILostCardPresenter {
                 .subscribe(new Action1<User>() {
                     @Override
                     public void call(User user) {
-                        lostDetailView.initPcikerInfo();
+                        lostDetailView.initPickerInfo(user);
                     }
                 }, new Action1<Throwable>() {
                     @Override

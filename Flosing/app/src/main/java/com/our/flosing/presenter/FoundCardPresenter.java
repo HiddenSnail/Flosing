@@ -72,7 +72,7 @@ public class FoundCardPresenter implements IFoundCardPresenter{
                 .subscribe(new Action1<User>() {
                     @Override
                     public void call(User user) {
-                        foundDetailView.initOwnerInfo(user);
+//                        foundDetailView.initOwnerInfo(user);
                     }
                 }, new Action1<Throwable>() {
                     @Override

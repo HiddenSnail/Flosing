@@ -48,10 +48,12 @@ public class FoundCardModel implements IFoundCardModel {
                 avFound.put("contactWay", foundCard.getContactWay());
                 avFound.put("contactDetail", foundCard.getContactDetail());
 
-                for (Bitmap picture:foundCard.getPics()) {
-                    String timeStamp = String.valueOf(System.currentTimeMillis()/1000);
-                    AVFile file = new AVFile(timeStamp+".jpeg", BitmapOperation.getPictureByte(picture));
-                    avFound.put("FoundPicture", file);
+                if (foundCard.getPics() != null && foundCard.getPics().size() > 0) {
+                    for (Bitmap picture:foundCard.getPics()) {
+                        String timeStamp = String.valueOf(System.currentTimeMillis()/1000);
+                        AVFile file = new AVFile(timeStamp+".jpeg", BitmapOperation.getBitmapByte(picture));
+                        avFound.put("FoundPicture", file);
+                    }
                 }
                 avFound.saveInBackground(new SaveCallback()
                 {
@@ -125,7 +127,12 @@ public class FoundCardModel implements IFoundCardModel {
                             foundCard.setContactWay(avObject.getString("contactWay"));
                             foundCard.setContactDetail(avObject.getString("contactDetail"));
                             foundCard.setDescription(avObject.getString("description"));
-                            foundCard.setPicUrls(Arrays.asList(avObject.getAVFile("FoundPicture").getUrl()));
+                            foundCard.setIsFinish(avObject.getBoolean("isFinish"));
+
+                            AVFile avFile = avObject.getAVFile("FoundPicture");
+                            if (avFile != null) {
+                                foundCard.setPicUrls(Arrays.asList(avFile.getUrl()));
+                            }
 
                             subscriber.onNext(foundCard);
                             subscriber.onCompleted();

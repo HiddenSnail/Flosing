@@ -47,11 +47,12 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
     TextView lostDetailContactDetailView;
     TextView lostDetailUsernameView;
 
-    TextView lostDetailPickerContactDetailView;
     TextView lostDetailPickerNameView;
     View lostDetailPickerInfo;
 
     ImageView lostDetailImageView;
+
+    String lostDetailId;
 
     //测试用：
     private String url = null;
@@ -89,15 +90,15 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
 
         lostDetailPickerInfo = findViewById(R.id.lostDetial_pickerInfo);
         lostDetailPickerNameView = (TextView) findViewById(R.id.textview_pickername_lostDetail);
-        lostDetailPickerContactDetailView = (TextView) findViewById(R.id.textview_pickercontactdetial_lostDetail);
 
 
 
         Intent intent = getIntent();
-        String lostDetailId = intent.getStringExtra("lostDetailId");
+        lostDetailId = intent.getStringExtra("lostDetailId");
 
         lostCardPresenter.getLostDetail(lostDetailId);
         lostCardPresenter.getOwner(lostDetailId);
+
 
     }
 
@@ -120,11 +121,14 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
         lostDetailEDateView.setText(lostDetailEDate);
         lostDetailContactWayView.setText(lostCard.getContactWay());
         lostDetailContactDetailView.setText(lostCard.getContactDetail());
+        if (lostCard.getPicUrls() != null ) url = lostCard.getPicUrls().get(0);
 
         if (lostCard.getIsFinish()){
+            lostCardPresenter.getPicker(lostDetailId);
+
+        };
+        if (lostCard.getIsFinish() != true){
             lostDetailPickerInfo.setVisibility(View.GONE);
-        }else{
-//            lostDetailPickerNameView.setText();
         }
 
         if (url != ""){
@@ -180,5 +184,10 @@ public class LostDetailActivity extends AppCompatActivity implements ILostDetail
 
     public void showError(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    public void initPickerInfo(User picker){
+        Log.d("pickername",picker.getUsername());
+        lostDetailPickerNameView.setText(picker.getUsername());
     }
 }

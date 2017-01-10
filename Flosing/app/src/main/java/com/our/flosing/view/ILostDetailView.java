@@ -11,4 +11,5 @@ public interface ILostDetailView extends IBaseView {
     void initLostDetail(LostCard lostCard);
     void initOwnerInfo(User owner);
     void showError(String msg);
+    void initPickerInfo(User picker);
 }

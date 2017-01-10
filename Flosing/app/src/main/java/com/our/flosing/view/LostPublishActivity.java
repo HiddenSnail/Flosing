@@ -10,6 +10,8 @@ import java.text.DateFormat;
 //import android.icu.text.SimpleDateFormat;
 //import android.icu.util.Calendar;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +33,7 @@ import com.our.flosing.bean.LostCard;
 import com.our.flosing.presenter.LostPublishPresenter;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -253,6 +256,9 @@ public class LostPublishActivity extends AppCompatActivity implements ILostPubli
             lostCard.setIsFinish(false);
             lostCard.setContactWay(contactWayView.getSelectedItem().toString());
             lostCard.setContactDetail(contactDetailView.getText().toString());
+            if (imageBytes != null && imageBytes.length > 0){
+                lostCard.setPics(Arrays.asList(BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length)));
+            }
 
             //test
             Log.d("lostCard",lostCard.getTitle());

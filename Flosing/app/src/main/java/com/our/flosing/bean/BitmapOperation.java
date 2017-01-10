@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 
 public class BitmapOperation {
-    static public byte[] getPictureByte(Bitmap bitmap) {
+    static public byte[] getBitmapByte(Bitmap bitmap) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
         try {

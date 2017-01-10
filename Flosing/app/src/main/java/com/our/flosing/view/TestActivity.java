@@ -24,13 +24,12 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.test);
 
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.scan);
-        Bitmap bit2 = BitmapFactory.decodeResource(this.getResources(), R.drawable.classroom);
 
         ImageView imageView = (ImageView) findViewById(R.id.bitmap);
         imageView.setImageBitmap(bitmap);
 
         LostCard lostCard = new LostCard();
-        lostCard.setPics(Arrays.asList(bitmap, bit2));
+        lostCard.setPics(Arrays.asList(bitmap));
 
         LostCardModel lostCardModel = new LostCardModel();
         lostCardModel.publishLost(lostCard).subscribe();

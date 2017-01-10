@@ -1,6 +1,7 @@
 package com.our.flosing.model;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
@@ -50,10 +51,12 @@ public class LostCardModel implements ILostCardModel {
                 avLost.put("contactWay", lostCard.getContactWay());
                 avLost.put("contactDetail", lostCard.getContactDetail());
 
-                for (Bitmap picture:lostCard.getPics()) {
-                    String timeStamp = String.valueOf(System.currentTimeMillis()/1000);
-                    AVFile file = new AVFile(timeStamp+".jpeg", BitmapOperation.getPictureByte(picture));
-                    avLost.put("LostPicture", file);
+                if (lostCard.getPics() != null && lostCard.getPics().size() > 0) {
+                    for (Bitmap picture:lostCard.getPics()) {
+                        String timeStamp = String.valueOf(System.currentTimeMillis()/1000);
+                        AVFile file = new AVFile(timeStamp+".jpeg", BitmapOperation.getBitmapByte(picture));
+                        avLost.put("LostPicture", file);
+                    }
                 }
 
                 avLost.saveInBackground(new SaveCallback()
@@ -128,7 +131,12 @@ public class LostCardModel implements ILostCardModel {
                             lostCard.setContactWay(avObject.getString("contactWay"));
                             lostCard.setContactDetail(avObject.getString("contactDetail"));
                             lostCard.setDescription(avObject.getString("description"));
-                            lostCard.setPicUrls(Arrays.asList(avObject.getAVFile("LostPicture").getUrl()));
+                            lostCard.setIsFinish(avObject.getBoolean("isFinish"));
+
+                            AVFile avFile = avObject.getAVFile("LostPicture");
+                            if (avFile != null) {
+                                lostCard.setPicUrls(Arrays.asList(avFile.getUrl()));
+                            }
 
                             subscriber.onNext(lostCard);
                             subscriber.onCompleted();
@@ -170,6 +178,9 @@ public class LostCardModel implements ILostCardModel {
                     User picker = new User();
                     picker.setId(avLost.getAVUser("picker").getObjectId());
                     picker.setUsername(avLost.getAVUser("picker").getUsername());
+
+                    Log.e("信息", picker.getUsername());
+
                     subscriber.onNext(picker);
                     subscriber.onCompleted();
                 } catch (AVException e) {
