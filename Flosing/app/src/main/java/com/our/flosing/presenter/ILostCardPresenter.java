@@ -7,4 +7,5 @@ package com.our.flosing.presenter;
 public interface ILostCardPresenter extends IBasePresenter {
     void getLostDetail(final String lid);
     void getOwner(final String lid);
+    void getPicker(final String lid);
 }

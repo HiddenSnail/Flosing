@@ -1,6 +1,9 @@
 package com.our.flosing.bean;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by huangrui on 2016/12/28.
@@ -17,6 +20,12 @@ public class FoundCard {
     private Boolean isFinish;
     private String contactWay;
     private String contactDetail;
+    private List<String> picUrls;
+    private List<Bitmap> pics;
+
+    public FoundCard() {
+        this.isFinish = false;
+    }
 
     public String getId() { return this.id; }
     public void setId(String id) { this.id = id; }
@@ -47,4 +56,12 @@ public class FoundCard {
 
     public String getContactDetail()  { return this.contactDetail; }
     public void setContactDetail(String contactDetail) { this.contactDetail = contactDetail; }
+
+    public List<String> getPicUrls() { return this.picUrls; }
+    public void setPicUrls(List<String> picUrls) { this.picUrls = picUrls; }
+
+    public List<Bitmap> getPics() { return this.pics; }
+    public void setPics(List<Bitmap> pics) {
+        this.pics = pics;
+    }
 }

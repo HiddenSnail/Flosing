@@ -1,12 +1,16 @@
 package com.our.flosing.model;
 
+import android.graphics.Bitmap;
+
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.our.flosing.bean.BitmapOperation;
 import com.our.flosing.bean.FoundCard;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
@@ -43,6 +47,12 @@ public class FoundCardModel implements IFoundCardModel {
                 avFound.put("isFinish", foundCard.getIsFinish());
                 avFound.put("contactWay", foundCard.getContactWay());
                 avFound.put("contactDetail", foundCard.getContactDetail());
+
+                for (Bitmap picture:foundCard.getPics()) {
+                    String timeStamp = String.valueOf(System.currentTimeMillis()/1000);
+                    AVFile file = new AVFile(timeStamp+".jpeg", BitmapOperation.getPictureByte(picture));
+                    avFound.put("FoundPicture", file);
+                }
                 avFound.saveInBackground(new SaveCallback()
                 {
                     @Override
@@ -115,6 +125,7 @@ public class FoundCardModel implements IFoundCardModel {
                             foundCard.setContactWay(avObject.getString("contactWay"));
                             foundCard.setContactDetail(avObject.getString("contactDetail"));
                             foundCard.setDescription(avObject.getString("description"));
+                            foundCard.setPicUrls(Arrays.asList(avObject.getAVFile("FoundPicture").getUrl()));
 
                             subscriber.onNext(foundCard);
                             subscriber.onCompleted();
@@ -137,6 +148,26 @@ public class FoundCardModel implements IFoundCardModel {
                     picker.setId(avFound.getAVUser("picker").getObjectId());
                     picker.setUsername(avFound.getAVUser("picker").getUsername());
                     subscriber.onNext(picker);
+                    subscriber.onCompleted();
+                } catch (AVException e) {
+                    subscriber.onError(e);
+                }
+            }
+        });
+    }
+
+    public Observable<User> getOwnerByFid(final String fid) {
+
+        return Observable.create(new Observable.OnSubscribe<User>() {
+            @Override
+            public void call(Subscriber<? super User> subscriber) {
+                AVObject avFound = AVObject.createWithoutData("Fpund", fid);
+                try {
+                    avFound.fetch("owner");
+                    User owner = new User();
+                    owner.setId(avFound.getAVUser("owner").getObjectId());
+                    owner.setUsername(avFound.getAVUser("owner").getUsername());
+                    subscriber.onNext(owner);
                     subscriber.onCompleted();
                 } catch (AVException e) {
                     subscriber.onError(e);

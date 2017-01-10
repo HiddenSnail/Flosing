@@ -1,12 +1,17 @@
 package com.our.flosing.model;
 
+import android.graphics.Bitmap;
+
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVRelation;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.our.flosing.bean.BitmapOperation;
 import com.our.flosing.bean.LostCard;
 import com.our.flosing.bean.User;
 
@@ -44,6 +49,13 @@ public class LostCardModel implements ILostCardModel {
                 avLost.put("isFinish", lostCard.getIsFinish());
                 avLost.put("contactWay", lostCard.getContactWay());
                 avLost.put("contactDetail", lostCard.getContactDetail());
+
+                for (Bitmap picture:lostCard.getPics()) {
+                    String timeStamp = String.valueOf(System.currentTimeMillis()/1000);
+                    AVFile file = new AVFile(timeStamp+".jpeg", BitmapOperation.getPictureByte(picture));
+                    avLost.put("LostPicture", file);
+                }
+
                 avLost.saveInBackground(new SaveCallback()
                 {
                     @Override
@@ -116,6 +128,7 @@ public class LostCardModel implements ILostCardModel {
                             lostCard.setContactWay(avObject.getString("contactWay"));
                             lostCard.setContactDetail(avObject.getString("contactDetail"));
                             lostCard.setDescription(avObject.getString("description"));
+                            lostCard.setPicUrls(Arrays.asList(avObject.getAVFile("LostPicture").getUrl()));
 
                             subscriber.onNext(lostCard);
                             subscriber.onCompleted();
@@ -138,6 +151,26 @@ public class LostCardModel implements ILostCardModel {
                     owner.setId(avLost.getAVUser("owner").getObjectId());
                     owner.setUsername(avLost.getAVUser("owner").getUsername());
                     subscriber.onNext(owner);
+                    subscriber.onCompleted();
+                } catch (AVException e) {
+                    subscriber.onError(e);
+                }
+            }
+        });
+    }
+
+    public Observable<User> getPickerByLid(final String lid) {
+
+        return Observable.create(new Observable.OnSubscribe<User>() {
+            @Override
+            public void call(Subscriber<? super User> subscriber) {
+                AVObject avLost = AVObject.createWithoutData("Lost", lid);
+                try {
+                    avLost.fetch("picker");
+                    User picker = new User();
+                    picker.setId(avLost.getAVUser("picker").getObjectId());
+                    picker.setUsername(avLost.getAVUser("picker").getUsername());
+                    subscriber.onNext(picker);
                     subscriber.onCompleted();
                 } catch (AVException e) {
                     subscriber.onError(e);

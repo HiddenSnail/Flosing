@@ -66,4 +66,22 @@ public class LostCardPresenter implements ILostCardPresenter {
                 });
 
     }
+
+    @Override
+    public void getPicker(final String lid) {
+        lostCardModel.getPickerByLid(lid)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(User user) {
+                        lostDetailView.initPcikerInfo();
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        lostDetailView.showError(throwable.getMessage());
+                    }
+                });
+    }
 }
